@@ -1,0 +1,112 @@
+<div ng-include src="'partials/nav.html'"></div>
+
+<div class="col-left bg-map">
+    <div ng-show="friend_modal" class="map-modal p-5" style="z-index:999;">
+        <div class="map-modal-header">
+            <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
+        </div>
+        <ul class="list-unstyled mt-5 friends-list-add">
+            <li class="media">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women4.jpg" alt="Louisette Dupont">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Louisette Dupont</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+            <li class="media my-4">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men2.jpg" alt="Jean Jacques">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Jean Jacques</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+            <li class="media my-4">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women3.jpg" alt="Micheline Martin">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Micheline Martin</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+            <li class="media my-4">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women5.jpg" alt="Claudette François">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Claudette François</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+            <li class="media my-4">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men3.jpg" alt="Jean Mouloud">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Jean Mouloud</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+            <li class="media">
+                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men1.jpg" alt="Jean Jean">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">Jean Jean</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div id="map-canvas" ng-click="close_modals()" style="width:100%; height:100%;"></div>
+</div>
+
+<a href="/new" class="add-tips"><img src="./images/add-tips-marker.png" alt=""></a>
+
+<div id="colright" class="col-right">
+    <div class="user-header bg-primary text-center">
+        <img src="{{user.picture.data.url}}" class="picture rounded-circle">
+        <h3 class="text-white">{{user.name}}</h3>
+        <p class="location">Paris, France</p>
+        <ul class="user-info">
+            <li><span class="text-success">15</span> Amis</li>
+            <li><span class="text-success">{{userTips.length}}</span> Tips</li>
+            <li><span class="text-success">{{count_country.length}}</span> Pays</li>
+        </ul>
+    </div>
+    <div class="user-content py-4 px-5">
+        <ul class="nav justify-content-center pb-3" id="filters">
+            <li class="nav-item dropdown">
+                <select class="form-control" id="continent" ng-model="filter_continent">
+                    <option value="">continent</option>
+                    <option value="afrique">Afrique</option>
+                    <option value="amerique du nord">Amérique du nord</option>
+                    <option value="amerique du sud">Amérique du sud</option>
+                    <option value="asie">Asie</option>
+                    <option value="europe">Europe</option>
+                    <option value="oceanie">Océanie</option>
+                </select>
+            </li>
+            <li class="nav-item dropdown">
+                <select class="form-control" id="category" ng-model="filter_cat">
+                    <option value="">catégorie</option>
+                    <option value="experience">Experience</option>
+                    <option value="explore">Explore</option>
+                    <option value="globe">Globe</option>
+                    <option value="sleep">Sleep</option>
+                    <option value="taste">Taste</option>
+                </select>
+            </li>
+        </ul>
+
+        <div class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent}" id="{{item._id}}" style="background-image: url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
+            <div class="background"></div>
+            <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
+            <h3>{{item.name}}</h3>
+        </div>
+    </div>
+</div>

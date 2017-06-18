@@ -1,0 +1,88 @@
+.user-header {
+  padding-top: 200px;
+  padding-bottom: 15px;
+  background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bguser.png');
+  background-size: cover;
+  background-position: center;
+
+  .picture {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .location {
+    color: lighten($gray-light, 20%);
+  }
+
+  ul.user-info {
+    padding-left: 0;
+    li {
+      display: inline-block;
+      margin-right: 20px;
+      margin-left: 20px;
+      color: $white;
+      text-transform: uppercase;
+
+      span {
+        font-weight: bold;
+        display: block;
+        font-size: $font-size-h3;
+      }
+    }
+  }
+}
+
+.user-content {
+  #filters {
+    a {
+      color: $gray-light;
+
+      @include hover-focus {
+        color: $brand-info;
+      }
+    }
+  }
+}
+
+.add-tips {
+  position: absolute;
+  left: 50%;
+  margin-left: -60px;
+  bottom: 0;
+  z-index: 10;
+
+  img {
+    width: 120px;
+  }
+
+  &:hover {
+    margin-left: -65px;
+
+    img {
+      width: 130px;
+    }
+  }
+}
+
+.bg-login {
+  background-image: url($img-url + 'tips-bali.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card-login {
+  width: 600px;
+  max-width: 100%;
+  margin: auto;
+  background-color: $brand-primary;
+  color: $white;
+
+  .logo {
+    width: 200px;
+  }
+
+  form {
+    width: 80%;
+    margin: auto;
+  }
+}

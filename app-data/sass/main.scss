@@ -1,0 +1,73 @@
+@import "variable.scss";
+@import "../../bower_components/bootstrap/scss/bootstrap.scss";
+@import "../../bower_components/select2/src/scss/core.scss";
+
+@import "styles.scss";
+@import "partials/user.scss";
+@import "partials/tips.scss";
+@import "partials/friends.scss";
+@import "partials/modal.scss";
+@import "select2/layout";
+
+html, body, .height-100 {
+  height: 100%;
+}
+
+body {
+  padding-top: 74px;
+}
+
+.col-left {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  float: left;
+  background-color: $gray-lighter;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.col-right {
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+  background-color: $gray-lighter;
+
+  .header {
+    padding: 50px 40px 40px;
+    background-color: $white;
+  }
+}
+
+.navbar-brand .logo {
+  width: 50px;
+}
+
+.nav-user {
+  width: 40px;
+  border: 2px solid $white;
+}
+
+.search-overlay {
+  position: absolute;
+  top: 50px; bottom: 0;
+  left: 0; right: 0;
+  background-color: $brand-primary;
+  z-index: 100;
+  overflow: scroll;
+
+  input {
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    color: $white;
+
+    &:focus {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: $white;
+    }
+  }
+}

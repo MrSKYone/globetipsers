@@ -1,0 +1,50 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/"><img src="./images/logo-min.png" alt="Globetipser" class="logo"></a>
+
+    <div class="collapse navbar-collapse" id="navbarDefault">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <ul class="navbar-nav" ng-if="loggedin">
+            <li class="nav-item mr-4">
+                <a class="nav-link" href="#" data-toggle="search"><i class="fa fa-search fa-lg"></i></a>
+            </li>
+            <li class="nav-item mr-4" ng-click="friending()">
+                <a class="nav-link" href="#"><i class="fa fa-user-plus fa-lg"></i></a>
+            </li>
+            <li class="nav-item">
+                <a href="/user"><img src="{{user.picture.data.url}}" alt="Audrey Joplin" class="nav-user rounded-circle"></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="search-overlay" style="display:none;">
+    <form action="" class="p-5">
+        <div class="form-group">
+            <input type="text" class="form-control form-control-lg" id="search"  placeholder="Rechercher par pays, amis, catégorie, adresse..." autocomplete="off">
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 offset-md-5">
+                <div class="search-results" style="display:none;">
+                    <div class="tips-widget text-center mb-5" style="background-image: url('./images/tips-bali.jpg');">
+                        <div class="background"></div>
+                        <p class="location"><span>Indonesia</span>, Bali</p>
+                        <h3>Villa Khadine</h3>
+                    </div>
+
+                    <div class="tips-widget text-center mb-5" style="background-image: url('./images/tips-nyc.jpg');">
+                        <div class="background"></div>
+                        <p class="location"><span>USA</span>, New York City</p>
+                        <h3>Westlight</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

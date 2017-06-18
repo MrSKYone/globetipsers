@@ -1,0 +1,11 @@
+
+#COMPONENTS
+node_modules
+bower_components
+
+#IMAGES
+upload
+
+CLOSE
+
+REFRESH

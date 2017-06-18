@@ -1,0 +1,63 @@
+:focus {
+  outline: -webkit-focus-ring-color auto 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+}
+
+.bg-map {
+  background-image: url($img-url + 'bgmap.png');
+}
+
+p {
+  &.line {
+    position: relative;
+    text-align: center;
+    background-color: $brand-primary;
+
+    &:before {
+      border-top: 2px solid $white;
+      content:"";
+      margin: 0 auto;
+      position: absolute;
+      top: 50%; left: 0; right: 0; bottom: 0;
+      width: 80%;
+      z-index: 0;
+    }
+
+    span {
+      position: relative;
+      background-color: $brand-primary;
+      padding: 0px 15px;
+      z-index: 1;
+    }
+  }
+}
+
+.btn {
+  font-size: $font-size-base;
+}
+
+.btn-round {
+  border-radius: 3rem;
+}
+
+.btn-facebook {
+  @include button-variant($white, $facebook, $facebook);
+}
+
+.cat-img {
+  width: 90px;
+  margin: 0 20px;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+}

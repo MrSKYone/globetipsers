@@ -1,0 +1,24 @@
+.map-modal {
+  position: absolute;
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  box-shadow: 6px 6px 0px rgba($black, 0.15);
+
+  .map-modal-header {
+    text-align: center;
+
+    .map-modal-title {
+      display: inline-block;
+      border-bottom: 1px solid $brand-success;
+      padding-bottom: 0.2rem;
+    }
+  }
+
+  .map-modal-scroll {
+    height: 80%;
+    overflow-y: scroll;
+  }
+}
