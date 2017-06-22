@@ -6,55 +6,10 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add">
-            <li class="media">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women4.jpg" alt="Louisette Dupont">
+            <li class="media" ng-repeat="item in user_friends">
+                <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Louisette Dupont</h5>
-                </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men2.jpg" alt="Jean Jacques">
-                <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Jean Jacques</h5>
-                </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women3.jpg" alt="Micheline Martin">
-                <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Micheline Martin</h5>
-                </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/women5.jpg" alt="Claudette François">
-                <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Claudette François</h5>
-                </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men3.jpg" alt="Jean Mouloud">
-                <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Jean Mouloud</h5>
-                </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
-                </div>
-            </li>
-            <li class="media">
-                <img class="d-flex mr-4 avatar rounded-circle" src="./images/users/men1.jpg" alt="Jean Jean">
-                <div class="media-body pt-3">
-                    <h5 class="mt-0 mb-1">Jean Jean</h5>
+                    <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
                 <div class="d-flex ml-3">
                     <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>

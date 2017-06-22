@@ -98,7 +98,7 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 });
 
-app.controller('userController', function($scope, $location, $http, Facebook, Tips) {
+app.controller('userController', function($scope, $location, $http, Facebook, Tips, Users) {
 
   
   //FACEBOOK LOGIN
@@ -111,10 +111,11 @@ app.controller('userController', function($scope, $location, $http, Facebook, Ti
         Facebook.api('/me?fields=id,name,email,picture,cover,hometown', function(response) {
           $scope.user = response;
           console.log($scope.user);
+          $scope.bind_user($scope.user);
           $scope.user_tips($scope.user.id);
-          Facebook.api('/'+$scope.user.id+'/friends', function(response) {
+          Facebook.api('/'+$scope.user.id+'/friends?fields=name,id,picture', function(response) {
+            $scope.user_friends = response.data;
             console.log(response);
-
           });
         });
       } else {
@@ -125,8 +126,29 @@ app.controller('userController', function($scope, $location, $http, Facebook, Ti
     });
   };
 
-  $scope.me();
+  //CHECK FOR USER IN DB
+  $scope.bind_user = function(user){
+    $scope.pending = {}
+    $scope.pending.fcb_id = user.id;
+    $scope.pending.name = user.name;
+    $scope.pending.avatar = user.picture.data.url;
+    
+    Users.getByFcbId(user.id)
+      .success(function(data) {
+        console.log(data);
+        if(data.length < 1){
+          Users.create($scope.pending)
+            .success(function(data){
+              console.log(data);
+            });
+        }
+        else{
+          $scope.db_user_id = data._id;
+        }
+      });
+  }
   
+  $scope.me();
   
   //FRIEND MODAL
   $scope.friend_modal = false;

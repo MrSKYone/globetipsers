@@ -100,6 +100,29 @@ app.factory('Tips', ['$http' ,function($http) {
 	}
 }]);
 
+app.factory('Users', ['$http' ,function($http) {
+	return {
+		get : function() {
+			return $http.get('/api/users');
+		},
+		getId : function(id) {
+			return $http.get('/api/users/' + id);
+		},
+		getByFcbId : function(id) {
+			return $http.get('/api/users/field/fcb_id/' + id);
+		},
+		create : function(userData) {
+			return $http.post('/api/users', userData);
+		},
+		update : function(userData, id) {
+			return $http.put('/api/users/' + id, userData);
+		},
+		delete : function(id) {
+			return $http.delete('/api/users/' + id);
+		}
+	}
+}]);
+
 app.service('Download', function ($http) {
   return {
 		dl : function(data) {
