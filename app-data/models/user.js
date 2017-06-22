@@ -9,5 +9,6 @@ module.exports = mongoose.model('User', {
   avatar: String,
   friends: Array,
   pending_friend_requests: Array,
-  tips: Array
+  tips: Array,
+  last_connexion: Date
 });
