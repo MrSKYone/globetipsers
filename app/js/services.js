@@ -123,6 +123,32 @@ app.factory('Users', ['$http' ,function($http) {
 	}
 }]);
 
+app.factory('Notifs', ['$http' ,function($http) {
+	return {
+		get : function() {
+			return $http.get('/api/notifs');
+		},
+		getId : function(id) {
+			return $http.get('/api/notifs/' + id);
+		},
+		getByFcbId : function(id) {
+			return $http.get('/api/notifs/field/fcb_id/' + id);
+		},
+		getByUserId : function(id) {
+			return $http.get('/api/notifs/field/user_id/' + id);
+		},
+		create : function(notifData) {
+			return $http.post('/api/notifs', notifData);
+		},
+		update : function(notifData, id) {
+			return $http.put('/api/notifs/' + id, notifData);
+		},
+		delete : function(id) {
+			return $http.delete('/api/notifs/' + id);
+		}
+	}
+}]);
+
 app.service('Download', function ($http) {
   return {
 		dl : function(data) {
@@ -130,4 +156,17 @@ app.service('Download', function ($http) {
 		}
 	}
 })
+
+app.service('Shared', function () {
+		var property = {};
+
+		return {
+				getUser: function () {
+						return property;
+				},
+				setUser: function(value) {
+						property = value;
+				}
+		};
+});
 
