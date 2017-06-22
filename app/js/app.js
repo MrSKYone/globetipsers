@@ -98,7 +98,7 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 });
 
-app.controller('userController', function($scope, $location, $http, Facebook, Tips, Users) {
+app.controller('userController', function($scope, $location, $http, Facebook, Shared, Tips, Users) {
 
   
   //FACEBOOK LOGIN
@@ -135,7 +135,6 @@ app.controller('userController', function($scope, $location, $http, Facebook, Ti
     
     Users.getByFcbId(user.id)
       .success(function(data) {
-        console.log(data);
         if(data.length < 1){
           Users.create($scope.pending)
             .success(function(data){
@@ -143,7 +142,9 @@ app.controller('userController', function($scope, $location, $http, Facebook, Ti
             });
         }
         else{
-          $scope.db_user_id = data._id;
+           console.log("USER EXIST");
+           Shared.setUser(data);
+          console.log(data);
         }
       });
   }
@@ -261,8 +262,16 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
 
 });
 
-app.controller('newController', function($scope, $location, $http, Facebook, Upload, Tips) {
+app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs) {
 
+  //USER INFO FOR NOTIF
+  //if user not log, back to login
+  var db_user = Shared.getUser();
+  var is_db_user = isEmpty(db_user);
+  if(is_db_user){
+    $location.path("/login");
+  }
+  
   Facebook.getLoginStatus(function(response) {
     if(response.status === 'connected') {
       $scope.loggedin = true;
@@ -282,7 +291,6 @@ app.controller('newController', function($scope, $location, $http, Facebook, Upl
   
   //Focus on country
   $scope.country_focus = function(country){
-    console.log('hey');
     update_country(country);
   }
   
@@ -376,13 +384,31 @@ app.controller('newController', function($scope, $location, $http, Facebook, Upl
           $scope.tipData = {}; // clear the form so our user is ready to enter another
           console.log(data);
           console.log("TIP CREATED");
-
+        
+          $scope.post_notification(data);
+        
           //redirect to account list
           //$location.path('/user');
         });
     });
 
   };
+    
+  //SEND NOTIFICATION
+  $scope.post_notification = function(tip){
+    $scope.notif = {};
+    $scope.notif.emitter_id = db_user[0].id;
+    $scope.notif.emitter_fcb_id = db_user[0].fcb_id;
+    $scope.notif.emitter_name = db_user[0].name;
+    $scope.notif.type = "new_tip";
+    $scope.notif.url = "/tips/" + tip._id;
+    $scope.notif.date = new Date();
+
+    Notifs.create($scope.notif)
+      .success(function(data){
+        console.log("NOTIF POSTED - NEW TIPS");
+      });
+  }
   
   //UPLOAD CYCLE
   $scope.start_upload = function(){
