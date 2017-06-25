@@ -28,6 +28,11 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     templateUrl: 'pages/user.html',
     controller: 'userController'
   })
+  
+  .when('/user/:id?', {
+    templateUrl: 'pages/user.html',
+    controller: 'userController'
+  })
 
    .when('/friends-modal', {
     templateUrl: 'pages/friends-modal.html',
@@ -98,7 +103,7 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 });
 
-app.controller('userController', function($scope, $location, $http, Facebook, Shared, Tips, Users) {
+app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users) {
 
   
   //FACEBOOK LOGIN
@@ -112,7 +117,6 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
           $scope.user = response;
           console.log($scope.user);
           $scope.bind_user($scope.user);
-          $scope.user_tips($scope.user.id);
           call_fcb_friends($scope.user.id, false);
         });
       } else {
@@ -154,10 +158,28 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
            console.log(data);
            $scope.friend_ordering($scope.user_friends, $scope.user_data[0]);
         }
+        $scope.display_user();
       });
   }
   
   $scope.me();
+  
+  //URL HASHING
+  $scope.display_user = function(){
+    $scope.url_id = $routeParams.id;
+    if($scope.url_id){
+      Users.getByFcbId($scope.url_id)
+        .success(function(data){
+          $scope.user_feed = data[0];
+          $scope.user_tips($scope.user_feed.fcb_id);
+        })
+    }
+    else{
+      $scope.user_feed = $scope.user_data[0];
+      $scope.user_tips($scope.user_feed.fcb_id);
+    }
+  }
+  
   
   //FRIEND MODAL
   $scope.friend_modal = false;
@@ -177,8 +199,10 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
   
   
   $scope.user_tips = function(id){
+    console.log('TIPS FUNC');
     Tips.getByAuthorId(id)
       .success(function(data) {
+        console.log("TIPS ARE");
         console.log(data);
         $scope.userTips = data;
         add_markers(data);
