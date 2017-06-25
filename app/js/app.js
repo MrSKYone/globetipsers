@@ -113,10 +113,7 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
           console.log($scope.user);
           $scope.bind_user($scope.user);
           $scope.user_tips($scope.user.id);
-          Facebook.api('/'+$scope.user.id+'/friends?fields=name,id,picture', function(response) {
-            $scope.user_friends = response.data;
-            console.log(response);
-          });
+          call_fcb_friends($scope.user.id, false);
         });
       } else {
         $scope.loggedin = false;
@@ -125,6 +122,14 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
       }
     });
   };
+  
+  function call_fcb_friends(id, order){
+    Facebook.api('/'+id+'/friends?fields=name,id,picture', function(response) {
+      $scope.user_friends = response.data;
+      console.log(response);
+      if(order){$scope.friend_ordering($scope.user_friends, $scope.user_data[0]);}
+    });
+  }
 
   //CHECK FOR USER IN DB
   $scope.bind_user = function(user){
@@ -144,7 +149,10 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
         else{
            console.log("USER EXIST");
            Shared.setUser(data);
-          console.log(data);
+           //USER INFO
+           $scope.user_data = data;
+           console.log(data);
+           $scope.friend_ordering($scope.user_friends, $scope.user_data[0]);
         }
       });
   }
@@ -219,6 +227,117 @@ app.controller('userController', function($scope, $location, $http, Facebook, Sh
       if(is_in < 0){$scope.count_country.push(data[i].country);}
     }
   }
+  
+  //FRIEND PANEL
+  // Ordering friends by status of requests
+  $scope.friend_ordering = function(friends, user){
+    $scope.user_r = [];
+    $scope.user_p = [];
+    $scope.user_f = [];
+    $scope.user_o = [];
+    
+    for(var i=0;i<friends.length;i++){
+      var check_r = $.inArray(friends[i].id, user.user_friend_requests);
+      var check_p = $.inArray(friends[i].id, user.pending_friend_requests);
+      var check_f = $.inArray(friends[i].id, user.friends);
+      if(!check_p){$scope.user_p.push(friends[i]);}
+      else if(!check_r){$scope.user_r.push(friends[i]);}
+      else if(!check_f){$scope.user_f.push(friends[i]);}
+      else{$scope.user_o.push(friends[i]);}
+    }
+  }
+  
+  //FRIEND REQUESTS
+  $scope.send_request = function(id){
+    var check_user =$.inArray(id, $scope.user_data[0].user_friend_requests) > -1;
+    var check_pending =$.inArray(id, $scope.user_data[0].pending_friend_requests) > -1;
+    
+    if(!check_user && !check_pending){
+      $scope.user_data[0].user_friend_requests.push(id);
+      
+      Users.update($scope.user_data[0], $scope.user_data[0]._id)
+        .success(function(data) {
+          call_fcb_friends($scope.user.id, true);
+        });
+      
+      Users.getByFcbId(id)
+        .success(function(data){
+          $scope.fid = data[0];
+        
+          check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
+          check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
+
+          if(!check_user && !check_pending){
+            $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
+
+            Users.update($scope.fid, $scope.fid._id)
+              .success(function(data) {
+              });
+          }
+        });
+    }
+    
+  }
+  
+  //DELETE REQUEST
+  $scope.delete_request = function(id){
+    $scope.user_data[0].user_friend_requests = removeA($scope.user_data[0].user_friend_requests, id);
+    Users.update($scope.user_data[0], $scope.user_data[0]._id)
+        .success(function(data) {
+          call_fcb_friends($scope.user.id, true);
+        });
+    
+    Users.getByFcbId(id)
+        .success(function(data){
+          $scope.fid = data[0];
+        
+          $scope.fid.pending_friend_requests = removeA($scope.fid.pending_friend_requests, $scope.user_data[0].fcb_id);
+          Users.update($scope.fid, $scope.fid._id)
+              .success(function(data) {
+              });
+        })
+        .error(function(err){
+          console.log('not found');
+        })
+  }
+  
+  //VALIDATE REQUEST
+  $scope.validate_request = function(id){
+    var check_pending = $.inArray(id, $scope.user_data[0].pending_friend_requests) > -1;
+    
+    //user's side
+    if(check_pending){
+      var check_friends = $.inArray(id, $scope.user_data[0].friends) > -1;
+      if(!check_friends){
+        $scope.user_data[0].friends.push(id);
+        $scope.user_data[0].pending_friend_requests = removeA($scope.user_data[0].pending_friend_requests, id);
+        Users.update($scope.user_data[0], $scope.user_data[0]._id)
+          .success(function(data) {
+            call_fcb_friends($scope.user.id, true);
+          });
+      }
+    }
+    
+    //Friend's side
+    Users.getByFcbId(id)
+        .success(function(data){
+          $scope.fid = data[0];
+          var check_pending = $.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
+          
+          if(check_pending){
+            var check_friends = $.inArray($scope.user_data[0].fcb_id, $scope.fid.friends) > -1;
+            if(!check_friends){
+              $scope.fid.friends.push($scope.user_data[0].fcb_id);
+              $scope.fid.pending_friend_requests = removeA($scope.fid.user_friend_requests, $scope.user_data[0].fcb_id);
+              Users.update($scope.fid, $scope.fid._id)
+                .success(function(data) {
+                  call_fcb_friends($scope.user.id, true);
+                });
+            }
+    }
+        });
+  }
+  
 });
 
 app.controller('tipController', function($scope, $location, $routeParams, $http, Facebook, Tips) {

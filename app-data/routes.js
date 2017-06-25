@@ -162,6 +162,7 @@ module.exports = function (app) {
             avatar: req.body.avatar,
             friends: req.body.friends,
             pending_friend_request: req.body.pending_friend_request,
+            user_friend_request: req.body.user_friend_request,
             tips: req.body.tips,
             last_connexion: req.body.last_connexion,
         });

@@ -2,17 +2,62 @@
 
 <div class="col-left bg-map">
     <div ng-show="friend_modal" class="map-modal p-5" style="z-index:999;">
-        <div class="map-modal-header">
-            <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
+        <div class="map-modal-header" ng-show="user_p.length > 0">
+            <h2 class="map-modal-title text-uppercase text-center text-info">Ils veulent vous suivre</h2>
         </div>
-        <ul class="list-unstyled mt-5 friends-list-add">
-            <li class="media" ng-repeat="item in user_friends">
+        <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_p.length > 0">
+            <li class="media" ng-repeat="item in user_p">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
                 <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="validate_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Accepter</a>
+                </div>
+            </li>
+        </ul>
+      
+        <div class="map-modal-header" ng-show="user_r.length > 0">
+            <h2 class="map-modal-title text-uppercase text-center text-info">Ils n'ont pas encore répondu</h2>
+        </div>
+        <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_r.length > 0">
+            <li class="media" ng-repeat="item in user_r">
+                <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">{{item.name}}</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="delete_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Retirer</a>
+                </div>
+            </li>
+        </ul>
+      
+        <div class="map-modal-header" ng-show="user_f.length > 0">
+            <h2 class="map-modal-title text-uppercase text-center text-info">Vous êtes déjà amis</h2>
+        </div>
+        <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_f.length > 0">
+            <li class="media" ng-repeat="item in user_f">
+                <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">{{item.name}}</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i>Voir Profil</a>
+                </div>
+            </li>
+        </ul>
+      
+        <div class="map-modal-header">
+            <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
+        </div>
+        <ul class="list-unstyled mt-5 friends-list-add">
+            <li class="media" ng-repeat="item in user_o">
+                <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
+                <div class="media-body pt-3">
+                    <h5 class="mt-0 mb-1">{{item.name}}</h5>
+                </div>
+                <div class="d-flex ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="send_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
                 </div>
             </li>
         </ul>
