@@ -406,6 +406,10 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
           $scope.tips_user_data = data[0];
         })
     });
+  
+  $scope.itinerary = function(address){
+    itineraryCheck(address);
+  }
 
 });
 

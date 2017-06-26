@@ -201,3 +201,30 @@ function add_markers(places){
     map.setCenter(center);
   }
 }
+
+/////////////
+//ITINERARY//
+/////////////
+// TODO : Refactor general getCurrentPosition
+
+// Global variable storing place location
+var globalAddress = "lat,lng"
+
+function itineraryCheck(address){
+    globalAddress = address
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(locatedItinerary, emptyItinerary);
+    }
+}
+
+function locatedItinerary(position){
+    var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+    window.location.href = "http://maps.google.com/maps?saddr="+pos.lat+","+pos.lng+"&daddr="+globalAddress, '_target';
+}
+
+function emptyItinerary(){
+    window.location.href = "http://maps.google.com/maps?saddr=&daddr="+globalAddress, '_target';
+}
