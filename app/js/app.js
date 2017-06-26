@@ -98,7 +98,7 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
     // From now on you can use the Facebook service just as Facebook api says
     Facebook.login(function(response) {
       // Do something with response.
-    });
+    }, { scope: 'user_friends' });
   };
 
 });
