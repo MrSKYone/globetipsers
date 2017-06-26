@@ -364,7 +364,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   
 });
 
-app.controller('tipController', function($scope, $location, $routeParams, $http, Facebook, Tips) {
+app.controller('tipController', function($scope, $location, $routeParams, $http, Facebook, Tips, Users) {
 
   console.log($scope.loggedin);
   
@@ -401,6 +401,10 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
       console.log(data);
       $scope.tips = data;
       add_markers(data);
+      Users.getByFcbId(data.author_id)
+        .success(function(data){
+          $scope.tips_user_data = data[0];
+        })
     });
 
 });
