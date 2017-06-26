@@ -264,9 +264,9 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       var check_r = $.inArray(friends[i].id, user.user_friend_requests);
       var check_p = $.inArray(friends[i].id, user.pending_friend_requests);
       var check_f = $.inArray(friends[i].id, user.friends);
-      if(!check_p){$scope.user_p.push(friends[i]);}
-      else if(!check_r){$scope.user_r.push(friends[i]);}
-      else if(!check_f){$scope.user_f.push(friends[i]);}
+      if(check_f != -1){$scope.user_f.push(friends[i]);}
+      else if(check_p != -1){$scope.user_p.push(friends[i]);}
+      else if(check_r != -1){$scope.user_r.push(friends[i]);}
       else{$scope.user_o.push(friends[i]);}
     }
   }
@@ -276,7 +276,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     var check_user =$.inArray(id, $scope.user_data[0].user_friend_requests) > -1;
     var check_pending =$.inArray(id, $scope.user_data[0].pending_friend_requests) > -1;
     
-    if(!check_user && !check_pending){
+    if(check_user != -1 && check_pending != -1){
       $scope.user_data[0].user_friend_requests.push(id);
       
       Users.update($scope.user_data[0], $scope.user_data[0]._id)
@@ -291,7 +291,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
           check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
 
-          if(!check_user && !check_pending){
+          if(check_user != -1 && check_pending != -1){
             $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
 
             Users.update($scope.fid, $scope.fid._id)
@@ -332,7 +332,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     //user's side
     if(check_pending){
       var check_friends = $.inArray(id, $scope.user_data[0].friends) > -1;
-      if(!check_friends){
+      if(check_friends != -1){
         $scope.user_data[0].friends.push(id);
         $scope.user_data[0].pending_friend_requests = removeA($scope.user_data[0].pending_friend_requests, id);
         Users.update($scope.user_data[0], $scope.user_data[0]._id)
@@ -358,7 +358,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
                   call_fcb_friends($scope.user.id, true);
                 });
             }
-    }
+          }
         });
   }
   
