@@ -1,0 +1,1198 @@
+[
+	{
+		"name": "Afghanistan",
+		"continent": "Asie",
+		"filename": "afghanistan"
+	},
+	{
+		"name": "Iles Åland",
+        "continent": "Europe"	
+    },
+	{
+		"name": "Albanie",
+		"continent": "Europe",
+		"filename": "albanie"
+	},
+	{
+		"name": "Algérie",
+		"continent": "Afrique",
+		"filename": "algérie"
+	},
+	{
+		"name": "Samoa",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Andorre",
+		"code": "AD",
+		"continent": "Europe",
+		"filename": "andorre"
+	},
+	{
+		"name": "Angola",
+		"code": "AO",
+		"continent": "Afrique",
+		"filename": "angola"
+	},
+	{
+		"name": "Anguilla",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Antarctique",
+        "continent": "Antarctique"
+    },
+	{
+		"name": "Antigua-et-Barbuda",
+		"continent": "Amérique du Nord",
+		"filename": "Antigua-et-Barbuda"
+	},
+	{
+		"name": "Argentine",
+		"code": "AR",
+		"continent": "Amérique du Sud",
+		"filename": "argentine"
+	},
+	{
+		"name": "Arménie",
+		"continent": "Europe",
+		"filename": "arménie"
+	},
+	{
+		"name": "Aruba",
+		"continent": "Europe"
+	},
+	{
+		"name": "Australie",
+		"continent": "Océanie",
+		"filename": "australie"
+	},
+	{
+		"name": "Autriche",
+		"continent": "Europe",
+		"filename": "autriche"
+	},
+	{
+		"name": "Azerbaïdjan",
+		"continent": "Europe",
+		"filename": "azerbaïdjan"
+	},
+	{
+		"name": "Bahamas",
+		"continent": "Amérique du Nord",
+		"filename": "bahamas"
+	},
+	{
+		"name": "Bahreïn",
+		"continent": "Asie",
+		"filename": "bahreïn"
+	},
+	{
+		"name": "Bangladesh",
+		"continent": "Asie",
+		"filename": "bangladesh"
+	},
+	{
+		"name": "Barbade",
+		"code": "BB",
+		"continent": "Amérique du Nord",
+		"filename": "barbade"
+	},
+	{
+		"name": "Biélorussie",
+		"continent": "Europe",
+		"filename": "biélorussie"
+	},
+	{
+		"name": "Belgique",
+		"continent": "Europe",
+		"filename": "belgique"
+	},
+	{
+		"name": "Belize",
+		"continent": "Amérique du Nord",
+		"filename": "belize"
+	},
+	{
+		"name": "Bénin",
+		"code": "BJ",
+		"continent": "Afrique",
+		"filename": "bénin"
+	},
+	{
+		"name": "Bermudes",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Bhoutan",
+		"continent": "Asie",
+		"filename": "bhoutan"
+	},
+	{
+		"name": "Bolivie",
+		"continent": "Amérique du Sud",
+		"filename": "bolivie"
+	},
+	{
+		"name": "Bosnie-Herzégovine",
+		"continent": "Europe",
+		"filename": "Bosnie-Herzégovine"
+	},
+	{
+		"name": "Botswana",
+		"continent": "Afrique",
+		"filename": "botswana"
+	},
+	{
+		"name": "Île Bouvet",
+		"continent": "Antarctique",
+		"code": "BV"
+	},
+	{
+		"name": "Brésil",
+		"continent": "Amérique du Sud",
+		"filename": "brésil"
+	},
+	{
+		"name": "Territoire britannique de l'océan Indien",
+		"continent": "Afrique"
+	},
+	{
+		"name": "Brunei",
+		"continent": "Asie",
+		"filename": "brunei"
+	},
+	{
+		"name": "Bulgarie",
+		"continent": "Europe",
+		"filename": "bulgarie"
+	},
+	{
+		"name": "Burkina Faso",
+		"continent": "Afrique",
+		"filename": "burkina-faso"
+	},
+	{
+		"name": "Burundi",
+		"continent": "Afrique",
+		"filename": "burundi"
+	},
+	{
+		
+		"name": "Cambodge",
+		"continent": "Asie",
+		"filename": "cambodge"
+	},
+	{
+		"name": "Cameroun",
+		"code": "CM",
+		"continent": "Afrique",
+		"filename": "cameroun"
+	},
+	{
+		"name": "Canada",
+		"continent": "Amérique du Sud",
+		"filename": "canada"
+	},
+	{
+		"name": "Iles du Cap-Vert",
+		"continent": "Afrique",
+		"filename": "Iles-du-Cap-Vert"
+	},
+	{
+		"name": "Îles Caïmans",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "République centrafricaine",
+		"continent": "Afrique",
+		"filename": "République-centrafricaine"
+	},
+	{
+		"name": "Tchad",
+		"continent": "Afrique",
+		"filename": "tchad"
+	},
+	{
+		"name": "Chilie",
+		"continent": "Amérique du Sud",
+		"filename": "chilie"
+	},
+	{
+		"name": "Chine",
+		"continent": "Asie",
+		"filename": "chine"
+	},
+	{
+		"name": "Île de Noël",
+		"continent": "Océanie"
+	},
+	{
+		"name": "ïles Cocos",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Colombie",
+		"continent": "Amérique du Sud",
+		"filename": "colombie"
+	},
+	{
+		"name": "Comores",
+		"continent": "Afrique",
+		"filename": "comores"
+	},
+	{
+		"name": "Congo",
+		"continent": "Afrique",
+		"filename": "congo"
+	},
+	{
+		"name": "République démocratique du Congo",
+		"continent": "Afrique",
+		"filename": "république-démocratique-du-Congo"
+	},
+	{
+		"name": "Îles Cook",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Costa Rica",
+		"continent": "Amérique du Sud",
+		"filename": "costa-rica"
+	},
+	{
+		"name": "Côte d'Ivoire",
+		"continent": "Afrique",
+		"filename": "côte-d-ivoire"
+	},
+	{
+		"name": "Croatie",
+		"continent": "Europe",
+		"filename": "croatie"
+	},
+	{
+		"name": "Cuba",
+		"continent": "Amérique du Nord",
+		"filename": "cuba"
+	},
+	{
+		"name": "Curaçao",
+		"continent": "Europe"
+	},
+	{
+		"name": "Chypre",
+		"continent": "Europe",
+		"filename": "chypre"
+	},
+	{
+		"name": "Republique Tchèque",
+		"continent": "Europe",
+		"filename": "république-tchèque"
+	},
+	{
+		"name": "Danemark",
+		"continent": "Europe",
+		"filename": "danemark"
+	},
+	{
+		"name": "Djibouti",
+		"continent": "Afrique",
+		"filename": "djibouti"
+	},
+	{
+		"name": "Dominique",
+		"continent": "Amérique du Nord",
+		"filename": "dominique"
+	},
+	{
+		"name": "République Dominicaine",
+		"continent": "Amérique du Nord",
+		"filename": "république-dominicaine"
+	},
+	{
+		"name": "Équateur",
+		"continent": "Amérique du Sud",
+		"filename": "équateur"
+	},
+	{
+		"name": "Egypte",
+		"continent": "Afrique",
+		"filename": "egypte"
+	},
+	{
+		"name": "Le Salvador",
+		"continent": "Amérique du Nord",
+		"filename": "le-salvador"
+	},
+	{
+		"name": "Guinée équatoriale",
+		"continent": "Afrique",
+		"filename": "guinée-équatoriale"
+	},
+	{
+		"name": "’Érythrée",
+		"continent": "Afrique",
+		"filename": "’érythrée"
+	},
+	{
+		"name": "Estonie",
+		"continent": "Europe",
+		"filename": "estonie"
+	},
+	{
+		"name": "Ethiopie",
+		"continent": "Afrique",
+		"filename": "ethiopie"
+	},
+	{
+		"name": "Îles Malouines",
+		"continent": "Amérique du Sud"
+	},
+	{
+		"name": "Îles Féroé",
+		"continent": "Europe"        
+	},
+	{
+		"name": "Îles Fidji",
+		"continent": "Océanie",
+		"filename": "îles-fidji"
+	},
+	{
+		"name": "Finlande",
+		"continent": "Europe",
+		"filename": "finlande"
+	},
+	{
+		"name": "France",
+		"continent": "Europe",
+		"filename": "france"
+	},
+	{
+		"name": "Guyane",
+		"continent": "Amérique du Sud"
+	},
+	{
+		"name": "Polynésie Française",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Terres australes et antarctiques françaises",
+        "continent": "Antarctique"
+	},
+	{
+		"name": "Gabon",
+		"continent": "Afrique",
+		"filename": "gabon"
+	},
+	{
+		"name": "Gambie",
+		"continent": "Afrique",
+		"filename": "gambie"
+	},
+	{
+		"name": "Géorgie",
+		"continent": "Europe",
+		"filename": "géorgie"
+	},
+	{
+		"name": "Allemagne",
+		"continent": "Europe",
+		"filename": "allemagne"
+	},
+	{
+		"name": "Ghana",
+		"continent": "Afrique",
+		"filename": "ghana"
+	},
+	{
+		"name": "Gibraltar",
+		"continent": "Europe"
+	},
+	{
+		"name": "Grèce",
+		"continent": "Europe",
+		"filename": "grèce"
+	},
+	{
+		"name": "Groenland",
+		"continent": "Amérique du Nord",
+		"filename": "groenland"
+	},
+	{
+		"name": "Grenade",
+		"continent": "Amérique du Nord",
+		"filename": "grenade"
+	},
+	{
+		"name": "Guadeloupe",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Guam",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Guatemala",
+		"continent": "Amérique du Nord",
+		"filename": "guatemala"
+	},
+	{
+		"name": "Guernsey",
+		"continent": "Europe"
+	},
+	{
+		"name": "Guinée",
+		"continent": "Afrique",
+		"filename": "guinée"
+	},
+	{
+		"name": "Guinée-Bissau",
+		"continent": "Afrique",
+		"filename": "guinée-bissau"
+	},
+	{
+		"name": "Guyane",
+		"continent": "Amérique du Sud",
+		"filename": "guyane"
+	},
+	{
+		"name": "Haïti",
+		"continent": "Amérique du Nord",
+		"filename": "haïti"
+	},
+	{
+		"name": "Îles Heard-et-MacDonald",
+		"continent": "Océanie"        
+	},
+	{
+		"name": "Vatican",
+		"continent": "Europe"
+	},
+	{
+		"name": "Honduras",
+		"continent": " Amérique du Nord",
+		"filename": "honduras"
+	},
+	{
+		"name": "Hong Kong",
+		"continent": "Asie",
+		"filename": "hong-kong"
+	},
+	{
+		"name": "Hongrie",
+		"continent": "Europe",
+		"filename": "hongrie"
+	},
+	{
+		"name": "Islande",
+		"continent": "Europe",
+		"filename": "islande"
+	},
+	{
+		"name": "Inde",
+		"continent": "Asie",
+		"filename": "inde"
+	},
+	{
+		"name": "Indonésie",
+		"continent": "Asie",
+		"filename": "indonésie"
+	},
+	{
+		"name": "République islamique d’Iran",
+		"continent": "Asie",
+		"filename": "république-islamique-d’-iran"
+	},
+	{
+		"name": "Irak",
+		"continent": "Asie",
+		"filename": "irak"
+	},
+	{
+		"name": "Irlande",
+		"continent": "Europe",
+		"filename": "irlande"
+	},
+	{
+		"name": "Île de Man",
+		"continent": "Europe"
+	},
+	{
+		"name": "Israël",
+		"continent": "Asie",
+		"filename": "israël"
+	},
+	{
+		"name": "Italie",
+		"continent": "Europe",
+		"filename": "italie"
+	},
+	{
+		"name": "Jamaïque",
+		"continent": "Amérique du Nord",
+		"filename": "jamaïque"
+	},
+	{
+		"name": "Japon",
+		"continent": "Asie",
+		"filename": "japon"
+	},
+	{
+		"name": "Jersey",
+		"continent": "Europe"        
+	},
+	{
+		"name": "Jordanie",
+		"continent": "Asie",
+		"filename": "jordanie"
+	},
+	{
+		"name": "Kazakhstan",
+		"continent": "Europe",
+		"filename": "kazakhstan"
+	},
+	{
+		"name": "Kenya",
+		"continent": "Afrique",
+		"filename": "kenya"
+	},
+	{
+		"name": "Kiribati",
+		"continent": "Océanie",
+		"filename": "kiribati"
+	},
+	{
+		"name": "Corée du Nord",
+		"continent": "Asie",
+		"filename": "corée-du-nord"
+	},
+	{
+		"name": "Corée du Sud",
+		"continent": "Asie",
+		"filename": "corée-du-Sud"
+	},
+	{
+		"name": "Koweit",
+		"continent": "Asie",
+		"filename": "koweit"
+	},
+	{
+		"name": "Kyrgyzstan",
+		"continent": "Asie",
+		"filename": "kyrgyzstan"
+	},
+	{
+		"name": "Laos",
+		"continent": "Asie",
+		"filename": "laos"
+	},
+	{
+		"name": "Lettonie",
+		"continent": "Europe",
+		"filename": "lettonie"
+	},
+	{
+		"name": "Liban",
+		"continent": "Asie",
+		"filename": "liban"
+	},
+	{
+		"name": "Lesotho",
+		"continent": "Afrique",
+		"filename": "lesotho"
+	},
+	{
+		"name": "Libéria",
+		"continent": "Afrique",
+		"filename": "libéria"
+	},
+	{
+		"name": "Libye",
+		"continent": "Afrique",
+		"filename": "libye"
+	},
+	{
+		"name": "Liechtenstein",
+		"continent": "Europe",
+		"filename": "liechtenstein"
+	},
+	{
+		"name": "Lithuanie",
+		"continent": "Europe",
+		"filename": "lithuanie"
+	},
+	{
+		"name": "Luxembourg",
+		"continent": "Europe",
+		"filename": "luxembourg"
+	},
+	{
+		"name": "Macao",
+		"continent": "Asie"
+	},
+	{
+		"name": "Macédoine",
+		"continent": "Europe",
+		"filename": "macédoine"
+	},
+	{
+		"name": "Madagascar",
+		"continent": "Afrique",
+		"filename": "madagascar"
+	},
+	{
+		"name": "Malawi",
+		"continent": "Afrique",
+		"filename": "malawi"
+	},
+	{
+		"name": "Malaisie",
+		"continent": "Asie",
+		"filename": "malaisie"
+	},
+	{
+		"name": "Maldives",
+		"continent": "Asie",
+		"filename": "maldives"
+	},
+	{
+		"name": "Mali",
+		"continent": "Afrique",
+		"filename": "mali"
+	},
+	{
+		"name": "Malte",
+		"continent": "Europe",
+		"filename": "malte"
+	},
+	{
+		"name": "Îles Marshall",
+		"continent": "Océanie",
+		"filename": "îles-marshall"
+	},
+	{
+		"name": "Martinique",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Mauritanie",
+		"continent": "Afrique",
+		"filename": "mauritanie"
+	},
+	{
+		"name": "Île Maurice",
+		"continent": "Afrique",
+		"filename": "île-maurice"
+	},
+	{
+		"name": "Mayotte",
+		"continent": "Afrique"
+	},
+	{
+		"name": "Mexique",
+		"continent": "Amérique du Nord",
+		"filename": "mexique"
+	},
+	{
+		"name": "Micronésie",
+		"continent": "Océanie",
+		"filename": "micronésie"
+	},
+	{
+		"name": "Moldavie",
+		"continent": "Europe",
+		"filename": "moldavie"
+	},
+	{
+		"name": "Monaco",
+		"continent": "Europe",
+		"filename": "monaco"
+	},
+	{
+		"name": "Mongolie",
+		"continent": "Asie",
+		"filename": "mongolie"
+	},
+	{
+		"name": "Monténégro",
+		"continent": "Europe",
+		"filename": "monténégro"
+	},
+	{
+		"name": "Montserrat",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Maroc",
+		"continent": "Afrique",
+		"filename": "maroc"
+	},
+	{
+		"name": "Mozambique",
+		"continent": "Afrique",
+		"filename": "mozambique"
+	},
+	{
+		"name": "Myanmar",
+		"continent": "Asie",
+		"filename": "myanmar"
+	},
+	{
+		"name": "Namibie",
+		"continent": "Afrique",
+		"filename": "namibie"
+	},
+	{
+		"name": "Nauru",
+		"continent": "Océanie",
+		"filename": "nauru"
+	},
+	{
+		"name": "Népal",
+		"continent": "Asie",
+		"filename": "népal"
+	},
+	{
+		"name": "Pays-Bas",
+		"continent": "Europe",
+		"filename": "pays-bas"
+	},
+	{
+		"name": "Antilles néerlandaises",
+		"continent": "Europe"
+	},
+	{
+		"name": "Nouvelle-Calédonie",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Nouvelle-Zélande",
+		"continent": "Océanie",
+		"filename": "nouvelle-zélande"
+	},
+	{
+		"name": "Nicaragua",
+		"continent": "Amérique du Nord",
+		"filename": "nicaragua"
+	},
+	{
+		"name": "Niger",
+		"continent": "Afrique",
+		"filename": "niger"
+	},
+	{
+		"name": "Nigéria",
+		"continent": "Afrique",
+		"filename": "nigéria"
+	},
+	{
+		"name": "Niue",
+        "continent": "Océanie" 
+	},
+	{
+		"name": "Île de Norfolk",
+		"continent": "Océanie"
+	},
+	{
+		"name": " Îles Mariannes du Nord",
+		"continent": "Océanie"        
+	},
+	{
+		"name": "Norvège",
+		"continent": "Europe",
+		"filename": "norvège"
+	},
+	{
+		"name": "Oman",
+		"continent": "Asie",
+		"filename": "oman"
+	},
+	{
+		"name": "Pakistan",
+		"continent": "Asie",
+		"filename": "pakistan"
+	},
+	{
+		"name": "République de Palau",
+		"continent": "Océanie",
+		"filename": "république-de-palau"
+	},
+	{
+		"name": "Palestine",
+		"continent": "Asie",
+		"filename": "palestine"
+	},
+	{
+		"name": "Panama",
+		"continent": "Amérique du Nord",
+		"filename": "panama"
+	},
+	{
+		"name": "Papouasie Nouvelle Guinée",
+		"continent": "Océanie",
+		"filename": "papouasie-nouvelle-guinée"
+	},
+	{
+		"name": "Paraguay",
+		"continent": "Amérique du Sud",
+		"filename": "paraguay"
+	},
+	{
+		"name": "Pérou",
+		"continent": "Amérique du Sud",
+		"filename": "pérou"
+	},
+	{
+		"name": "Les Philippines",
+		"continent": "Asie",
+		"filename": "les-philippines"
+	},
+	{
+		"name": "L'île de Pitcairn",
+		"continent": "Océanie"
+	},
+	{
+		"name": "Pologne",
+		"continent": "Europe",
+		"filename": "pologne"
+	},
+	{
+		"name": "Portugal",
+		"continent": "Europe",
+		"filename": "portugal"
+	},
+	{
+		"name": "Porto Rico",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Qatar",
+		"continent": "Asie",
+		"filename": "qatar"
+	},
+	{
+		"name": "La Réunion",
+		"continent": "Afrique"
+	},
+	{
+		"name": "Roumanie",
+		"continent": "Europe",
+		"filename": "roumanie"
+	},
+	{
+		"name": "Russie",
+		"continent": "Europe",
+		"filename": "russie"
+	},
+	{
+		"name": "Rwanda",
+		"continent": "Afrique",
+		"filename": "rwanda"
+	},
+	{
+		"name": "Sainte Hélène",
+		"continent": "Afrique",
+		"filename": "sainte-hélène"
+	},
+	{
+		"name": "Saint-Christophe-et-Niévès",
+		"continent": "Amérique du Nord",
+		"filename": "saint-christophe-et-niévès"
+	},
+	{
+		"name": "Sainte Lucie",
+		"continent": "Amérique du Nord",
+		"filename": "sainte-lucie"
+	},
+	{
+		"name": "Saint Pierre et Miquelon",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Saint Vincent-et-les-Grenadines",
+		"continent": "Amérique du Nord",
+		"filename": "saint-vincent-et-les-grenadines"
+	},
+	{
+		"name": "Samoa",
+		"continent": "Océanie",
+		"filename": "samoa"
+	},
+	{
+		"name": "Saint Marin",
+		"continent": "Europe",
+		"filename": "saint-marin"
+	},
+	{
+		"name": "Sao Tomé-et-Príncipe",
+		"continent": "Afrique",
+		"filename": "sao-tomé-et-principe"
+	},
+	{
+		"name": "Arabie Saoudite",
+		"continent": "Asie",
+		"filename": "arabie-saoudite"
+	},
+	{
+		"name": "Sénégal",
+		"continent": "Afrique",
+		"filename": "sénégal"
+	},
+	{
+		"name": "Serbie",
+		"continent": "Europe",
+		"filename": "serbie"
+	},
+	{
+		"name": "Seychelles",
+		"continent": "Afrique",
+		"filename": "seychelles"
+	},
+	{
+		"name": "Sierra Leone",
+		"continent": "Afrique",
+		"filename": "sierra-leone"
+	},
+	{
+		"name": "Singapour",
+		"continent": "Asie",
+		"filename": "singapour"
+	},
+	{
+		"name": "Saint Martin",
+		"continent": "Europe"
+	},
+	{
+		"name": "Slovaquie",
+		"continent": "Europe",
+		"filename": "slovaquie"
+	},
+	{
+		"name": "Slovénie",
+		"continent": "Europe",
+		"filename": "slovénie"
+	},
+	{
+		"name": " Îles Salomon",
+		"continent": "Océanie",
+		"filename": "îles-salomon"
+	},
+	{
+		"name": "Somalie",
+		"continent": "Afrique",
+		"filename": "somalie"
+	},
+	{
+		"name": "Afrique du Sud",
+		"continent": "Afrique",
+		"filename": "afrique-du-Sud"
+	},
+	{
+		"name": "Géorgie du Sud-et-les Îles Sandwich du Sud",
+		"continent": "Amérique du Sud"
+	},
+	{
+		"name": "Soudan du Sud",
+		"continent": "Afrique",
+		"filename": "soudan-du-Sud"
+	},
+	{
+		"name": "Espagne",
+		"continent": "Europe",
+		"filename": "espagne"
+	},
+	{
+		"name": "Sri Lanka",
+		"continent": "Asie",
+		"filename": "sri-lanka"
+	},
+	{
+		"name": "Soudan",
+		"continent": "Afrique",
+		"filename": "soudan"
+	},
+	{
+		"name": "Suriname",
+		"continent": "Amérique du Sud",
+		"filename": "suriname"
+	},
+	{
+		"name": "Svalbard et Jan Mayen",
+		"continent": "Europe"
+	},
+	{
+		"name": "Swaziland",
+		"continent": "Afrique",
+		"filename": "swaziland"
+	},
+	{
+		"name": "Suède",
+		"continent": "Europe",
+		"filename": "suède"
+	},
+	{
+		"name": "Suisse",
+		"continent": "Europe",
+		"filename": "suisse"
+	},
+	{
+		"name": "Syrie",
+		"continent": "Asie",
+		"filename": "syrie"
+	},
+	{
+		"name": "Taïwan",
+		"continent": "Asie",
+		"filename": "taïwan"
+	},
+	{
+		"name": "Tadjikistan",
+		"continent": "Asie",
+		"filename": "tadjikistan"
+	},
+	{
+		"name": "Tanzanie",
+		"continent": "Afrique",
+		"filename": "tanzanie"
+	},
+	{
+		"name": "Thaïlande",
+		"continent": "Asie",
+		"filename": "thaïlande"
+	},
+	{
+		"name": "Timor Oriental",
+		"continent": "Océanie",
+		"filename": "timor-oriental"
+	},
+	{
+		"name": "Togo",
+		"continent": "Afrique",
+		"filename": "togo"
+	},
+	{
+		"name": "Tokelau",
+		"continent": "Océanie"        
+	},
+	{
+		"name": "Tonga",
+		"continent": "Océanie",
+		"filename": "tonga"
+	},
+	{
+		"name": "Trinité-et-Tobago",
+		"continent": "Amérique du Nord",
+		"filename": "trinité-et-tobago"
+	},
+	{
+		"name": "Tunisie",
+		"continent": "Afrique",
+		"filename": "tunisie"
+	},
+	{
+		"name": "Turquie",
+		"continent": "Europe",
+		"filename": "turquie"
+	},
+	{
+		"name": "Turkménistan",
+		"continent": "Asie",
+		"filename": "turkménistan"
+	},
+	{
+		"name": "Îles Turks et Caïques",
+		"continent": "Amérique du Sud"
+	},
+	{
+		"name": "Tuvalu",
+		"continent": "Océanie",
+		"filename": "tuvalu"
+	},
+	{
+		"name": "Ouganda",
+		"continent": "Afrique",
+		"filename": "Ouganda"
+	},
+	{
+		"name": "Ukraine",
+		"continent": "Europe",
+		"filename": "ukraine"
+	},
+	{
+		"name": "Émirats arabes unis",
+		"continent": "Asie",
+		"filename": "émirats-arabes-unis"
+	},
+	{
+		"name": "Royaume-Uni",
+		"continent": "Europe",
+		"filename": "royaume-uni"
+	},
+	{
+		"name": "États-Unis",
+		"continent": "Amérique du Nord",
+		"filename": "états-unis"
+	},
+	{
+		"name": "Îles mineures éloignées des États-Unis",
+		"continent": "Amérique du Nord",
+		"filename": "îles-mineures-éloignées-des-états-unis"
+	},
+	{
+		"name": "Uruguay",
+		"continent": "Amérique du Sud",
+		"filename": "uruguay"
+	},
+	{
+		"name": "Ouzbékistan",
+		"continent": "Asie",
+		"filename": "ouzbékistan"
+	},
+	{
+		"name": "Vanuatu",
+		"continent": "Océanie",
+		"filename": "vanuatu"
+	},
+	{
+		"name": "Vénézuela",
+		"continent": "Amérique du Sud",
+		"filename": "vénézuela"
+	},
+	{
+		"name": "Viêt-Nam",
+		"continent": "Asie",
+		"filename": "viêt-nam"
+	},
+	{
+		"name": "Îles Vierges britanniques",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Îles Vierges des États-Unis.",
+		"continent": "Amérique du Nord"
+	},
+	{
+		"name": "Wallis et Futuna",
+       	"continent": "Océanie"
+	},
+	{
+		"name": "Sahara occidental",
+		"continent": "Afrique"        
+	},
+	{
+		"name": "Yémen",
+		"continent": "Asie",
+		"filename": "yémen"
+	},
+	{
+		"name": "Zambie",
+		"continent": "Afrique",
+		"filename": "zambie"
+	},
+	{
+		"name": "Zimbabwe",
+		"continent": "Afrique",
+		"filename": "zimbabwe"
+	}
+]
+

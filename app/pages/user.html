@@ -83,12 +83,7 @@
             <li class="nav-item dropdown">
                 <select class="form-control" id="continent" ng-model="filter_continent">
                     <option value="">continent</option>
-                    <option value="afrique">Afrique</option>
-                    <option value="amerique du nord">Amérique du nord</option>
-                    <option value="amerique du sud">Amérique du sud</option>
-                    <option value="asie">Asie</option>
-                    <option value="europe">Europe</option>
-                    <option value="oceanie">Océanie</option>
+                    <option ng-repeat="con in continents" value="{{con}}">{{con}}</option>
                 </select>
             </li>
             <li class="nav-item dropdown">

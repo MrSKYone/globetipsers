@@ -136,6 +136,17 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   
   //FACEBOOK LOGIN
   console.log($scope.loggedin);
+  
+  //CONTINENTS
+  $scope.continents = [];
+  $http.get('ressources/continent.json').success(function(data) {
+    $scope.continents = [];
+    for(var i=0;i<data.length;i++){
+      var is_in = $.inArray(data[i].continent, $scope.continents);
+      if(is_in < 0){$scope.continents.push(data[i].continent);}
+    }
+    console.log($scope.continents);
+  });
 
   $scope.me = function() {
     Facebook.getLoginStatus(function(response) {
@@ -463,7 +474,7 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
 
 });
 
-app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs) {
+app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils) {
 
   //USER INFO FOR NOTIF
   //if user not log, back to login
@@ -485,6 +496,12 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
       console.log("not connected with fcb");
       $location.path('/login');
     }
+  });
+  
+  
+  //CONTINENTS
+  $http.get('ressources/continent.json').success(function(data) {
+    $scope.continent = data;
   });
   
   //MAP
@@ -534,7 +551,7 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
          $scope.tipData.city = loc.city;
          $scope.tipData.country = loc.country;
          $scope.tipData.address = loc.street_number + " " + loc.street_name + ", " + loc.city + ", " + loc.country;
-         $scope.upload_tips();
+         $scope.parse_continent(loc.country);
         } else {
           alert("No results found");
         }
@@ -542,6 +559,17 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         alert("Geocoder failed due to: " + status);
       }
     });
+  }
+  
+  $scope.parse_continent = function(country){
+    for(var i=0;i<$scope.continent.length;i++){
+      var conti = Utils.toSlug($scope.continent[i].name);
+      var con = Utils.toSlug(country);
+      if(conti == con){
+        $scope.tipData.continent = $scope.continent[i].continent;
+        $scope.upload_tips();
+      }
+    }
   }
 
   //PLACE DATA HANDLING
