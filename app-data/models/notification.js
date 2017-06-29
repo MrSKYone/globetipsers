@@ -7,7 +7,7 @@ module.exports = mongoose.model('Notif', {
   date: Date,
   type: String,
   receiver_id: String,
-  received_fcb_id: String,
+  receiver_fcb_id: String,
   receiver_name: String,
   status: String,
   url: String

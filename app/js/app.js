@@ -29,9 +29,14 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     controller: 'userController'
   })
   
-  .when('/user/:id?', {
+  .when('/user/profil/:id?', {
     templateUrl: 'pages/user.html',
     controller: 'userController'
+  })
+  
+  .when('/user/feed', {
+    templateUrl: 'pages/newsfeed.html',
+    controller: 'feedController'
   })
 
    .when('/friends-modal', {
@@ -75,6 +80,23 @@ app.controller('globalController', function($scope, $location, $http, Facebook) 
   
 });
 
+app.controller('feedController', function($scope, $location, $http, Facebook, Notifs, Shared) {
+  
+  //USER INFO FOR NOTIF
+  //if user not log, back to login
+  var db_user = Shared.getUser();
+  var is_db_user = isEmpty(db_user);
+  if(is_db_user){
+    $location.path("/login");
+  }
+  
+  Notifs.getByFcbId(db_user[0].fcb_id)
+    .success(function(data){
+      console.log(data);
+    })
+  
+});
+
 app.controller('loginController', function($scope, $location, $http, Facebook) {
 
   $scope.getLoginStatus = function() {
@@ -98,12 +120,18 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
     // From now on you can use the Facebook service just as Facebook api says
     Facebook.login(function(response) {
       // Do something with response.
+      if(response.status === 'connected') {
+        $scope.loggedin = true;
+        console.log("connected with fcb");
+        console.log(response);
+        $location.path('/user');
+      }
     }, { scope: 'user_friends' });
   };
 
 });
 
-app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users) {
+app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users, Notifs) {
 
   
   //FACEBOOK LOGIN
@@ -207,6 +235,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         $scope.userTips = data;
         add_markers(data);
         $scope.count_country(data);
+        $scope.tipson = true;
       });
   }
   
@@ -281,23 +310,24 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       
       Users.update($scope.user_data[0], $scope.user_data[0]._id)
         .success(function(data) {
-          call_fcb_friends($scope.user.id, true);
-        });
-      
-      Users.getByFcbId(id)
-        .success(function(data){
-          $scope.fid = data[0];
-        
-          check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
-          check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
+          //Friend side
+          Users.getByFcbId(id)
+            .success(function(data2){
+              $scope.fid = data2[0];
 
-          if(check_user != -1 && check_pending != -1){
-            $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
+              check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
+              check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
 
-            Users.update($scope.fid, $scope.fid._id)
-              .success(function(data) {
-              });
-          }
+              if(check_user != -1 && check_pending != -1){
+                $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
+
+                Users.update($scope.fid, $scope.fid._id)
+                  .success(function(data3) {
+                    call_fcb_friends($scope.user.id, true);
+                    $scope.post_notification('new_friend_request', $scope.user_data[0], $scope.fid);
+                  });
+              }
+            });
         });
     }
     
@@ -337,29 +367,49 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         $scope.user_data[0].pending_friend_requests = removeA($scope.user_data[0].pending_friend_requests, id);
         Users.update($scope.user_data[0], $scope.user_data[0]._id)
           .success(function(data) {
-            call_fcb_friends($scope.user.id, true);
+            //Friend's side
+            Users.getByFcbId(id)
+                .success(function(data2){
+                  $scope.fid = data2[0];
+                  var check_pending = $.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
+
+                  if(check_pending){
+                    var check_friends = $.inArray($scope.user_data[0].fcb_id, $scope.fid.friends) > -1;
+                    if(!check_friends){
+                      $scope.fid.friends.push($scope.user_data[0].fcb_id);
+                      $scope.fid.pending_friend_requests = removeA($scope.fid.user_friend_requests, $scope.user_data[0].fcb_id);
+                      Users.update($scope.fid, $scope.fid._id)
+                        .success(function(data3) {
+                          call_fcb_friends($scope.user.id, true);
+                          $scope.post_notification('new_friendship', $scope.user_data[0], $scope.fid);
+                        });
+                    }
+                  }
+                });
           });
       }
     }
-    
-    //Friend's side
-    Users.getByFcbId(id)
-        .success(function(data){
-          $scope.fid = data[0];
-          var check_pending = $.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
-          
-          if(check_pending){
-            var check_friends = $.inArray($scope.user_data[0].fcb_id, $scope.fid.friends) > -1;
-            if(!check_friends){
-              $scope.fid.friends.push($scope.user_data[0].fcb_id);
-              $scope.fid.pending_friend_requests = removeA($scope.fid.user_friend_requests, $scope.user_data[0].fcb_id);
-              Users.update($scope.fid, $scope.fid._id)
-                .success(function(data) {
-                  call_fcb_friends($scope.user.id, true);
-                });
-            }
-          }
-        });
+  }
+  
+  //SEND NOTIFICATION
+  $scope.post_notification = function(type, emitter, receiver){
+    console.log(receiver);
+    $scope.notif = {};
+    $scope.notif.emitter_id = emitter.id;
+    $scope.notif.emitter_fcb_id = emitter.fcb_id;
+    $scope.notif.emitter_name = emitter.name;
+    $scope.notif.receiver_id = receiver.id;
+    $scope.notif.receiver_fcb_id = receiver.fcb_id;
+    $scope.notif.receiver_name = receiver.name;
+    $scope.notif.type = type;
+    $scope.notif.url = "/user/";
+    $scope.notif.date = new Date();
+
+    Notifs.create($scope.notif)
+      .success(function(data){
+        console.log("NOTIF POSTED - FRIENDSHIP");
+        console.log(data);
+      });
   }
   
 });

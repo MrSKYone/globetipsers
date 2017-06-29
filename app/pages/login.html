@@ -7,10 +7,10 @@
                 <p class="mb-4">Partage tes bons plans de voyages à ta communauté.<br> Inscris toi et explore les adresses secrètes de tes amis.</p>
                 <a href="" ng-click="login()" class="btn btn-facebook btn btn-lg btn-round mb-4"><i class="fa fa-facebook pr-3"></i> Se connecter avec Facebook</a>
 
-                <p class="line font-weight-bold text-uppercase"><span>Ou</span></p>
+                <p class="line font-weight-bold text-uppercase" ng-show="email_users"><span>Ou</span></p>
             </div>
 
-            <form action="">
+            <form action="" ng-show="email_users">
                 <div class="form-group">
                     <input type="email" class="form-control" id="email"  placeholder="Email">
                 </div>

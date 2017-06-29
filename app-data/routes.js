@@ -256,7 +256,7 @@ module.exports = function (app) {
   
     app.get('/api/notifs/field/fcb_id/:id', function (req, res) {
         // use mongoose to get all tips in the database
-        Notif.find({ 'emitter_fcb_id': req.params.id }, function (err, place) { 
+        Notif.find({ 'receiver_fcb_id': req.params.id }, function (err, place) { 
             res.send(place);
         } );
     });
