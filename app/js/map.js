@@ -39,8 +39,8 @@ function update_country(country){
 }
 
 function parseGeoLocationResults(result) {
-    const parsedResult = {}
-    const {address_components} = result;
+    var parsedResult = {}
+    var {address_components} = result;
 
     for (var i = 0; i < address_components.length; i++) {
         for (var b = 0; b < address_components[i].types.length; b++) {
