@@ -16,7 +16,6 @@
     "angular-translate": "~2.11.0",
     "bootstrap": "v4.0.0-alpha.6",
     "tether": "^1.4.0",
-    "select2": "^4.0.3",
-    "angular-facebook": "~0.2.3"
+    "select2": "^4.0.3"
   }
 }

@@ -68,6 +68,22 @@
   form {
     width: 80%;
     margin: auto;
+
+    .categories-radio {
+      label > input {
+        visibility: hidden;
+        position: absolute;
+      }
+      label > input + img {
+        cursor:pointer;
+        width: 90px;
+        margin: 0 20px;
+        opacity: 0.5;
+      }
+      label > input:checked + img{
+        opacity: 1;
+      }
+    }
   }
 }
 

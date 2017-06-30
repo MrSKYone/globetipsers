@@ -1,5 +1,5 @@
 .user-header {
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 15px;
   background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bguser.png');
   background-size: cover;
@@ -10,11 +10,24 @@
     margin-bottom: 20px;
   }
 
-  .location {
+  .infos {
     color: lighten($gray-light, 20%);
+    margin-bottom: 5px;
   }
 
-  ul.user-info {
+  .social-networks {
+    a {
+      color: white;
+      margin-right: 15px;
+
+      &:hover, &:focus {
+        color: $brand-info;
+        text-decoration: none;
+      }
+    }
+  }
+
+  ul.user-stats {
     padding-left: 0;
     li {
       display: inline-block;
@@ -62,6 +75,20 @@
       width: 130px;
     }
   }
+}
+
+@include media-breakpoint-down(md) {
+ .add-tips {
+   position: fixed;
+   bottom: 0;
+   left: auto;
+   margin-left: auto;
+   right: 15px;
+
+   img {
+     max-width: 80px;
+   }
+ }
 }
 
 .bg-login {
