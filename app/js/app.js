@@ -207,6 +207,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.display_user = function(){
     $scope.url_id = $routeParams.id;
     if($scope.url_id){
+      console.log("id in url param");
       Users.getByFcbId($scope.url_id)
         .success(function(data){
           $scope.user_feed = data[0];
@@ -214,6 +215,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         })
     }
     else{
+      console.log("no id in url param");
       $scope.user_feed = $scope.user_data[0];
       $scope.user_tips($scope.user_feed.fcb_id);
     }
