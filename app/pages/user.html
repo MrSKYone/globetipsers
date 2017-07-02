@@ -68,7 +68,7 @@
 <a href="/new" class="add-tips"><img src="./images/add-tips-marker.png" alt=""></a>
 
 <div id="colright" class="col-right">
-    <div class="user-header bg-primary text-center" background data-src="{{userTips[0].cover}}">
+    <div class="user-header bg-primary text-center" background data-src="{{userTips[userTips.length - 1].cover}}">
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
         <p class="infos">
@@ -77,7 +77,7 @@
         <ul class="user-stats">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>
-            <li><span class="text-success">{{count_country.length - 1}}</span> Pays</li>
+            <li><span class="text-success">{{count_country.length}}</span> Pays</li>
         </ul>
     </div>
     <div class="user-content py-4 px-5">
