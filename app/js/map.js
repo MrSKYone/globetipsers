@@ -132,6 +132,11 @@ function add_markers(places){
     scaledSize: new google.maps.Size(38,38)
   }
   
+  var normalIcon = {
+    url: "images/logo-min.png",
+    scaledSize: new google.maps.Size(38,38)
+  }
+  
   for(var i=0; i<places.length;i++){
     var placeLocation = new google.maps.LatLng(places[i].lat, places[i].lon);
     var pId = places[i]._id;
@@ -202,12 +207,20 @@ function add_markers(places){
     
     var p = places._id;
     var n = places.name;
+    
+    var iconIs;
+    if(places.category == "experience"){iconIs = expIcon;}
+    else if(places.category == "explore"){iconIs = exploreIcon;}
+    else if(places.category == "globe"){iconIs = globeIcon;}
+    else if(places.category == "sleep"){iconIs = sleepIcon;}
+    else{iconIs = tasteIcon;}
+    
     var m = new google.maps.Marker({
            id: p,
            position: mPos,
            map: map,
            title: n,
-           icon: normalIcon
+           icon: iconIs
     });
     
     map.panTo(mPos);
