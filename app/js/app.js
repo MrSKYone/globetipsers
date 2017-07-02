@@ -155,7 +155,6 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         Facebook.api('/me?fields=id,name,email,picture,cover,hometown', function(response) {
           $scope.user = response;
           console.log($scope.user);
-          $scope.bind_user($scope.user);
           call_fcb_friends($scope.user.id, false);
         });
       } else {
@@ -170,6 +169,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     Facebook.api('/'+id+'/friends?fields=name,id,picture', function(response) {
       $scope.user_friends = response.data;
       console.log(response);
+      $scope.bind_user($scope.user);
       if(order && $scope.user_friends !== undefined){$scope.friend_ordering($scope.user_friends, $scope.user_data[0]);}
     });
   }
