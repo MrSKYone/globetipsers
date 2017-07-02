@@ -12,6 +12,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     </head>
     <body ng-controller="globalController">
+      
+        <div class="search-overlay" ng-show="search_is_on">
+          <form action="" class="p-5">
+              <div class="form-group">
+                  <input type="text" class="form-control form-control-lg" id="search"  ng-model="searchEntry" ng-change="searchTrigger()" placeholder="Rechercher par pays, amis, catégorie, adresse..." autocomplete="off">
+              </div>
+          </form>
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-5 offset-md-5">
+                      <div class="search-results" style="display:none;">
+                          
+                          <div ng-repeat="item in refinedSearch" class="tips-widget text-center mb-5" style="background-image: url('{{item.cover}}');">
+                              <div class="background"></div>
+                              <p class="location" ng-show="item.country"><span>{{item.country}}</span>, {{item.city}}</p>
+                              <h3 ng-show="item.country" ng-click="goto('tips', item._id)">{{item.name}}</h3>
+                              <h3 ng-show="item.fcb_id" ng-click="goto('user', item.fcb_id)">{{item.name}}</h3>
+                              <h3 ng-show="item.type">{{item.name}}</h3>
+                          </div>
+                        
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
 
         <div class="height-100" ng-view></div>
 

@@ -74,9 +74,163 @@ app.config(['$translateProvider', function ($translateProvider) {
     .preferredLanguage('en');
 }]);
 
-app.controller('globalController', function($scope, $location, $http, Facebook) {
+app.controller('globalController', function($scope, $location, $http, Facebook, Tips, Users, Shared) {
 
   $scope.loggedin = false;
+  
+  $scope.toogle_search = function()
+  {
+    console.log("search....");
+    $scope.search_is_on = !$scope.search_is_on;
+  };
+  
+  $scope.goto = function(type, id){
+    $scope.toogle_search();
+    if(type == "tips"){
+      $location.path('/tips/' + id);
+    }
+    else{
+      $location.path('/user/profil/' + id);
+    }
+    
+  }
+  
+  //SEARCH FEATURE
+  $scope.searchEntry = "";
+  $scope.avSearch = [];
+  $scope.refinedSearch = [];
+  
+  $scope.searchTrigger = function(){
+    //trigger data query when input length is 3 letters and more.
+    //gets triggered everytime input changes
+    if($scope.searchEntry.length > 3 && $scope.searchEntry.length < 5){
+      $scope.avSearch = [];
+      $scope.refinedSearch = [];
+      
+      Tips.search($scope.searchEntry)
+        .success(function(data) {
+          for(var i = 0; i<data.length; i++){
+            if(data[i].display){
+              $scope.avSearch.push(data[i]);
+              $scope.refinedSearch.push(data[i]);
+            }
+          }
+        });
+      for(var a=0; a<$scope.user_f.length; a++){
+        if($scope.user_friends[a].name.toLowerCase().indexOf($scope.searchEntry.toLowerCase()) !== -1){
+          $scope.avSearch.push($scope.user_friends[a]);
+          $scope.refinedSearch.push($scope.user_friends[a]);
+        }
+      }
+    }
+    else{
+      if($scope.avSearch.length > 0){
+        $scope.refinedSearch = [];
+        angular.forEach($scope.avSearch, function(item, key) {
+            if(item.name !== undefined){
+              if (item.name.match(new RegExp("(" + $scope.searchEntry + ")", "i"))) {
+                $scope.refinedSearch.push(item);
+              }
+            }
+            else if(item.email !== undefined){
+              if (item.name.match(new RegExp("(" + $scope.searchEntry + ")", "i"))) {
+                $scope.refinedSearch.push(item);
+              }
+              else{
+                //nothing
+              }
+            }
+            else{
+              //nothing
+            }
+        });
+      }
+      console.log("RESULTS");
+      console.log($scope.refinedSearch);
+      if($scope.refinedSearch.length < 1){
+        $scope.blank = [];
+        $scope.blank.name = "aucun résultat";
+        $scope.blank.type = "blank";
+        $scope.refinedSearch.push($scope.blank);
+      }
+    }
+  }
+
+  //AUTHOR INFO
+  var findAuthor = function(){
+    angular.forEach($scope.refinedSearch, function(item, value){
+      if(item.fcb_id !== undefined){
+        var authId = item.fcb_id; 
+        Users.getId(authId)
+          .success(function(data) {
+            $scope.refinedSearch[value].name = data.name;
+          });
+      }
+    });
+  }
+  
+  $scope.me = function() {
+    Facebook.getLoginStatus(function(response) {
+      if(response.status === 'connected') {
+        $scope.loggedin = true;
+        Facebook.api('/me?fields=id,name,email,picture,cover,hometown', function(response) {
+          $scope.user = response;
+          call_fcb_friends($scope.user.id, false);
+        });
+      } else {
+        $scope.loggedin = false;
+        $location.path('/login');
+      }
+    });
+  };
+  
+  function call_fcb_friends(id, order){
+    Facebook.api('/'+id+'/friends?fields=name,id,picture', function(response) {
+      $scope.user_friends = response.data;
+      $scope.bind_user($scope.user);
+    });
+  }
+  
+  //CHECK FOR USER IN DB
+  $scope.bind_user = function(user){
+    $scope.pending = {}
+    $scope.pending.fcb_id = user.id;
+    $scope.pending.name = user.name;
+    $scope.pending.avatar = user.picture.data.url;
+    
+    Users.getByFcbId(user.id)
+      .success(function(data) {
+        if(data.length < 1){
+          Users.create($scope.pending)
+            .success(function(data){
+              console.log(data);
+              $scope.friend_classy($scope.user_friends, data);
+            });
+        }
+        else{
+           console.log("USER EXIST");
+           Shared.setUser(data);
+           //USER INFO
+           $scope.user_data = data;
+           $scope.friend_classy($scope.user_friends, $scope.user_data[0]);
+        }
+      });
+  }
+  
+  //FRIEND PANEL
+  // Ordering friends by status of requests
+  $scope.friend_classy = function(friends, user){
+    $scope.user_f = [];
+    
+    for(var i=0;i<friends.length;i++){
+      var check_f = $.inArray(friends[i].id, user.friends);
+      if(check_f != -1){$scope.user_f.push(friends[i]);}
+    }
+  }
+  
+  $scope.me();
+  
+  
   
 });
 

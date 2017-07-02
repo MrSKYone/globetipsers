@@ -66,6 +66,15 @@ module.exports = function (app) {
         } );
     });
   
+    
+    //SEARCH
+    app.get('/api/tips/search/:string', function (req, res) {
+        // use mongoose to get all todos in the database
+        Tip.find({ 'name': { "$regex": req.params.string, "$options": "i" } }, function (err, place) { 
+            res.send(place);
+        } );
+    });
+  
     // create todo and send back all todos after creation
     app.post('/api/tips', function (req, res) {
         console.log("TIPSING");
@@ -183,7 +192,15 @@ module.exports = function (app) {
             res.send(place);
         } );
     });
-
+    
+    //SEARCH
+    app.get('/api/users/search/:string', function (req, res) {
+        // use mongoose to get all todos in the database
+        User.find({'$or':[{name:new RegExp(req.params.string,'i')},{email:new RegExp(req.params.string,'i')}]}).exec(function(err, users) {
+            res.send(users);
+        })
+    });
+  
     app.put('/api/users/:user_id', function (req, res) {
         console.log(req.body.name);
         User.findOneAndUpdate({_id:req.params.user_id}, req.body, function (err, tip) {

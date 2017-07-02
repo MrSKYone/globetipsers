@@ -88,6 +88,9 @@ app.factory('Tips', ['$http' ,function($http) {
 		getName : function(slug) {
 			return $http.get('/api/tips/name/' + slug);
 		},
+		search: function(string) {
+			return $http.get('/api/tips/search/' + string);
+		},
 		create : function(tipData) {
 			return $http.post('/api/tips', tipData);
 		},
@@ -110,6 +113,9 @@ app.factory('Users', ['$http' ,function($http) {
 		},
 		getByFcbId : function(id) {
 			return $http.get('/api/users/field/fcb_id/' + id);
+		},
+		search: function(string) {
+			return $http.get('/api/users/search/' + string);
 		},
 		create : function(userData) {
 			return $http.post('/api/users', userData);
