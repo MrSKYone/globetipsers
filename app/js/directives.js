@@ -19,11 +19,12 @@ app.directive('background', ['$compile', 'Utils', function($compile, Utils) {
 								else{
 									img = desktop;
 								}
-								element.css('background', 'url('+img+')');
-								element.css('background-size', 'cover');
+								element.css('background', 'webkit-gradient(linear,left top,left bottom,from(rgba(13,5,61,0)),color-stop(rgba(13,5,61,.7)),to(#0d053d)),url('+img+');');
+								element.css('background', 'linear-gradient(rgba(13,5,61,0),rgba(13,5,61,.7),#0d053d),url('+img+');');
+								//element.css('background-size', 'cover');
 						}
           });
-					scope.$watch('placeObject', function (newval, oldval) {
+					scope.$watch('userTips', function (newval, oldval) {
 						if (newval) {
 								var desktop = element.attr('data-src');
 								var mobile = element.attr('data-src-mobile');
