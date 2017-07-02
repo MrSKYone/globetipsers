@@ -170,7 +170,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     Facebook.api('/'+id+'/friends?fields=name,id,picture', function(response) {
       $scope.user_friends = response.data;
       console.log(response);
-      if(order){$scope.friend_ordering($scope.user_friends, $scope.user_data[0]);}
+      if(order && $scope.user_friends !== undefined){$scope.friend_ordering($scope.user_friends, $scope.user_data[0]);}
     });
   }
 
