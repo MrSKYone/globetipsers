@@ -207,7 +207,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.display_user = function(){
     $scope.url_id = $routeParams.id;
     if($scope.url_id){
-      console.log("id in url param");
+      console.log("id in url param"); //debug
       Users.getByFcbId($scope.url_id)
         .success(function(data){
           $scope.user_feed = data[0];
