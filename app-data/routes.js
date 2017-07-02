@@ -70,9 +70,9 @@ module.exports = function (app) {
     //SEARCH
     app.get('/api/tips/search/:string', function (req, res) {
         // use mongoose to get all todos in the database
-        Tip.find({ 'name': { "$regex": req.params.string, "$options": "i" } }, function (err, place) { 
-            res.send(place);
-        } );
+        Tip.find({'$or':[{name:new RegExp(req.params.string,'i')},{city:new RegExp(req.params.string,'i')},{continent:new RegExp(req.params.string,'i')},{country:new RegExp(req.params.string,'i')}]}).exec(function(err, users) {
+            res.send(users);
+        })
     });
   
     // create todo and send back all todos after creation
