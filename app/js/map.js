@@ -102,9 +102,29 @@ function parseGeoLocationResults(result) {
 
 function add_markers(places){
   
-  var normalIcon = {
-    url: "images/add-tips-marker.png",
-    scaledSize: new google.maps.Size(38,55)
+  var expIcon = {
+    url: "images/pictos/experience-B.png",
+    scaledSize: new google.maps.Size(55,55)
+  }
+  
+  var exploreIcon = {
+    url: "images/pictos/explore-B.png",
+    scaledSize: new google.maps.Size(55,55)
+  }
+  
+  var globeIcon = {
+    url: "images/pictos/globe-B.png",
+    scaledSize: new google.maps.Size(55,55)
+  }
+  
+  var sleepIcon = {
+    url: "images/pictos/sleep-B.png",
+    scaledSize: new google.maps.Size(55,55)
+  }
+  
+  var tasteIcon = {
+    url: "images/pictos/taste-B.png",
+    scaledSize: new google.maps.Size(55,55)
   }
   
   var lowalphaIcon = {
@@ -115,13 +135,21 @@ function add_markers(places){
   for(var i=0; i<places.length;i++){
     var placeLocation = new google.maps.LatLng(places[i].lat, places[i].lon);
     var pId = places[i]._id;
-    var name = places[i].name;
+    var name = places[i].category;
+    
+    var icon;
+    if(places[i].category == "experience"){icon = expIcon;}
+    else if(places[i].category == "explore"){icon = exploreIcon;}
+    else if(places[i].category == "globe"){icon = globeIcon;}
+    else if(places[i].category == "sleep"){icon = sleepIcon;}
+    else{icon = tasteIcon;}
+    
     var marker = new google.maps.Marker({
            id: pId,
            position: placeLocation,
            map: map,
            title: name,
-           icon: normalIcon
+           icon: icon
     });
     
     //MARKER'S CLICK EVENT 
@@ -129,12 +157,13 @@ function add_markers(places){
 
     //UPDATE INFO TILE
     var eNum = this.id;
+    var cat = this.name;
     for(var i=0;i<places.length;i++){
       if(places[i]._id == eNum){
-        allMarkers[i].setIcon(normalIcon);
+        allMarkers[i].setOpacity(1);
       }
       else{
-        allMarkers[i].setIcon(lowalphaIcon);
+        allMarkers[i].setOpacity(0.5);
       }
     }
 

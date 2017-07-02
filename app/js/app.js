@@ -431,6 +431,14 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           map.setCenter(center);
           
           //$scope.allMarkers[p].setIcon(normalIcon);
+          for(var y=0; y<allMarkers.length;y++){
+            if(allMarkers[y].id == id){
+              allMarkers[y].setOpacity(1);
+            }
+            else{
+              allMarkers[y].setOpacity(0.5);
+            }
+          }
         }
         else{
           //$scope.allMarkers[p].setIcon(lowalphaIcon);
