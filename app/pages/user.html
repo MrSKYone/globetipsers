@@ -6,7 +6,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils veulent vous suivre</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_p.length > 0">
-            <li class="media" ng-repeat="item in user_p">
+            <li class="media mb-2" ng-repeat="item in user_p">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -21,7 +21,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils n'ont pas encore répondu</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_r.length > 0">
-            <li class="media" ng-repeat="item in user_r">
+            <li class="media mb-2" ng-repeat="item in user_r">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -36,7 +36,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Vous êtes déjà amis</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_f.length > 0">
-            <li class="media" ng-repeat="item in user_f">
+            <li class="media mb-2" ng-repeat="item in user_f">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -51,7 +51,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add">
-            <li class="media" ng-repeat="item in user_o">
+            <li class="media mb-2" ng-repeat="item in user_o">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -71,10 +71,10 @@
     <div class="user-header bg-primary text-center" background data-src="{{userTips[userTips.length - 1].cover}}">
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
-        <p class="infos">
-            Paris, France<br>
+        <p class="location">
+            Paris, France
         </p>
-        <ul class="user-stats">
+        <ul class="user-info">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>
             <li><span class="text-success">{{count_country.length}}</span> Pays</li>

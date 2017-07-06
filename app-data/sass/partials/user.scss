@@ -1,7 +1,8 @@
 .user-header {
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 15px;
-  background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bguser.png');
+  background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bgdefault.jpg');
+  //background: url($img-url + 'bgdefault.jpg');
   background-size: cover;
   background-position: center;
 
@@ -10,8 +11,21 @@
     margin-bottom: 20px;
   }
 
-  .location {
+  .infos {
     color: lighten($gray-light, 20%);
+    margin-bottom: 5px;
+  }
+
+  .social-networks {
+    a {
+      color: white;
+      margin-right: 15px;
+
+      &:hover, &:focus {
+        color: $brand-info;
+        text-decoration: none;
+      }
+    }
   }
 
   ul.user-info {
@@ -45,10 +59,9 @@
 }
 
 .add-tips {
-  position: absolute;
-  left: 50%;
-  margin-left: -60px;
-  bottom: 0;
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
   z-index: 10;
 
   img {
@@ -56,12 +69,26 @@
   }
 
   &:hover {
-    margin-left: -65px;
 
     img {
-      width: 130px;
+      width: 125px;
     }
   }
+}
+
+@include media-breakpoint-down(md) {
+ .add-tips {
+   img {
+     max-width: 80px;
+   }
+
+   &:hover {
+
+    img {
+      width: 85px;
+    }
+  }
+ }
 }
 
 .bg-login {
