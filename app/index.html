@@ -109,13 +109,15 @@
             };
 
             $(document).on(eventtype, 'a[data-toggle="menu"]', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+                if(!$container.hasClass('st-menu-open')) {
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                setTimeout( function() {
+                    setTimeout( function() {
                     $container.addClass('st-menu-open');
-                }, 25 );
-                document.addEventListener(eventtype, bodyClickFn);
+                    }, 25 );
+                    document.addEventListener(eventtype, bodyClickFn);
+                }
             });
 
             var $searchOverlay = $('.search-overlay');

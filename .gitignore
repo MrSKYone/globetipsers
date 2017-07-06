@@ -2,7 +2,7 @@
 #COMPONENTS
 node_modules
 bower_components
-
+.idea
 #IMAGES
 upload
 
