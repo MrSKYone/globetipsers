@@ -391,6 +391,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   
   //USER TIPS
   $scope.userTips = {};
+  $.fn.select2.defaults.set("theme", "flat");
+  $('.select2').select2();
   
   
   $scope.user_tips = function(id){
@@ -670,7 +672,11 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
   
   //MAP
   initMap();
-  
+
+  //Form
+  $.fn.select2.defaults.set("theme", "flat");
+  $('.select2').select2();
+
   //Focus on country
   $scope.country_focus = function(country){
     update_country(country);

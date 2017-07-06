@@ -69,12 +69,20 @@
 
 <div id="colright" class="col-right">
     <div class="user-header bg-primary text-center" background data-src="{{userTips[userTips.length - 1].cover}}">
+        <a href="#" class="edit-link"><i class="fa fa-pencil"></i></a>
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
-        <p class="location">
-            Paris, France
+        <p class="infos">
+            Paris, France<br>
+            <a href="www.globetipser.com" target="_blank" class="gray-light">www.globetipser.com</a>
         </p>
-        <ul class="user-info">
+        <p class="social-networks">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </p>
+        <a href="#" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">Follow</a>
+        <ul class="user-stats">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>
             <li><span class="text-success">{{count_country.length}}</span> Pays</li>
@@ -83,14 +91,14 @@
     <div class="user-content py-4 px-5">
         <ul class="nav justify-content-center pb-3" id="filters">
             <li class="nav-item dropdown">
-                <select class="form-control" id="continent" ng-model="filter_continent">
-                    <option value="">continent</option>
+                <select class="form-control select2" id="continent" ng-model="filter_continent">
+                    <option value="">Continent</option>
                     <option ng-repeat="con in continents" value="{{con}}">{{con}}</option>
                 </select>
             </li>
             <li class="nav-item dropdown">
-                <select class="form-control" id="category" ng-model="filter_cat">
-                    <option value="">catégorie</option>
+                <select class="form-control select2" id="category" ng-model="filter_cat">
+                    <option value="">Catégorie</option>
                     <option value="experience">Experience</option>
                     <option value="explore">Explore</option>
                     <option value="globe">Globe</option>

@@ -3,6 +3,7 @@
 @import "../../bower_components/select2/src/scss/core.scss";
 
 @import "styles.scss";
+@import "partials/menu.scss";
 @import "partials/user.scss";
 @import "partials/tips.scss";
 @import "partials/friends.scss";
@@ -15,7 +16,16 @@ html, body, .height-100 {
   height: 100%;
 }
 
-body {
+html,
+body,
+.st-container,
+.st-pusher,
+.st-content, .st-content-inner,
+.height-100 {
+	height: 100%;
+}
+
+.st-pusher {
   padding-top: 74px;
 }
 

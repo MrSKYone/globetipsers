@@ -1,10 +1,17 @@
 .user-header {
   padding-top: 100px;
   padding-bottom: 15px;
-  background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bgdefault.jpg');
-  //background: url($img-url + 'bgdefault.jpg');
+  //background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bgdefault.jpg');
+  background: url($img-url + 'bgdefault.jpg');
   background-size: cover;
   background-position: center;
+
+  .edit-link {
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
 
   .picture {
     max-width: 200px;
@@ -28,7 +35,7 @@
     }
   }
 
-  ul.user-info {
+  ul.user-stats {
     padding-left: 0;
     li {
       display: inline-block;
@@ -48,12 +55,9 @@
 
 .user-content {
   #filters {
-    a {
-      color: $gray-light;
-
-      @include hover-focus {
-        color: $brand-info;
-      }
+    .nav-item {
+      width: 40%;
+      margin: 0 5px;
     }
   }
 }

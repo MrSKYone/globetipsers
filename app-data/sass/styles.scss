@@ -53,6 +53,10 @@ a.gray-light {
   }
 }
 
+.form-control {
+  padding: 20px 20px;
+}
+
 .badge {
   border-radius: 40px;
 }
@@ -75,7 +79,7 @@ a.gray-light {
 
 .btn-outline-white {
   @include button-outline-variant(white, $brand-info);
-} 
+}
 
 .cat-img {
   width: 90px;
