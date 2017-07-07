@@ -12,12 +12,34 @@
         <h3 class="text-info text-uppercase mb-4">Choisis ta catégorie</h3>
 
         <form ng-submit="start_upload()" enctype="multipart/form-data">
-            <div class="mb-5">
-                <img src="./images/categories/experience.png" class="cat-img" ng-click="select_cat('experience')">
-                <img src="./images/categories/explore.png" class="cat-img" ng-click="select_cat('explore')">
-                <img src="./images/categories/globe.png" class="cat-img" ng-click="select_cat('globe')">
-                <img src="./images/categories/sleep.png" class="cat-img" ng-click="select_cat('sleep')">
-                <img src="./images/categories/taste.png" class="cat-img" ng-click="select_cat('taste')">
+            <!--<div class="mb-5">-->
+                <!--<img src="./images/categories/experience.png" class="cat-img" ng-click="select_cat('experience')">-->
+                <!--<img src="./images/categories/explore.png" class="cat-img" ng-click="select_cat('explore')">-->
+                <!--<img src="./images/categories/globe.png" class="cat-img" ng-click="select_cat('globe')">-->
+                <!--<img src="./images/categories/sleep.png" class="cat-img" ng-click="select_cat('sleep')">-->
+                <!--<img src="./images/categories/taste.png" class="cat-img" ng-click="select_cat('taste')">-->
+            <!--</div>-->
+            <div class="categories-radio mb-5">
+                <label>
+                    <input type="radio" name="category" value="experience" checked>
+                    <img src="./images/categories/experience.png" class="cat-img">
+                </label>
+                <label>
+                    <input type="radio" name="category" value="explore">
+                    <img src="./images/categories/explore.png" class="cat-img">
+                </label>
+                <label>
+                    <input type="radio" name="category" value="globe">
+                    <img src="./images/categories/globe.png" class="cat-img">
+                </label>
+                <label>
+                    <input type="radio" name="category" value="sleep">
+                    <img src="./images/categories/sleep.png" class="cat-img">
+                </label>
+                <label>
+                    <input type="radio" name="category" value="taste">
+                    <img src="./images/categories/taste.png" class="cat-img">
+                </label>
             </div>
 
             <div class="form-group">
@@ -32,13 +54,13 @@
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" id="place"  placeholder="Nom du lieu *" ng-model="tipData.name">
-                <input type="text" class="form-control" id="place"  placeholder="Adresse *" ng-model="tipData.address">
-                <input type="file" class="form-control" id="place"  placeholder="cover" ngf-select="image.cover = $files">
+                <input type="text" class="form-control" id="place" placeholder="Nom du lieu *" ng-model="tipData.name">
+                <input type="text" class="form-control" id="place" placeholder="Adresse *" ng-model="tipData.address">
+                <input type="file" class="form-control" id="place" placeholder="cover" ngf-select="image.cover = $files">
             </div>
 
             <div class="form-group">
-                <textarea type="text" class="form-control" id="comment" placeholder="Commentaire *" rows="6" ng-model="tipData.text"></textarea>
+                <textarea type="text" class="form-control" id="comment" placeholder="Description *" rows="6" ng-model="tipData.text"></textarea>
             </div>
 
             <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase mt-4">Ajouter</button>

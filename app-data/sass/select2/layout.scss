@@ -10,14 +10,18 @@ $flat-theme-dark-color : $brand-info;
 @import "multiple";
 
 .select2-container--open {
-  .select2-dropdown--below, .select2-dropdown--above {
+  .select2-dropdown--below {
     border: 1px solid $brand-primary;
     border-top: none;
   }
 
-  .select2-selection {
+  .select2-dropdown--above {
     border: 1px solid $brand-primary;
     border-bottom: none;
+  }
+
+  .select2-selection {
+    border: 1px solid $brand-primary;
   }
 }
 

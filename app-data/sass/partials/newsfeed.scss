@@ -1,0 +1,30 @@
+#newsfeed {
+  .media {
+    margin-bottom: 20px;
+  }
+
+  .media-left img {
+    width: 50px;
+    border-radius: 100%;
+    margin-right: 20px;
+  }
+
+  a {
+    font-weight: bold;
+    color: $brand-success;
+
+    &.followed {
+      position: relative;
+
+      img {
+        border: 3px solid $brand-success;
+      }
+
+      i {
+        position: absolute;
+        top: -12px;
+        right: 14px;
+      }
+    }
+  }
+}

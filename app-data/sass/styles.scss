@@ -40,6 +40,27 @@ p {
   }
 }
 
+a.gray-light {
+  color: lighten($gray-light, 20%);
+
+  &:hover, &:focus {
+    color: $brand-info;
+    text-decoration: none;
+  }
+
+  &.active {
+    color: $gray;
+  }
+}
+
+.form-control {
+  padding: 20px 20px;
+}
+
+.badge {
+  border-radius: 40px;
+}
+
 .btn {
   font-size: $font-size-base;
 }
@@ -50,6 +71,14 @@ p {
 
 .btn-facebook {
   @include button-variant($white, $facebook, $facebook);
+}
+
+.btn-white {
+  @include button-variant($body-color, white, white);
+}
+
+.btn-outline-white {
+  @include button-outline-variant(white, $brand-info);
 }
 
 .cat-img {

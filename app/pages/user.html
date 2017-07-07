@@ -6,7 +6,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils veulent vous suivre</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_p.length > 0">
-            <li class="media" ng-repeat="item in user_p">
+            <li class="media mb-2" ng-repeat="item in user_p">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -21,7 +21,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils n'ont pas encore répondu</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_r.length > 0">
-            <li class="media" ng-repeat="item in user_r">
+            <li class="media mb-2" ng-repeat="item in user_r">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -36,7 +36,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Vous êtes déjà amis</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add" ng-show="user_f.length > 0">
-            <li class="media" ng-repeat="item in user_f">
+            <li class="media mb-2" ng-repeat="item in user_f">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -51,7 +51,7 @@
             <h2 class="map-modal-title text-uppercase text-center text-info">Ils sont aussi sur Globetipser</h2>
         </div>
         <ul class="list-unstyled mt-5 friends-list-add">
-            <li class="media" ng-repeat="item in user_o">
+            <li class="media mb-2" ng-repeat="item in user_o">
                 <img class="d-flex mr-4 avatar rounded-circle" src="{{item.picture.data.url}}" alt="Louisette Dupont">
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
@@ -69,11 +69,19 @@
 
 <div id="colright" class="col-right">
     <div class="user-header bg-primary text-center" background data-src="{{userTips[userTips.length - 1].cover}}">
+        <a href="#" class="edit-link"><i class="fa fa-pencil"></i></a>
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
         <p class="infos">
             Paris, France<br>
+            <a href="www.globetipser.com" target="_blank" class="gray-light">www.globetipser.com</a>
         </p>
+        <p class="social-networks">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </p>
+        <a href="#" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">Follow</a>
         <ul class="user-stats">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>
@@ -83,14 +91,14 @@
     <div class="user-content py-4 px-5">
         <ul class="nav justify-content-center pb-3" id="filters">
             <li class="nav-item dropdown">
-                <select class="form-control" id="continent" ng-model="filter_continent">
-                    <option value="">continent</option>
+                <select class="form-control select2" id="continent" ng-model="filter_continent">
+                    <option value="">Continent</option>
                     <option ng-repeat="con in continents" value="{{con}}">{{con}}</option>
                 </select>
             </li>
             <li class="nav-item dropdown">
-                <select class="form-control" id="category" ng-model="filter_cat">
-                    <option value="">catégorie</option>
+                <select class="form-control select2" id="category" ng-model="filter_cat">
+                    <option value="">Catégorie</option>
                     <option value="experience">Experience</option>
                     <option value="explore">Explore</option>
                     <option value="globe">Globe</option>

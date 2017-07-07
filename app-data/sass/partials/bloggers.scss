@@ -1,0 +1,32 @@
+#bloggers {
+  .blogger {
+    background-color: white;
+    margin-bottom: 20px;
+
+    .cover {
+      position: relative;
+
+      .follow {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 10;
+      }
+    }
+
+    .media-left img {
+      width: 40px;
+      border-radius: 100%;
+    }
+
+    h3 {
+      font-size: 1em;
+    }
+
+    p {
+      color: $gray-light;
+      font-size: 0.8em;
+      margin-bottom: 0;
+    }
+  }
+}

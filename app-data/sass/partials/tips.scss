@@ -68,13 +68,32 @@
   form {
     width: 80%;
     margin: auto;
+
+    .categories-radio {
+      label > input {
+        visibility: hidden;
+        position: absolute;
+      }
+
+      label > input + img {
+        cursor:pointer;
+        width: 50px;
+        margin: 0 20px;
+        opacity: 0.5;
+      }
+
+      label > input:checked + img {
+        opacity: 1;
+      }
+    }
   }
 }
 
 .tips-header {
   position: relative;
   height: 450px;
-  background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.4), $brand-primary), url($img-url + 'tips-bali.jpg');
+  //background: linear-gradient(rgba($brand-primary, 0), rgba($brand-primary, 0.7), $brand-primary), url($img-url + 'bgdefault.jpg');
+  background: url($img-url + 'bgdefault.jpg');
   background-size: cover;
   background-position: center;
   color: white;

@@ -392,6 +392,10 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   //USER TIPS
   $scope.userTips = [];
   
+  //TOM: Qu'est ce que c'est ca?
+  $.fn.select2.defaults.set("theme", "flat");
+  $('.select2').select2();
+  
   
   $scope.user_tips = function(id){
     console.log('TIPS FUNC');
@@ -670,7 +674,11 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
   
   //MAP
   initMap();
-  
+
+  //Form
+  $.fn.select2.defaults.set("theme", "flat");
+  $('.select2').select2();
+
   //Focus on country
   $scope.country_focus = function(country){
     update_country(country);

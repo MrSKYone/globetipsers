@@ -1,3 +1,32 @@
+#friends {
+  .friend {
+    background: white;
+    border: 1px solid darken($gray-lighter, 10%);
+    margin-bottom: 15px;
+
+    .avatar {
+      max-width: 50%;
+      margin: 10px auto;
+    }
+
+    ul.user-stats {
+      padding-left: 0;
+      li {
+        display: inline-block;
+        margin-right: 10px;
+        margin-left: 10px;
+        text-transform: uppercase;
+
+        span {
+          font-weight: bold;
+          display: block;
+          font-size: $font-size-h3;
+        }
+      }
+    }
+  }
+}
+
 .friends-list-add {
   img.avatar {
     width: 60px;

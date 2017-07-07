@@ -3,9 +3,12 @@
 @import "../../bower_components/select2/src/scss/core.scss";
 
 @import "styles.scss";
+@import "partials/menu.scss";
 @import "partials/user.scss";
 @import "partials/tips.scss";
 @import "partials/friends.scss";
+@import "partials/bloggers.scss";
+@import "partials/newsfeed.scss";
 @import "partials/modal.scss";
 @import "select2/layout";
 
@@ -13,7 +16,16 @@ html, body, .height-100 {
   height: 100%;
 }
 
-body {
+html,
+body,
+.st-container,
+.st-pusher,
+.st-content, .st-content-inner,
+.height-100 {
+	height: 100%;
+}
+
+.st-pusher {
   padding-top: 74px;
 }
 
@@ -38,10 +50,62 @@ body {
     padding: 50px 40px 40px;
     background-color: $white;
   }
+
+  .search {
+    .form-control {
+      position: relative;
+      line-height: 10px;
+      background-color: transparent;
+      border: 2px solid darken($gray-lighter, 25%);
+      border-radius: 30px;
+      font-size: 80%;
+
+      &::placeholder {
+        color: darken($gray-lighter, 25%);
+      }
+
+      + i {
+        position: absolute;
+        right: 28px;
+        top: 10px;
+        color: darken($gray-lighter, 25%);
+      }
+
+      &:focus {
+        border: 2px solid $brand-success;
+
+        + i {
+          color: $brand-success;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .col-left {
+    display: none;
+    float: none;
+  }
+
+  .col-right {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .navbar-brand .logo {
   width: 50px;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: 0;
+    right: -5px;
+  }
 }
 
 .nav-user {
@@ -68,6 +132,18 @@ body {
       border: none;
       outline: none;
       color: $white;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .search-overlay {
+    position: fixed;
+    top: 0;
+    padding-top: 200px;
+
+    input {
+      font-size: 1.5rem;
     }
   }
 }
