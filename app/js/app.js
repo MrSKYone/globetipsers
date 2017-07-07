@@ -390,7 +390,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   initMap();
   
   //USER TIPS
-  $scope.userTips = {};
+  $scope.userTips = [];
   
   
   $scope.user_tips = function(id){
