@@ -492,20 +492,27 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           //Friend side
           Users.getByFcbId(id)
             .success(function(data2){
-              $scope.fid = data2[0];
+              console.log('friend data');
+              console.log(data2.length);
+              
+              //if friend exist
+              if(data2.length > 0){
+                $scope.fid = data2[0];
 
-              check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
-              check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
+                check_user =$.inArray($scope.user_data[0].fcb_id, $scope.fid.user_friend_requests) > -1;
+                check_pending =$.inArray($scope.user_data[0].fcb_id, $scope.fid.pending_friend_requests) > -1;
 
-              if(check_user != -1 && check_pending != -1){
-                $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
+                if(check_user != -1 && check_pending != -1){
+                  $scope.fid.pending_friend_requests.push($scope.user_data[0].fcb_id);
 
-                Users.update($scope.fid, $scope.fid._id)
-                  .success(function(data3) {
-                    call_fcb_friends($scope.user.id, true);
-                    $scope.post_notification('new_friend_request', $scope.user_data[0], $scope.fid);
-                  });
+                  Users.update($scope.fid, $scope.fid._id)
+                    .success(function(data3) {
+                      call_fcb_friends($scope.user.id, true);
+                      $scope.post_notification('new_friend_request', $scope.user_data[0], $scope.fid);
+                    });
+                }
               }
+              
             });
         });
     }
