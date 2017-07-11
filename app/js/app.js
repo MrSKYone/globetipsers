@@ -106,6 +106,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     if($scope.searchEntry.length > 3 && $scope.searchEntry.length < 5){
       $scope.avSearch = [];
       $scope.refinedSearch = [];
+      $scope.blank = [];
       
       Tips.search($scope.searchEntry)
         .success(function(data) {
@@ -122,10 +123,17 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
           $scope.refinedSearch.push($scope.user_friends[a]);
         }
       }
+      if($scope.refinedSearch.length < 1){
+        $scope.blank = [];
+        $scope.blank.name = "aucun résultat";
+        $scope.blank.type = "blank";
+        $scope.refinedSearch.push($scope.blank);
+      }
     }
     else{
       if($scope.avSearch.length > 0){
         $scope.refinedSearch = [];
+        $scope.blank = [];
         angular.forEach($scope.avSearch, function(item, key) {
             if(item.name !== undefined){
               if (item.name.match(new RegExp("(" + $scope.searchEntry + ")", "i"))) {
@@ -147,12 +155,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
       }
       console.log("RESULTS");
       console.log($scope.refinedSearch);
-      if($scope.refinedSearch.length < 1){
-        $scope.blank = [];
-        $scope.blank.name = "aucun résultat";
-        $scope.blank.type = "blank";
-        $scope.refinedSearch.push($scope.blank);
-      }
+      
     }
   }
 
