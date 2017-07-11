@@ -10,11 +10,11 @@ var morgan = require('morgan');             // log requests to the console (expr
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-var FOREST_ENV_SECRET = '7da5054b2b7c0b8ca209b68c8fbbd8e03eb8d815c8e73b10832f3c8bbf651524';
-var FOREST_AUTH_SECRET = 'nmv83bKF8IC0EJcmPLkxnrlJHasnwpcJ';
+var FOREST_ENV_SECRET = '71ce6c174198db17468377807a9f7c0ccbc6576809d83f7fbc117c8e1e553c9a';
+var FOREST_AUTH_SECRET = '8JKwKzoedCxKf4IqAM02gpgdBIMIgGMO';
 
 // SEO
-app.use(require('prerender-node').set('prerenderToken', 'MfU65RBgi8KRKjxlJtXD'));
+//app.use(require('prerender-node').set('prerenderToken', 'MfU65RBgi8KRKjxlJtXD'));
 
 // upload ========================
 
