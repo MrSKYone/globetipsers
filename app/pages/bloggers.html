@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-6">
                 <form class="search">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" class="form-control" placeholder="Search..." ng-model="search">
                     <i class="fa fa-search"></i>
                 </form>
             </div>
@@ -27,26 +27,26 @@
     </div>
     <div class="px-5" id="bloggers">
         <div class="row">
-            <div class="col-md-6" ng-repeat="user in public_users">
+            <div class="col-md-6" ng-repeat="user in public_users | filter:search">
                 <div class="blogger">
                     <div class="cover">
                         <img src="https://source.unsplash.com/600x600/?travel" class="img-fluid" alt="L'Oiseau Bleu">
-                        <a href="#" class="follow btn btn-white btn-round btn-sm px-4">Follow</a>
+                        <a ng-show="user.fcb_id != my_id" href="#" class="follow btn btn-round btn-sm px-4" ng-class="user.followed ? 'btn-success' : 'btn-white'" ng-click="follow_blog(user.fcb_id, user.followed)">{{user.followed ? 'Followed' : 'Follow'}}</a>
                         <div class="px-3 py-3">
                             <div class="media mb-3">
                                 <div class="media-left pr-3">
                                     <a href="/user">
-                                        <img src="./images/users/women3.jpg" alt="L'Oiseau Bleu">
+                                        <img src="{{user.avatar}}" alt="{{user.name}}">
                                     </a>
                                 </div>
                                 <div class="media-right">
-                                    <h3><a href="/user">{{user.name}}</a></h3>
+                                    <h3><a href="/user/profil/{{user.fcb_id}}">{{user.name}}</a></h3>
                                     <p>Le blog voyage qui vous aide à voyager</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p><strong class="text-success">23</strong> TIPS DANS <strong class="text-success">4</strong> PAYS </p>
+                                    <p><strong class="text-success">{{user.tips.length}}</strong> TIPS</p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="social-networks text-right">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+<!--             <div class="col-md-6">
                 <div class="blogger">
                     <div class="cover">
                         <img src="https://source.unsplash.com/600x600/?travel" class="img-fluid" alt="L'Oiseau Bleu">
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

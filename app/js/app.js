@@ -261,12 +261,102 @@ app.controller('feedController', function($scope, $location, $http, Facebook, No
 
 app.controller('bloggersController', function($scope, $location, $http, Facebook, Users, Notifs, Shared) {
   
+  var db_user;
+  
+  $scope.me = function() {
+    Facebook.getLoginStatus(function(response) {
+      if(response.status === 'connected') {
+        $scope.loggedin = true;
+        Facebook.api('/me?fields=id,name,email,picture,cover,hometown', function(response) {
+          $scope.user = response;
+          
+          //USER INFO FOR NOTIF
+          //if user not log, back to login
+          db_user = Shared.getUser();
+          var is_db_user = isEmpty(db_user);
+          if(is_db_user){
+            Users.getByFcbId($scope.user.id)
+              .success(function(data){
+                if(data[0]){
+                  Shared.setUser(data);
+                  db_user = data;
+                  $scope.my_id = db_user[0].fcb_id;
+                  $scope.list_followed();
+                }
+                else{
+                  $location.path('/login');
+                }
+              })
+          }
+          else{
+            $scope.list_followed();
+            $scope.my_id = db_user[0].fcb_id;
+          }
+        });
+      } else {
+        $scope.loggedin = false;
+        $location.path('/login');
+      }
+    });
+  };
+  
+  $scope.me();
   $scope.public_users = [];
   Users.get()
     .success(function(data){
     $scope.public_users = data;
     console.log(data);
   })
+  
+  //FOLLOWER
+  $scope.follow_blog = function(id, followed){
+    
+    if(followed){
+      var is_in = $.inArray(id, db_user[0].friends);
+      if(is_in !== -1){
+        db_user[0].friends = removeA(db_user[0].friends, id);
+        console.log(db_user[0])
+        Users.update(db_user[0], db_user[0]._id)
+          .success(function(data){
+          console.log(data);
+          $scope.list_followed();
+        })
+      }
+    }
+    else{
+      if(id === db_user[0].fcb_id){
+        console.log("you can't follow yourself");
+      }
+      else{
+        var is_in = $.inArray(id, db_user[0].friends);
+        if(is_in === -1){
+          db_user[0].friends.push(id);
+          Users.update(db_user[0], db_user[0]._id)
+            .success(function(data){
+            $scope.list_followed();
+          })
+        }
+      }
+    }
+  }
+  
+  $scope.list_followed = function(){
+    var followed = db_user[0].friends;
+    for(var i=0; i<followed.length;i++){
+      for (var y=0; y<$scope.public_users.length;y++){
+        if(followed[i] === $scope.public_users[y].fcb_id){
+          console.log('match');
+          $scope.public_users[y].followed = true;
+          console.log($scope.public_users);
+        }
+        else{
+          console.log('no match');
+          $scope.public_users[y].followed = false;
+        }
+      }
+    }
+    $scope.$evalAsync();
+  }
   
 });
 
