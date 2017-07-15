@@ -190,7 +190,7 @@ module.exports = function (app) {
         // use mongoose to get all tips in the database
         User.find({ 'fcb_id': req.params.id }, function (err, place) { 
             res.send(place);
-        } );
+        });
     });
     
     //SEARCH
@@ -202,6 +202,7 @@ module.exports = function (app) {
     });
   
     app.put('/api/users/:user_id', function (req, res) {
+        console.log('UPDATING');
         console.log(req.body.name);
         User.findOneAndUpdate({_id:req.params.user_id}, req.body, function (err, tip) {
           res.send(tip);

@@ -1,3 +1,5 @@
+<div ng-include src="'partials/nav.html'"></div>
+
 <div class="col-left bg-map">
     <div class="map-modal bg-primary p-5">
         <h3 class="text-white text-center">Aggrandi ta communauté pour accèder à plus de tips de voyages</h3>
@@ -25,7 +27,7 @@
     </div>
     <div class="px-5" id="bloggers">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" ng-repeat="user in public_users">
                 <div class="blogger">
                     <div class="cover">
                         <img src="https://source.unsplash.com/600x600/?travel" class="img-fluid" alt="L'Oiseau Bleu">
@@ -38,7 +40,7 @@
                                     </a>
                                 </div>
                                 <div class="media-right">
-                                    <h3><a href="/user">L'Oiseau Bleu</a></h3>
+                                    <h3><a href="/user">{{user.name}}</a></h3>
                                     <p>Le blog voyage qui vous aide à voyager</p>
                                 </div>
                             </div>

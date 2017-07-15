@@ -23,6 +23,11 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     templateUrl: 'pages/guideline.html',
     controller: 'aboutController'
   })
+  
+  .when('/bloggers', {
+    templateUrl: 'pages/bloggers.html',
+    controller: 'bloggersController'
+  })
 
   .when('/user', {
     templateUrl: 'pages/user.html',
@@ -254,6 +259,17 @@ app.controller('feedController', function($scope, $location, $http, Facebook, No
   
 });
 
+app.controller('bloggersController', function($scope, $location, $http, Facebook, Users, Notifs, Shared) {
+  
+  $scope.public_users = [];
+  Users.get()
+    .success(function(data){
+    $scope.public_users = data;
+    console.log(data);
+  })
+  
+});
+
 app.controller('loginController', function($scope, $location, $http, Facebook) {
 
   $scope.getLoginStatus = function() {
@@ -337,6 +353,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     $scope.pending.fcb_id = user.id;
     $scope.pending.name = user.name;
     $scope.pending.avatar = user.picture.data.url;
+    $scope.pending.public = true;
     
     Users.getByFcbId(user.id)
       .success(function(data) {
@@ -652,7 +669,7 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
 
 });
 
-app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils) {
+app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils, Users) {
 
   //USER INFO FOR NOTIF
   //if user not log, back to login
@@ -798,12 +815,34 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         
           $scope.post_notification(data);
         
+          $scope.addidtouser(data._id);
+        
           //redirect to account list
           //$location.path('/user');
         });
     });
 
   };
+  
+  //BIND TIP ID TO USER
+  $scope.addidtouser = function(id){
+    console.log('INPUT TIPS ID IS '+ id);
+    console.log(db_user);
+    console.log('FACEBOOK ID IS : '+db_user[0].fcb_id);
+    Users.getByFcbId(db_user[0].fcb_id)
+      .success(function(data) {
+      console.log('USER IS IS '+ data[0]._id);
+      $scope.up_user = data[0];
+      console.log(data);
+      $scope.up_user.tips.push(id);
+      console.log($scope.up_user);
+      Users.update($scope.up_user, data[0]._id)
+        .success(function(data2){
+        console.log('user updated with tips id');
+        console.log(data2);
+      })
+    });
+  }
     
   //SEND NOTIFICATION
   $scope.post_notification = function(tip){

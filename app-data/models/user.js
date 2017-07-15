@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('User', {
+  public: Boolean,
   fcb_id: String,
   name: String,
   email: String,
