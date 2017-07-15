@@ -113,6 +113,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
       $scope.refinedSearch = [];
       $scope.blank = [];
       
+      //TIP SEARCH
       Tips.search($scope.searchEntry)
         .success(function(data) {
           for(var i = 0; i<data.length; i++){
@@ -122,10 +123,12 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
             }
           }
         });
+      
+      //USER SEARCH
       for(var a=0; a<$scope.user_f.length; a++){
-        if($scope.user_friends[a].name.toLowerCase().indexOf($scope.searchEntry.toLowerCase()) !== -1){
-          $scope.avSearch.push($scope.user_friends[a]);
-          $scope.refinedSearch.push($scope.user_friends[a]);
+        if($scope.user_f[a].name.toLowerCase().indexOf($scope.searchEntry.toLowerCase()) !== -1){
+          $scope.avSearch.push($scope.user_f[a]);
+          $scope.refinedSearch.push($scope.user_f[a]);
         }
       }
       if($scope.refinedSearch.length < 1){
