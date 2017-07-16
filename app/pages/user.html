@@ -81,7 +81,7 @@
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>
         </p>
-        <a href="#" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">Follow</a>
+        <a ng-show="!url_id" href="#" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">Follow</a>
         <ul class="user-stats">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>
