@@ -176,3 +176,9 @@ app.service('Shared', function () {
 		};
 });
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
