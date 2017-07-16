@@ -264,9 +264,26 @@ function locatedItinerary(position){
         lat: position.coords.latitude,
         lng: position.coords.longitude
     };
-    window.location.href = "http://maps.google.com/maps?saddr="+pos.lat+","+pos.lng+"&daddr="+globalAddress, '_target';
+    var url = "http://maps.google.com/maps?saddr="+pos.lat+","+pos.lng+"&daddr="+globalAddress;
+    var win = window.open(url, '_blank');
+    if (win) {
+        //Browser has allowed it to be opened
+        win.focus();
+    } else {
+        //Browser has blocked it
+        alert('Please allow popups for this website (see url bar)');
+    }
 }
 
 function emptyItinerary(){
-    window.location.href = "http://maps.google.com/maps?saddr=&daddr="+globalAddress, '_target';
+    var url = "http://maps.google.com/maps?saddr=&daddr="+globalAddress;
+    var win = window.open(url, '_blank');
+    if (win) {
+        //Browser has allowed it to be opened
+        win.focus();
+    } else {
+        //Browser has blocked it
+        alert('Please allow popups for this website (see url bar)');
+    }
+  
 }
