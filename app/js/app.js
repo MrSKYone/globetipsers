@@ -397,7 +397,7 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 });
 
-app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users, Notifs) {
+app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users, Notifs, Utils) {
 
   //CAN ACCESS FRIEND PANEL
   $scope.is_on_user = true;
@@ -409,9 +409,13 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.continents = [];
   $http.get('ressources/continent.json').success(function(data) {
     $scope.continents = [];
+    $scope.pending_continents = [];
     for(var i=0;i<data.length;i++){
-      var is_in = $.inArray(data[i].continent, $scope.continents);
-      if(is_in < 0){$scope.continents.push(data[i].continent);}
+      var is_in = $.inArray(Utils.toSlug(data[i].continent), $scope.pending_continents);
+      if(is_in < 0){
+        $scope.pending_continents.push(Utils.toSlug(data[i].continent));
+        $scope.continents.push(data[i].continent);
+      }
     }
     console.log($scope.continents);
   });
