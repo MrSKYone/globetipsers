@@ -399,6 +399,8 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users, Notifs) {
 
+  //CAN ACCESS FRIEND PANEL
+  $scope.is_on_user = true;
   
   //FACEBOOK LOGIN
   console.log($scope.loggedin);
