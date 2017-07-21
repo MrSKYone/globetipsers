@@ -5,7 +5,8 @@
   height: 80%;
   top: 10%;
   left: 10%;
-  box-shadow: 6px 6px 0px rgba($black, 0.15);
+  overflow-y: scroll;
+  box-shadow: 6px 6px 0 rgba($black, 0.15);
 
   .map-modal-header {
     text-align: center;
@@ -20,5 +21,15 @@
   .map-modal-scroll {
     height: 80%;
     overflow-y: scroll;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .map-modal {
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    bottom: 10%;
+    right: 10%;
   }
 }

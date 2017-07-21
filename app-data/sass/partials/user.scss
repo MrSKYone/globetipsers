@@ -53,6 +53,12 @@
   }
 }
 
+@include media-breakpoint-down(md) {
+  .user-header {
+    padding-top: 20px;
+  }
+}
+
 .user-content {
   #filters {
     .nav-item {
@@ -69,13 +75,13 @@
   z-index: 10;
 
   img {
-    width: 120px;
+    width: 80px;
   }
 
   &:hover {
 
     img {
-      width: 125px;
+      width: 85px;
     }
   }
 }
@@ -83,13 +89,13 @@
 @include media-breakpoint-down(md) {
  .add-tips {
    img {
-     max-width: 80px;
+     max-width: 50px;
    }
 
    &:hover {
 
     img {
-      width: 85px;
+      width: 55px;
     }
   }
  }
@@ -116,4 +122,9 @@
     width: 80%;
     margin: auto;
   }
+}
+
+.user-edit {
+  width: 50%;
+  margin: auto;
 }

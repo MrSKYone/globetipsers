@@ -1,0 +1,38 @@
+<div ng-include src="'partials/nav.html'"></div>
+
+<div class="col-left bg-map">
+    <div id="map-canvas" ng-click="close_modals()" style="width:100%; height:100%;"></div>
+</div>
+
+<div id="colright" class="col-right">
+   <div class="header">
+        <h3>Modification du profil</h3>
+    </div>
+    <div class="py-5 text-center user-edit">
+        <form enctype="multipart/form-data">
+
+            <div class="form-group">
+                <h4>Photo de cover</h4>
+                <input type="file" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <h4>Photo de profil</h4>
+                <input type="file" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <h4>Informations personelles</h4>
+                <input type="text" class="form-control" placeholder="Nom *">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Prénom *">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ville *">
+            </div>
+
+            <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase mt-4">Modifier</button>
+        </form>
+    </div>
+</div>
