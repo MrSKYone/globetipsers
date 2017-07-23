@@ -77,8 +77,8 @@
 
       label > input + img {
         cursor:pointer;
-        width: 50px;
-        margin: 0 20px;
+        width: 70px;
+        margin: 0 10px;
         opacity: 0.5;
       }
 
@@ -122,6 +122,12 @@
   }
 }
 
+@include media-breakpoint-down(md) {
+  .tips-header, .tips-widget {
+    height: 250px;
+  }
+}
+
 .tips-info {
   position: relative;
   background-color: white;
@@ -145,5 +151,14 @@
     width: 80px;
     margin-left: -40px;
     top: 42%;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .tips-info {
+    .category {
+      position: relative;
+      margin-bottom: 20px;
+    }
   }
 }

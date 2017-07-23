@@ -33,6 +33,11 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     templateUrl: 'pages/user.html',
     controller: 'userController'
   })
+
+  .when('/user-edit', {
+    templateUrl: 'pages/user-edit.html',
+    controller: 'aboutController'
+  })
   
   .when('/user/profil/:id?', {
     templateUrl: 'pages/user.html',
@@ -57,6 +62,11 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
   .when('/new', {
     templateUrl: 'pages/new.html',
     controller: 'newController'
+  })
+
+    .when('/new-confirmation', {
+    templateUrl: 'pages/new-confirmation.html',
+    controller: 'aboutController'
   })
 
   .when('/tips/:id?', {

@@ -10,6 +10,7 @@
 @import "partials/bloggers.scss";
 @import "partials/newsfeed.scss";
 @import "partials/modal.scss";
+@import "partials/loader.scss";
 @import "select2/layout";
 
 html, body, .height-100 {
@@ -59,6 +60,7 @@ body,
       border: 2px solid darken($gray-lighter, 25%);
       border-radius: 30px;
       font-size: 80%;
+      padding: 10px 10px;
 
       &::placeholder {
         color: darken($gray-lighter, 25%);
@@ -84,8 +86,9 @@ body,
 
 @include media-breakpoint-down(md) {
   .col-left {
-    display: none;
-    float: none;
+    position: absolute;
+    width: 0;
+    height: 0;
   }
 
   .col-right {
@@ -115,7 +118,7 @@ body,
 
 .search-overlay {
   position: absolute;
-  top: 50px; bottom: 0;
+  top: 70px; bottom: 0;
   left: 0; right: 0;
   background-color: $brand-primary;
   z-index: 100;
