@@ -9,27 +9,38 @@
         <h3>Modification du profil</h3>
     </div>
     <div class="py-5 text-center user-edit">
-        <form enctype="multipart/form-data">
-
+        <form ng-submit="upload_cover()" enctype="multipart/form-data">
+       
+           <div class="form-group">  
+             <h4>Visibilité du profil</h4>
+            <select class="form-control select2" id="category" ng-model="user_data.public">
+                <option value="true">Public</option>
+                <option value="false">Privé</option>
+            </select>
+          </div>
+          
             <div class="form-group">
                 <h4>Photo de cover</h4>
-                <input type="file" class="form-control">
+                <input type="file" class="form-control" ngf-select="image_data = $files">
             </div>
 
-            <div class="form-group">
+<!--             <div class="form-group">
                 <h4>Photo de profil</h4>
                 <input type="file" class="form-control">
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <h4>Informations personelles</h4>
-                <input type="text" class="form-control" placeholder="Nom *">
+                <input type="text" class="form-control" ng-model="user_data.profil.description" placeholder="Description (ville, tagline etc.)">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Prénom *">
+                <input type="text" class="form-control" ng-model="user_data.profil.instagram" placeholder="Instagram">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Ville *">
+                <input type="text" class="form-control" ng-model="user_data.profil.facebook" placeholder="Facebook">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="user_data.profil.web" placeholder="Site web">
             </div>
 
             <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase mt-4">Modifier</button>

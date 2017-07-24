@@ -10,8 +10,8 @@ var morgan = require('morgan');             // log requests to the console (expr
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-var FOREST_ENV_SECRET = '71ce6c174198db17468377807a9f7c0ccbc6576809d83f7fbc117c8e1e553c9a';
-var FOREST_AUTH_SECRET = '8JKwKzoedCxKf4IqAM02gpgdBIMIgGMO';
+var FOREST_ENV_SECRET = 'f269a545984ce9fb6ceb66fd16629be1a635f2481b2bee13a4c86a3df2db6694';
+var FOREST_AUTH_SECRET = 'r7ILKmvzNEF0hLDc5IJy4hkm7CANnFCd';
 
 // SEO
 //app.use(require('prerender-node').set('prerenderToken', 'MfU65RBgi8KRKjxlJtXD'));
@@ -28,7 +28,17 @@ var storageTip = multer.diskStorage({
   }
 })
 
+var storageUser = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './upload/users/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname.replace(/ /g, '_'))
+  }
+})
+
 var upload = multer({ storage: storageTip });
+var upload_user = multer({ storage: storageUser });
 
 // configuration =================
 mongoose.connect('mongodb://localhost:27017/test');    
@@ -60,6 +70,13 @@ app.use('/upload', express.static(__dirname + '/upload'));
 require('./app-data/routes.js')(app);
 
 app.post('/upload/tip', upload.array('images'), function (req, res, next) {
+  // req.file is the `avatar` file
+  console.log(req.files);
+  // req.body will hold the text fields, if there were any
+  res.json({status: 'success', files: req.files});
+})
+
+app.post('/upload/user', upload.array('images'), function (req, res, next) {
   // req.file is the `avatar` file
   console.log(req.files);
   // req.body will hold the text fields, if there were any

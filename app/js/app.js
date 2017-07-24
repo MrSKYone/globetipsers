@@ -34,9 +34,9 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     controller: 'userController'
   })
 
-  .when('/user-edit', {
+  .when('/edit/user/:id?', {
     templateUrl: 'pages/user-edit.html',
-    controller: 'aboutController'
+    controller: 'usereditController'
   })
   
   .when('/user/profil/:id?', {
@@ -525,6 +525,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $.fn.select2.defaults.set("theme", "flat");
   $('.select2').select2();
   
+  //COVER
+  $scope.cover_is;
   
   $scope.user_tips = function(id){
     console.log('TIPS FUNC');
@@ -536,6 +538,13 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         add_markers(data);
         $scope.count_country(data);
         $scope.tipson = true;
+      
+        if($scope.user_feed.profil.cover == ''){
+          $scope.cover_is = $scope.userTips[$scope.userTips.length - 1].cover;
+        }
+        else{
+          $scope.cover_is = $scope.user_feed.profil.cover;
+        }
       });
   }
   
@@ -1013,6 +1022,81 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         console.log(data);
       });
   };
+});
+
+app.controller('usereditController', function($scope, $routeParams, $location, $http, Utils, Users, Upload, Facebook) {
+
+  $scope.user_data = {};
+  
+  //URL HASHING
+  $scope.display_user = function(){
+    $scope.url_id = $routeParams.id;
+    if($scope.url_id){
+      console.log("id in url param"); //debug
+      Users.getByFcbId($scope.url_id)
+        .success(function(data){
+          console.log(data[0]);
+          $scope.user_data = data[0];
+          console.log($scope.user_data);
+        })
+    }
+    else{
+      console.log("no id in url param");
+      $location.path('/user');
+    }
+  }
+  
+  $scope.upload_cover = function(){
+    
+    var uploadUser = '/upload/user';
+    
+    if (!isEmpty($scope.image_data)) {
+       var data = {
+          images: $scope.image_data[0]
+        };
+
+        Upload.upload({
+          url: uploadUser,
+          arrayKey: '',
+          data: data,
+        }).then(function(response) {
+          console.log('img uploaded');
+          // Adding data paths to formData object before creating route
+          // MUST respect images array order
+          //console.log(imagesTip);
+          //console.log(response.data.files);
+          if ($scope.image_data[0] !== undefined) {
+            $scope.user_data.profil.cover = response.data.files[0].path;
+          }
+
+          console.log("UPDATING USER");
+          console.log($scope.user_data);
+          //Storing route inside DB
+          Users.update($scope.user_data, $scope.user_data._id)
+            .success(function(data) {
+              $scope.user_data = {}; // clear the form so our user is ready to enter another
+              console.log(data);
+              console.log("USER UPDATED");
+              //redirect to account list
+              $location.path('/user');
+            });
+        });
+    }
+    else{
+      Users.update($scope.user_data, $scope.user_data._id)
+            .success(function(data) {
+              $scope.user_data = {}; // clear the form so our user is ready to enter another
+              console.log(data);
+              console.log("USER UPDATED");
+              //redirect to account list
+              $location.path('/user');
+            });
+    }
+   
+  }
+  
+  $scope.display_user();
+  
 });
 
 app.controller('aboutController', function($scope, $location, $http, Utils) {
