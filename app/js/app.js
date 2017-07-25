@@ -293,8 +293,10 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
                 if(data[0]){
                   Shared.setUser(data);
                   db_user = data;
+                  console.log('DBUSER')
+                  console.log(db_user);
                   $scope.my_id = db_user[0].fcb_id;
-                  $scope.list_followed();
+                  $scope.call_public_users();
                 }
                 else{
                   $location.path('/login');
@@ -302,7 +304,7 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
               })
           }
           else{
-            $scope.list_followed();
+            $scope.call_public_users();
             $scope.my_id = db_user[0].fcb_id;
           }
         });
@@ -314,12 +316,17 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
   };
   
   $scope.me();
-  $scope.public_users = [];
-  Users.get()
-    .success(function(data){
-    $scope.public_users = data;
-    console.log(data);
-  })
+  
+  $scope.call_public_users = function(){
+    $scope.public_users = [];
+    Users.get()
+      .success(function(data){
+      $scope.public_users = data;
+      $scope.list_followed();
+      console.log(data);
+    })
+  }
+  
   
   //FOLLOWER
   $scope.follow_blog = function(id, followed){
@@ -332,7 +339,7 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
         Users.update(db_user[0], db_user[0]._id)
           .success(function(data){
           console.log(data);
-          $scope.list_followed();
+          $scope.call_public_users();
         })
       }
     }
@@ -341,12 +348,12 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
         console.log("you can't follow yourself");
       }
       else{
-        var is_in = $.inArray(id, db_user[0].friends);
-        if(is_in === -1){
+        var is_in2 = $.inArray(id, db_user[0].friends);
+        if(is_in2 === -1){
           db_user[0].friends.push(id);
           Users.update(db_user[0], db_user[0]._id)
             .success(function(data){
-            $scope.list_followed();
+            $scope.call_public_users();
           })
         }
       }
@@ -358,17 +365,13 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
     for(var i=0; i<followed.length;i++){
       for (var y=0; y<$scope.public_users.length;y++){
         if(followed[i] === $scope.public_users[y].fcb_id){
-          console.log('match');
           $scope.public_users[y].followed = true;
-          console.log($scope.public_users);
         }
         else{
-          console.log('no match');
           $scope.public_users[y].followed = false;
         }
       }
     }
-    $scope.$evalAsync();
   }
   
 });
