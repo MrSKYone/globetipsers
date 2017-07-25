@@ -365,13 +365,13 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
     for(var i=0; i<followed.length;i++){
       for (var y=0; y<$scope.public_users.length;y++){
         if(followed[i] === $scope.public_users[y].fcb_id){
+          console.log('match');
           $scope.public_users[y].followed = true;
-        }
-        else{
-          $scope.public_users[y].followed = false;
         }
       }
     }
+    console.log('PUBLIC USERS');
+    console.log($scope.public_users);
   }
   
 });

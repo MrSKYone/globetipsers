@@ -31,8 +31,8 @@
                 <div class="blogger">
                     <div class="cover">
                         <img src="https://source.unsplash.com/600x600/?travel" class="img-fluid" alt="L'Oiseau Bleu">
-                        <a ng-show="user.followed" href="#" class="follow btn btn-round btn-sm px-4 btn-success" ng-click="follow_blog(user.fcb_id, user.followed)">Followed</a>
-                        <a ng-show="!user.followed" href="#" class="follow btn btn-round btn-sm px-4 btn-white" ng-click="follow_blog(user.fcb_id, user.followed)">Follow</a>
+                        <a href="#" class="follow btn btn-round btn-sm px-4" ng-class="user.followed ? 'btn-success' : 'btn-white'" ng-click="follow_blog(user.fcb_id, user.followed)">{{user.followed ? "Followed" : "Follow"}}</a>
+                        
                         <div class="px-3 py-3">
                             <div class="media mb-3">
                                 <div class="media-left pr-3">
