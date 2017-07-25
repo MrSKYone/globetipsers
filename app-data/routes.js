@@ -163,6 +163,7 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         var newuser = new User({
+            public: false,
             fcb_id: req.body.fcb_id,
             name: req.body.name,
             email: req.body.email,
