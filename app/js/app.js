@@ -415,6 +415,9 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   //CAN ACCESS FRIEND PANEL
   $scope.is_on_user = true;
   
+  //URL DEFAULT BG
+  $scope.cover_default = 'app/images/bgdefault.png';
+  
   //FACEBOOK LOGIN
   console.log($scope.loggedin);
   
@@ -830,6 +833,8 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
 
 app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils, Users) {
 
+  $scope.loading = false;
+  
   //USER INFO FOR NOTIF
   //if user not log, back to login
   var db_user = Shared.getUser();
@@ -937,49 +942,73 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
 
   $scope.upload_tips = function(){
     
+    $scope.loading = true;
+    
     $scope.tipData.author_id = $scope.user.id;
     $scope.tipData.author = $scope.user.name;
+    
+    if(!isEmpty($scope.image)){
+      $scope.data = {
+        images: $scope.image.cover[0]
+      };
+    }
 
-    var data = {
-      images: $scope.image.cover[0]
-    };
+    var img_data = isEmpty($scope.data);
+    if(!img_data){
+      Upload.upload({
+        url: uploadTip,
+        arrayKey: '',
+        data: $scope.data,
+      }).then(function(response) {
+        console.log('img uploaded');
+        // Adding data paths to formData object before creating route
+        // MUST respect images array order
+        //console.log(imagesTip);
+        //console.log(response.data.files);
+        if ($scope.image.cover[0] !== undefined) {
+          $scope.tipData.cover = response.data.files[0].path;
+        }
 
-    Upload.upload({
-      url: uploadTip,
-      arrayKey: '',
-      data: data,
-    }).then(function(response) {
-      console.log('img uploaded');
-      // Adding data paths to formData object before creating route
-      // MUST respect images array order
-      //console.log(imagesTip);
-      //console.log(response.data.files);
-      if ($scope.image.cover[0] !== undefined) {
-        $scope.tipData.cover = response.data.files[0].path;
-      }
+        //Link route to user
+        if($scope.selectedAuthor !== undefined){
+          $scope.tipData.author = $scope.selectedAuthor;
+        }
 
-      //Link route to user
-      if($scope.selectedAuthor !== undefined){
-        $scope.tipData.author = $scope.selectedAuthor;
-      }
-      
-      console.log("CREATING TIP");
-      console.log($scope.tipData);
-      //Storing route inside DB
+        console.log("CREATING TIP");
+        console.log($scope.tipData);
+        //Storing route inside DB
+        Tips.create($scope.tipData)
+          .success(function(data) {
+            $scope.tipData = {}; // clear the form so our user is ready to enter another
+            console.log(data);
+            console.log("TIP CREATED");
+
+            $scope.post_notification(data);
+
+            $scope.addidtouser(data._id);
+
+            $scope.loading = false;
+            //redirect to account list
+            $location.path('/user');
+          });
+      });
+    }
+    else{
       Tips.create($scope.tipData)
-        .success(function(data) {
-          $scope.tipData = {}; // clear the form so our user is ready to enter another
-          console.log(data);
-          console.log("TIP CREATED");
-        
-          $scope.post_notification(data);
-        
-          $scope.addidtouser(data._id);
-        
-          //redirect to account list
-          //$location.path('/user');
-        });
-    });
+          .success(function(data) {
+            $scope.tipData = {}; // clear the form so our user is ready to enter another
+            console.log(data);
+            console.log("TIP CREATED");
+
+            $scope.post_notification(data);
+
+            $scope.addidtouser(data._id);
+
+            $scope.loading = false;
+            //redirect to account list
+            $location.path('/user');
+          });
+    }
 
   };
   

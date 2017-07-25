@@ -1,5 +1,9 @@
 <div ng-include src="'partials/nav.html'"></div>
 
+<div id="loader" ng-show="loading">
+            <div class="loader-figure"></div>
+        </div>
+
 <div class="col-left">
     <div id="map-canvas" style="width:100%; height:100%;"></div>
 </div>
@@ -56,7 +60,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="place" placeholder="Nom du lieu *" ng-model="tipData.name" ng-required="true">
                 <input type="text" class="form-control" id="place" placeholder="Adresse (rue, ville, paris) ou coordonnées *" ng-model="tipData.address" ng-required="true">
-                <input type="file" class="form-control" id="place" placeholder="Cover (1Mo maximum)" ngf-select="image.cover = $files" valid-file ng-required="true">
+                <input type="file" class="form-control" id="place" placeholder="Cover (1Mo maximum)" ngf-select="image.cover = $files">
             </div>
 
             <div class="form-group">
