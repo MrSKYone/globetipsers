@@ -121,7 +121,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     if($scope.searchEntry.length > 3 && $scope.searchEntry.length < 5){
       $scope.avSearch = [];
       $scope.refinedSearch = [];
-      $scope.blank = [];
+      $scope.blank = {};
       
       //TIP SEARCH
       Tips.search($scope.searchEntry)
@@ -142,7 +142,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
         }
       }
       if($scope.refinedSearch.length <= 0){
-        $scope.blank = [];
+        $scope.blank = {};
         $scope.blank.name = "aucun résultat";
         $scope.blank.type = "blank";
         $scope.refinedSearch.push($scope.blank);
@@ -151,7 +151,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     else{
       if($scope.avSearch.length > 0){
         $scope.refinedSearch = [];
-        $scope.blank = [];
+        $scope.blank ={};
         angular.forEach($scope.avSearch, function(item, key) {
             if(item.name !== undefined){
               if (item.name.match(new RegExp("(" + $scope.searchEntry + ")", "i"))) {
