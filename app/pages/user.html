@@ -81,7 +81,7 @@
             <a ng-if="user_feed.profil.twitter" href="{{user_feed.profil.twitter}}"><i class="fa fa-twitter"></i></a>
             <a ng-if="user_feed.profil.instagram" href="{{user_feed.profil.instagram}}"><i class="fa fa-instagram"></i></a>
         </p>
-        <a ng-show="url_id" href="#" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">Follow</a>
+        <a ng-show="url_id || own_profile" href="#" ng-click="follow_profile(user_feed.fcb_id, is_friend)" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">{{is_friend_message}}</a>
         <ul class="user-stats">
             <li><span class="text-success">{{user_feed.friends.length}}</span> Amis</li>
             <li><span class="text-success">{{userTips.length}}</span> Tips</li>

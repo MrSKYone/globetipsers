@@ -490,6 +490,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.me();
   
   //URL HASHING
+  
   $scope.display_user = function(){
     $scope.url_id = $routeParams.id;
     if($scope.url_id){
@@ -498,6 +499,12 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         .success(function(data){
           $scope.user_feed = data[0];
           $scope.user_tips($scope.user_feed.fcb_id);
+          if($scope.user_feed.fcb_id === $scope.user.fcb_id){
+            $scope.own_profile = true;
+          }
+          var check_f = $.inArray($scope.user_feed.fcb_id, $scope.user_data[0].friends);
+          if(check_f != -1){$scope.is_friend = true; $scope.is_friend_message = "Followed";}
+          else{$scope.is_friend_message = "Follow";}
         })
     }
     else{
@@ -507,6 +514,37 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     }
   }
   
+  //FOLLOW / UNFOLLOW
+   $scope.follow_profile = function(id, followed){
+    
+    if(followed){
+      var is_in = $.inArray(id, $scope.user_data[0].friends);
+      if(is_in !== -1){
+        $scope.user_data[0].friends = removeA($scope.user_data[0].friends, id);
+        console.log($scope.user_data[0])
+        Users.update($scope.user_data[0], $scope.user_data[0]._id)
+          .success(function(data){
+          console.log(data);
+          $scope.display_user();
+        })
+      }
+    }
+    else{
+      if(id === $scope.user_data[0].fcb_id){
+        console.log("you can't follow yourself");
+      }
+      else{
+        var is_in2 = $.inArray(id, $scope.user_data[0].friends);
+        if(is_in2 === -1){
+          $scope.user_data[0].friends.push(id);
+          Users.update($scope.user_data[0], $scope.user_data[0]._id)
+            .success(function(data){
+              $scope.display_user();
+          })
+        }
+      }
+    }
+  }
   
   //FRIEND MODAL
   $scope.friend_modal = false;
