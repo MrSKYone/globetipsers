@@ -10,8 +10,8 @@ var morgan = require('morgan');             // log requests to the console (expr
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-var FOREST_ENV_SECRET = 'aed7c84e8f72ac69545137f52377ea4229277d77636cb7dbbf2969019aa8dd9d';
-var FOREST_AUTH_SECRET = 'Hs5xFp7PEk8ipy9MMgGL2As0ixeAga1t';
+var FOREST_ENV_SECRET = '6819b038b67e1e63b2cc5b6fcd54b6d3d9c7a2a6f49dc57f0c0b63e8a5170f3a';
+var FOREST_AUTH_SECRET = 'M0tL0G5kicqm5jcgKA4oepF7HdA9xJdI';
 
 // SEO
 //app.use(require('prerender-node').set('prerenderToken', 'MfU65RBgi8KRKjxlJtXD'));
