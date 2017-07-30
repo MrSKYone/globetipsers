@@ -30,7 +30,7 @@
             <div class="col-md-6" ng-repeat="user in public_users | filter:search" ng-show="user.fcb_id != my_id">
                 <div class="blogger">
                     <div class="cover">
-                        <img src="https://source.unsplash.com/600x600/?travel" class="img-fluid" alt="L'Oiseau Bleu">
+                        <img src="{{user.cover}}" class="img-fluid" alt="L'Oiseau Bleu">
                         <a href="#" class="follow btn btn-round btn-sm px-4" ng-class="user.followed ? 'btn-success' : 'btn-white'" ng-click="follow_blog(user.fcb_id, user.followed)">{{user.followed ? "Followed" : "Follow"}}</a>
                         
                         <div class="px-3 py-3">
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="media-right">
                                     <h3><a href="/user/profil/{{user.fcb_id}}">{{user.name}}</a></h3>
-                                    <p>Le blog voyage qui vous aide à voyager</p>
+                                    <p>{{user.profil.description}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -51,9 +51,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <p class="social-networks text-right">
-                                        <a href="#" class="gray-light"><i class="fa fa-facebook"></i></a>
-                                        <a href="#" class="gray-light"><i class="fa fa-twitter"></i></a>
-                                        <a href="#" class="gray-light"><i class="fa fa-instagram"></i></a>
+                                        <a ng-show="user.profil.facebook" href="{{user.profil.facebook}}" tqrget="_blank" class="gray-light"><i class="fa fa-facebook"></i></a>
+                                        <a ng-show="user.profil.twitter" href="{{user.profil.twitter}}" tqrget="_blank" class="gray-light"><i class="fa fa-twitter"></i></a>
+                                        <a ng-show="user.profil.instagram" href="{{user.profil.instagram}}" tqrget="_blank" class="gray-light"><i class="fa fa-instagram"></i></a>
                                     </p>
                                 </div>
                             </div>
