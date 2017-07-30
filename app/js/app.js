@@ -892,11 +892,29 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
     var address = location;
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
-      var location = results[0].geometry.location;
-      console.log(results[0]);
-      $scope.tipData.lat = location.lat();
-      $scope.tipData.lon = location.lng();
-      $scope.reverse_geocode($scope.tipData.lat, $scope.tipData.lon);
+      
+      // If that was successful
+      if (status == google.maps.GeocoderStatus.OK) {
+        var location = results[0].geometry.location;
+        console.log(results[0]);
+        $scope.tipData.lat = location.lat();
+        $scope.tipData.lon = location.lng();
+        $scope.reverse_geocode($scope.tipData.lat, $scope.tipData.lon);
+      }
+      else{
+        if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+          //Set Timeout
+          setTimeout(function() {
+            //your code to be executed after 1 second
+            $scope.geocode(location);
+          }, 1000);  
+        } else {
+          var reason="Code "+status;
+          var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
+          console.log(msg);
+        } 
+      }
+      
     });  
     
   }
@@ -919,7 +937,18 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
           alert("No results found");
         }
       } else {
-        alert("Geocoder failed due to: " + status);
+          if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            //Set Timeout
+            setTimeout(function() {
+              //your code to be executed after 1 second
+              $scope.reverse_geocode(lat,lon);
+            }, 1000);  
+          } else {
+            var reason="Code "+status;
+            var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
+            console.log(msg);
+            alert("Geocoder failed due to: " + status);
+          } 
       }
     });
   }
