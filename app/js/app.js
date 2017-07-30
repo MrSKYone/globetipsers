@@ -414,6 +414,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
 
   //CAN ACCESS FRIEND PANEL
   $scope.is_on_user = true;
+  $scope.loading = true;
   
   //URL DEFAULT BG
   $scope.cover_default = 'app/images/bgdefault.png';
@@ -487,6 +488,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
            $scope.friend_ordering($scope.user_friends, $scope.user_data[0]);
         }
         $scope.display_user();
+        $scope.loading = false;
+        console.log('LOADED');
       });
   }
   
