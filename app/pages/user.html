@@ -69,7 +69,7 @@
 
 <div id="colright" class="col-right">
     <div class="user-header bg-primary text-center" style="background-image: linear-gradient(rgba(13,5,61,0),rgba(13,5,61,.7),#0d053d ) ,url({{cover_is?cover_is:cover_default}});">
-        <a href="/edit/user/{{user_feed.fcb_id}}" class="edit-link"><i class="fa fa-pencil"></i></a>
+        <a ng-show="!url_id || own_profile" href="/edit/user/{{user_feed.fcb_id}}" class="edit-link"><i class="fa fa-pencil"></i></a>
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
         <p class="infos">
@@ -77,9 +77,9 @@
             <a href="www.globetipser.com" target="_blank" class="gray-light">{{user_feed.profil.web}}</a>
         </p>
         <p class="social-networks">
-            <a ng-if="user_feed.profil.facebook" href="{{user_feed.profil.facebook}}"><i class="fa fa-facebook"></i></a>
-            <a ng-if="user_feed.profil.twitter" href="{{user_feed.profil.twitter}}"><i class="fa fa-twitter"></i></a>
-            <a ng-if="user_feed.profil.instagram" href="{{user_feed.profil.instagram}}"><i class="fa fa-instagram"></i></a>
+            <a ng-if="user_feed.profil.facebook" href="{{user_feed.profil.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a ng-if="user_feed.profil.twitter" href="{{user_feed.profil.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a ng-if="user_feed.profil.instagram" href="{{user_feed.profil.instagram}}" target="_blank"><i class="fa fa-instagram"></i></a>
         </p>
         <a ng-show="url_id || own_profile" href="#" ng-click="follow_profile(user_feed.fcb_id, is_friend)" class="btn btn-outline-white btn-round btn-sm px-4 mb-3">{{is_friend_message}}</a>
         <ul class="user-stats">
