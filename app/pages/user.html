@@ -74,7 +74,7 @@
         <h3 class="text-white">{{user_feed.name}}</h3>
         <p class="infos">
             {{user_feed.profil.description}}<br>
-            <a href="www.globetipser.com" target="_blank" class="gray-light">{{user_feed.profil.web}}</a>
+            <a href="{{user_feed.profil.web}}" target="_blank" class="gray-light">{{user_feed.profil.web}}</a>
         </p>
         <p class="social-networks">
             <a ng-if="user_feed.profil.facebook" href="{{user_feed.profil.facebook}}" target="_blank"><i class="fa fa-facebook"></i></a>
