@@ -30,7 +30,7 @@
             <div class="col-md-6" ng-repeat="user in public_users | filter:search" ng-show="user.fcb_id != my_id">
                 <div class="blogger">
                     <div class="cover">
-                        <img src="{{user.profil.cover}}" class="img-fluid" alt="L'Oiseau Bleu">
+                        <img src="{{user.profil.cover ? user.profil.cover : 'images/bgdefault.jpg'}}" class="img-fluid" alt="{{user.name}}">
                         <a href="#" class="follow btn btn-round btn-sm px-4" ng-class="user.followed ? 'btn-success' : 'btn-white'" ng-click="follow_blog(user.fcb_id, user.followed)">{{user.followed ? "Followed" : "Follow"}}</a>
                         
                         <div class="px-3 py-3">
