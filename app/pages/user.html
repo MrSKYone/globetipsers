@@ -68,7 +68,7 @@
 <a href="/new" class="add-tips"><img src="./images/add-tips.png" alt=""></a>
 
 <div id="colright" class="col-right">
-    <div class="user-header bg-primary text-center" style="background-image: linear-gradient(rgba(13,5,61,0),rgba(13,5,61,.7),#0d053d ) ,url({{cover_is?cover_is:cover_default}});">
+    <div class="user-header bg-primary text-center" style="background-image: linear-gradient(rgba(13,5,61,0),rgba(13,5,61,.7),#0d053d ) ,url({{cover_is?cover_is:'images/bgdefault.jpg'}});">
         <a ng-show="!url_id || own_profile" href="/edit/user/{{user_feed.fcb_id}}" class="edit-link"><i class="fa fa-pencil"></i></a>
         <img src="{{user_feed.avatar}}" class="picture rounded-circle">
         <h3 class="text-white">{{user_feed.name}}</h3>
