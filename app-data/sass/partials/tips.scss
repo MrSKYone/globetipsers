@@ -74,6 +74,7 @@
         visibility: hidden;
         position: absolute;
       }
+<<<<<<< HEAD
 
       label > input + img {
         cursor:pointer;
@@ -83,6 +84,15 @@
       }
 
       label > input:checked + img {
+=======
+      label > input + img {
+        cursor:pointer;
+        width: 90px;
+        margin: 0 20px;
+        opacity: 0.5;
+      }
+      label > input:checked + img{
+>>>>>>> front
         opacity: 1;
       }
     }

@@ -53,10 +53,13 @@ a.gray-light {
   }
 }
 
+<<<<<<< HEAD
 .form-control {
   padding: 20px 20px;
 }
 
+=======
+>>>>>>> front
 .badge {
   border-radius: 40px;
 }
@@ -69,10 +72,11 @@ a.gray-light {
   border-radius: 3rem;
 }
 
-.btn-facebook {
-  @include button-variant($white, $facebook, $facebook);
+.btn-white {
+  @include button-variant($body-color, white, white);
 }
 
+<<<<<<< HEAD
 .btn-white {
   @include button-variant($body-color, white, white);
 }
@@ -85,8 +89,12 @@ a.gray-light {
   width: 90px;
   margin: 0 20px;
   opacity: 0.5;
+=======
+.btn-outline-white {
+  @include button-outline-variant(white, $brand-info);
+}
+>>>>>>> front
 
-  &:hover {
-    opacity: 1;
-  }
+.btn-facebook {
+  @include button-variant($white, $facebook, $facebook);
 }

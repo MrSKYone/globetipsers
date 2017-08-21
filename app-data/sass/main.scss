@@ -60,7 +60,10 @@ body,
       border: 2px solid darken($gray-lighter, 25%);
       border-radius: 30px;
       font-size: 80%;
+<<<<<<< HEAD
       padding: 10px 10px;
+=======
+>>>>>>> front
 
       &::placeholder {
         color: darken($gray-lighter, 25%);
@@ -86,9 +89,14 @@ body,
 
 @include media-breakpoint-down(md) {
   .col-left {
+<<<<<<< HEAD
     position: absolute;
     width: 0;
     height: 0;
+=======
+    display: none;
+    float: none;
+>>>>>>> front
   }
 
   .col-right {

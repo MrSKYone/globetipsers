@@ -88,6 +88,7 @@
 
 @include media-breakpoint-down(md) {
  .add-tips {
+<<<<<<< HEAD
    img {
      max-width: 50px;
    }
@@ -98,6 +99,17 @@
       width: 55px;
     }
   }
+=======
+   position: fixed;
+   bottom: 0;
+   left: auto;
+   margin-left: auto;
+   right: 15px;
+
+   img {
+     max-width: 80px;
+   }
+>>>>>>> front
  }
 }
 
