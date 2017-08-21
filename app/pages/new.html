@@ -1,5 +1,9 @@
 <div ng-include src="'partials/nav.html'"></div>
 
+<div id="loader" ng-show="loading">
+            <div class="loader-figure"></div>
+        </div>
+
 <div class="col-left">
     <div id="map-canvas" style="width:100%; height:100%;"></div>
 </div>
@@ -61,11 +65,11 @@
             </div> -->
 
             <div class="form-group">
-                <input type="text" class="form-control" id="place" placeholder="Nom du lieu *" ng-model="tipData.name">
+                <input type="text" class="form-control" id="place" placeholder="Nom du lieu *" ng-model="tipData.name" ng-required="true">
             </div>
 
             <div class="input-group">
-                <input type="text" class="form-control" id="address" placeholder="Adresse (rue, ville, paris) ou coordonnées *" ng-model="tipData.address">
+                <input type="text" class="form-control" id="address" placeholder="Adresse (rue, ville, paris) ou coordonnées *" ng-model="tipData.address" ng-required="true">
               <span class="input-group-btn">
                 <button class="btn btn-success" type="button"><i class="fa fa-map-marker"></i></button>
               </span>
@@ -76,7 +80,7 @@
             </div>
 
             <div class="form-group">
-                <textarea type="text" class="form-control" id="comment" placeholder="Description *" rows="6" ng-model="tipData.text"></textarea>
+                <textarea type="text" class="form-control" id="comment" placeholder="Description *" rows="6" ng-model="tipData.text" ng-required="true"></textarea>
             </div>
 
             <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase mt-4">Ajouter</button>

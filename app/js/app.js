@@ -34,9 +34,9 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     controller: 'userController'
   })
 
-  .when('/user-edit', {
+  .when('/edit/user/:id?', {
     templateUrl: 'pages/user-edit.html',
-    controller: 'aboutController'
+    controller: 'usereditController'
   })
   
   .when('/user/profil/:id?', {
@@ -121,7 +121,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     if($scope.searchEntry.length > 3 && $scope.searchEntry.length < 5){
       $scope.avSearch = [];
       $scope.refinedSearch = [];
-      $scope.blank = [];
+      $scope.blank = {};
       
       //TIP SEARCH
       Tips.search($scope.searchEntry)
@@ -142,7 +142,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
         }
       }
       if($scope.refinedSearch.length <= 0){
-        $scope.blank = [];
+        $scope.blank = {};
         $scope.blank.name = "aucun résultat";
         $scope.blank.type = "blank";
         $scope.refinedSearch.push($scope.blank);
@@ -151,7 +151,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     else{
       if($scope.avSearch.length > 0){
         $scope.refinedSearch = [];
-        $scope.blank = [];
+        $scope.blank ={};
         angular.forEach($scope.avSearch, function(item, key) {
             if(item.name !== undefined){
               if (item.name.match(new RegExp("(" + $scope.searchEntry + ")", "i"))) {
@@ -293,8 +293,10 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
                 if(data[0]){
                   Shared.setUser(data);
                   db_user = data;
+                  console.log('DBUSER')
+                  console.log(db_user);
                   $scope.my_id = db_user[0].fcb_id;
-                  $scope.list_followed();
+                  $scope.call_public_users();
                 }
                 else{
                   $location.path('/login');
@@ -302,7 +304,7 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
               })
           }
           else{
-            $scope.list_followed();
+            $scope.call_public_users();
             $scope.my_id = db_user[0].fcb_id;
           }
         });
@@ -314,12 +316,17 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
   };
   
   $scope.me();
-  $scope.public_users = [];
-  Users.get()
-    .success(function(data){
-    $scope.public_users = data;
-    console.log(data);
-  })
+  
+  $scope.call_public_users = function(){
+    $scope.public_users = [];
+    Users.get()
+      .success(function(data){
+      $scope.public_users = data;
+      $scope.list_followed();
+      console.log(data);
+    })
+  }
+  
   
   //FOLLOWER
   $scope.follow_blog = function(id, followed){
@@ -332,7 +339,7 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
         Users.update(db_user[0], db_user[0]._id)
           .success(function(data){
           console.log(data);
-          $scope.list_followed();
+          $scope.call_public_users();
         })
       }
     }
@@ -341,12 +348,12 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
         console.log("you can't follow yourself");
       }
       else{
-        var is_in = $.inArray(id, db_user[0].friends);
-        if(is_in === -1){
+        var is_in2 = $.inArray(id, db_user[0].friends);
+        if(is_in2 === -1){
           db_user[0].friends.push(id);
           Users.update(db_user[0], db_user[0]._id)
             .success(function(data){
-            $scope.list_followed();
+            $scope.call_public_users();
           })
         }
       }
@@ -360,15 +367,11 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
         if(followed[i] === $scope.public_users[y].fcb_id){
           console.log('match');
           $scope.public_users[y].followed = true;
-          console.log($scope.public_users);
-        }
-        else{
-          console.log('no match');
-          $scope.public_users[y].followed = false;
         }
       }
     }
-    $scope.$evalAsync();
+    console.log('PUBLIC USERS');
+    console.log($scope.public_users);
   }
   
 });
@@ -411,6 +414,10 @@ app.controller('userController', function($scope, $location, $routeParams, $http
 
   //CAN ACCESS FRIEND PANEL
   $scope.is_on_user = true;
+  $scope.loading = true;
+  
+  //URL DEFAULT BG
+  $scope.cover_default = 'app/images/bgdefault.png';
   
   //FACEBOOK LOGIN
   console.log($scope.loggedin);
@@ -481,12 +488,15 @@ app.controller('userController', function($scope, $location, $routeParams, $http
            $scope.friend_ordering($scope.user_friends, $scope.user_data[0]);
         }
         $scope.display_user();
+        $scope.loading = false;
+        console.log('LOADED');
       });
   }
   
   $scope.me();
   
   //URL HASHING
+  
   $scope.display_user = function(){
     $scope.url_id = $routeParams.id;
     if($scope.url_id){
@@ -495,6 +505,12 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         .success(function(data){
           $scope.user_feed = data[0];
           $scope.user_tips($scope.user_feed.fcb_id);
+          if($scope.user_feed.fcb_id === $scope.user.fcb_id){
+            $scope.own_profile = true;
+          }
+          var check_f = $.inArray($scope.user_feed.fcb_id, $scope.user_data[0].friends);
+          if(check_f != -1){$scope.is_friend = true; $scope.is_friend_message = "Followed";}
+          else{$scope.is_friend_message = "Follow";}
         })
     }
     else{
@@ -504,6 +520,37 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     }
   }
   
+  //FOLLOW / UNFOLLOW
+   $scope.follow_profile = function(id, followed){
+    
+    if(followed){
+      var is_in = $.inArray(id, $scope.user_data[0].friends);
+      if(is_in !== -1){
+        $scope.user_data[0].friends = removeA($scope.user_data[0].friends, id);
+        console.log($scope.user_data[0])
+        Users.update($scope.user_data[0], $scope.user_data[0]._id)
+          .success(function(data){
+          console.log(data);
+          $scope.display_user();
+        })
+      }
+    }
+    else{
+      if(id === $scope.user_data[0].fcb_id){
+        console.log("you can't follow yourself");
+      }
+      else{
+        var is_in2 = $.inArray(id, $scope.user_data[0].friends);
+        if(is_in2 === -1){
+          $scope.user_data[0].friends.push(id);
+          Users.update($scope.user_data[0], $scope.user_data[0]._id)
+            .success(function(data){
+              $scope.display_user();
+          })
+        }
+      }
+    }
+  }
   
   //FRIEND MODAL
   $scope.friend_modal = false;
@@ -525,6 +572,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $.fn.select2.defaults.set("theme", "flat");
   $('.select2').select2();
   
+  //COVER
+  $scope.cover_is;
   
   $scope.user_tips = function(id){
     console.log('TIPS FUNC');
@@ -536,6 +585,13 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         add_markers(data);
         $scope.count_country(data);
         $scope.tipson = true;
+      
+        if($scope.user_feed.profil.cover == ''){
+          $scope.cover_is = $scope.userTips[$scope.userTips.length - 1].cover;
+        }
+        else{
+          $scope.cover_is = $scope.user_feed.profil.cover;
+        }
       });
   }
   
@@ -780,6 +836,8 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
 
 app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils, Users) {
 
+  $scope.loading = false;
+  
   //USER INFO FOR NOTIF
   //if user not log, back to login
   var db_user = Shared.getUser();
@@ -847,11 +905,29 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
     var address = location;
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
-      var location = results[0].geometry.location;
-      console.log(results[0]);
-      $scope.tipData.lat = location.lat();
-      $scope.tipData.lon = location.lng();
-      $scope.reverse_geocode($scope.tipData.lat, $scope.tipData.lon);
+      
+      // If that was successful
+      if (status == google.maps.GeocoderStatus.OK) {
+        var location = results[0].geometry.location;
+        console.log(results[0]);
+        $scope.tipData.lat = location.lat();
+        $scope.tipData.lon = location.lng();
+        $scope.reverse_geocode($scope.tipData.lat, $scope.tipData.lon);
+      }
+      else{
+        if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+          //Set Timeout
+          setTimeout(function() {
+            //your code to be executed after 1 second
+            $scope.geocode(location);
+          }, 1000);  
+        } else {
+          var reason="Code "+status;
+          var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
+          console.log(msg);
+        } 
+      }
+      
     });  
     
   }
@@ -874,7 +950,18 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
           alert("No results found");
         }
       } else {
-        alert("Geocoder failed due to: " + status);
+          if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            //Set Timeout
+            setTimeout(function() {
+              //your code to be executed after 1 second
+              $scope.reverse_geocode(lat,lon);
+            }, 1000);  
+          } else {
+            var reason="Code "+status;
+            var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
+            console.log(msg);
+            alert("Geocoder failed due to: " + status);
+          } 
       }
     });
   }
@@ -897,49 +984,73 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
 
   $scope.upload_tips = function(){
     
+    $scope.loading = true;
+    
     $scope.tipData.author_id = $scope.user.id;
     $scope.tipData.author = $scope.user.name;
+    
+    if(!isEmpty($scope.image)){
+      $scope.data = {
+        images: $scope.image.cover[0]
+      };
+    }
 
-    var data = {
-      images: $scope.image.cover[0]
-    };
+    var img_data = isEmpty($scope.data);
+    if(!img_data){
+      Upload.upload({
+        url: uploadTip,
+        arrayKey: '',
+        data: $scope.data,
+      }).then(function(response) {
+        console.log('img uploaded');
+        // Adding data paths to formData object before creating route
+        // MUST respect images array order
+        //console.log(imagesTip);
+        //console.log(response.data.files);
+        if ($scope.image.cover[0] !== undefined) {
+          $scope.tipData.cover = response.data.files[0].path;
+        }
 
-    Upload.upload({
-      url: uploadTip,
-      arrayKey: '',
-      data: data,
-    }).then(function(response) {
-      console.log('img uploaded');
-      // Adding data paths to formData object before creating route
-      // MUST respect images array order
-      //console.log(imagesTip);
-      //console.log(response.data.files);
-      if ($scope.image.cover[0] !== undefined) {
-        $scope.tipData.cover = response.data.files[0].path;
-      }
+        //Link route to user
+        if($scope.selectedAuthor !== undefined){
+          $scope.tipData.author = $scope.selectedAuthor;
+        }
 
-      //Link route to user
-      if($scope.selectedAuthor !== undefined){
-        $scope.tipData.author = $scope.selectedAuthor;
-      }
-      
-      console.log("CREATING TIP");
-      console.log($scope.tipData);
-      //Storing route inside DB
+        console.log("CREATING TIP");
+        console.log($scope.tipData);
+        //Storing route inside DB
+        Tips.create($scope.tipData)
+          .success(function(data) {
+            $scope.tipData = {}; // clear the form so our user is ready to enter another
+            console.log(data);
+            console.log("TIP CREATED");
+
+            $scope.post_notification(data);
+
+            $scope.addidtouser(data._id);
+
+            $scope.loading = false;
+            //redirect to account list
+            $location.path('/user');
+          });
+      });
+    }
+    else{
       Tips.create($scope.tipData)
-        .success(function(data) {
-          $scope.tipData = {}; // clear the form so our user is ready to enter another
-          console.log(data);
-          console.log("TIP CREATED");
-        
-          $scope.post_notification(data);
-        
-          $scope.addidtouser(data._id);
-        
-          //redirect to account list
-          //$location.path('/user');
-        });
-    });
+          .success(function(data) {
+            $scope.tipData = {}; // clear the form so our user is ready to enter another
+            console.log(data);
+            console.log("TIP CREATED");
+
+            $scope.post_notification(data);
+
+            $scope.addidtouser(data._id);
+
+            $scope.loading = false;
+            //redirect to account list
+            $location.path('/user');
+          });
+    }
 
   };
   
@@ -1023,6 +1134,81 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         console.log(data);
       });
   };
+});
+
+app.controller('usereditController', function($scope, $routeParams, $location, $http, Utils, Users, Upload, Facebook) {
+
+  $scope.user_data = {};
+  
+  //URL HASHING
+  $scope.display_user = function(){
+    $scope.url_id = $routeParams.id;
+    if($scope.url_id){
+      console.log("id in url param"); //debug
+      Users.getByFcbId($scope.url_id)
+        .success(function(data){
+          console.log(data[0]);
+          $scope.user_data = data[0];
+          console.log($scope.user_data);
+        })
+    }
+    else{
+      console.log("no id in url param");
+      $location.path('/user');
+    }
+  }
+  
+  $scope.upload_cover = function(){
+    
+    var uploadUser = '/upload/user';
+    
+    if (!isEmpty($scope.image_data)) {
+       var data = {
+          images: $scope.image_data[0]
+        };
+
+        Upload.upload({
+          url: uploadUser,
+          arrayKey: '',
+          data: data,
+        }).then(function(response) {
+          console.log('img uploaded');
+          // Adding data paths to formData object before creating route
+          // MUST respect images array order
+          //console.log(imagesTip);
+          //console.log(response.data.files);
+          if ($scope.image_data[0] !== undefined) {
+            $scope.user_data.profil.cover = response.data.files[0].path;
+          }
+
+          console.log("UPDATING USER");
+          console.log($scope.user_data);
+          //Storing route inside DB
+          Users.update($scope.user_data, $scope.user_data._id)
+            .success(function(data) {
+              $scope.user_data = {}; // clear the form so our user is ready to enter another
+              console.log(data);
+              console.log("USER UPDATED");
+              //redirect to account list
+              $location.path('/user');
+            });
+        });
+    }
+    else{
+      Users.update($scope.user_data, $scope.user_data._id)
+            .success(function(data) {
+              $scope.user_data = {}; // clear the form so our user is ready to enter another
+              console.log(data);
+              console.log("USER UPDATED");
+              //redirect to account list
+              $location.path('/user');
+            });
+    }
+   
+  }
+  
+  $scope.display_user();
+  
 });
 
 app.controller('aboutController', function($scope, $location, $http, Utils) {

@@ -12,5 +12,12 @@ module.exports = mongoose.model('User', {
   pending_friend_requests: Array,
   user_friend_requests: Array,
   tips: Array,
-  last_connexion: Date
+  last_connexion: Date,
+  profil: {
+    description: String,
+    instagram: String,
+    facebook: String,
+    web: String,
+    cover: String
+  }
 });
