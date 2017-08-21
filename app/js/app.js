@@ -133,7 +133,6 @@ app.controller('loginController', function($scope, $location, $http, Facebook) {
 
 app.controller('userController', function($scope, $location, $routeParams, $http, Facebook, Shared, Tips, Users, Notifs) {
 
-  
   //FACEBOOK LOGIN
   console.log($scope.loggedin);
   

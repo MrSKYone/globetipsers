@@ -10,16 +10,16 @@
         </ul>
         <ul class="navbar-nav" ng-if="loggedin">
             <li class="nav-item mr-4">
-                <a class="nav-link" href="/user/feed" data-toggle="search"><i class="fa fa-search fa-lg"></i></a>
+                <a class="nav-link" href="/user/feed" data-toggle="search"><i class="fa fa-search fa-lg"></i> <span class="hidden-lg-up">Search</span></a>
             </li>
             <!--<li class="nav-item mr-4"> 
                 <a class="nav-link" href="#" data-toggle="search"> 
-                    <i class="fa fa-newspaper-o fa-lg"></i> 
+                    <i class="fa fa-newspaper-o fa-lg"></i> <span class="hidden-lg-up">Newsfeed</span> 
                     <span class="badge badge-success">3</span> 
                 </a> 
             </li><--></-->
             <li class="nav-item mr-4" ng-click="friending()">
-                <a class="nav-link" href="#"><i class="fa fa-user-plus fa-lg"></i></a>
+                <a class="nav-link" href="#"><i class="fa fa-user-plus fa-lg"></i> <span class="hidden-lg-up">Add friends</span></a>
             </li>
             <li class="nav-item">
                 <a href="/user"><img src="{{user.picture.data.url}}" alt="Audrey Joplin" class="nav-user rounded-circle"></a>
