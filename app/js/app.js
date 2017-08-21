@@ -10,7 +10,7 @@ var app = angular.module('gbtipser', [
 app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function($routeProvider, $locationProvider, FacebookProvider) {
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
-  FacebookProvider.init('792243314276087');
+  FacebookProvider.init('462193740811464');
   $routeProvider
 
   // route for the home page
@@ -814,6 +814,16 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
   //Form
   $.fn.select2.defaults.set("theme", "flat");
   $('.select2').select2();
+  $('input[name="category"]').change(function() {
+    var value = $(this).val();
+    $('.category-description span').each(function() {
+      if($(this).hasClass(value)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
 
   //Focus on country
   $scope.country_focus = function(country){

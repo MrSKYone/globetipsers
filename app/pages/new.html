@@ -19,7 +19,7 @@
                 <!--<img src="./images/categories/sleep.png" class="cat-img" ng-click="select_cat('sleep')">-->
                 <!--<img src="./images/categories/taste.png" class="cat-img" ng-click="select_cat('taste')">-->
             <!--</div>-->
-            <div class="categories-radio mb-5">
+            <div class="categories-radio mb-2">
                 <label>
                     <input type="radio" name="category" value="experience" ng-model="tipData.category" checked>
                     <img src="./images/categories/experience.png" class="cat-img">
@@ -41,6 +41,13 @@
                     <img src="./images/categories/taste.png" class="cat-img">
                 </label>
             </div>
+            <p class="category-description text-success text-center">
+                <span class="experience"><strong>EXPERIENCE</strong> : tips qui concernent les activités sportives, bien-être, dépassement de soi, du stage en centre de yoga, au woofing jusqu'aux excursions</span>
+                <span class="explore" style="display: none;"><strong>EXPLORE</strong> : tips qui concernent l'exploration du pays, de la ruelle street art au musée  jusqu'à la petite crique cachée</span>
+                <span class="globe" style="display: none;"><strong>GLOBE</strong> : tips qui concernent les infos globales sur le pays, de prise électrique dans un aéroport, à l'unique distributeur sur l'île jusqu'au prix moyen d'une course en taxi</span>
+                <span class="sleep" style="display: none;"><strong>SLEEP</strong> : tips qui concernent les lieux où dormir du camping au banc d'aéroport, jusqu'à l'hôtel de luxe</span>
+                <span class="taste" style="display: none;"><strong>TASTE</strong> : tips qui concernent les lieux où manger, boire, faire la fête du bar caché au boui-boui, jusqu'au restaurant gastronomique</span>
+            </p>
 
 <!--             <div class="form-group">
                 <select class="form-control select2" id="country" ng-model="tipData.country" ng-change="country_focus(tipData.country)">
@@ -55,8 +62,17 @@
 
             <div class="form-group">
                 <input type="text" class="form-control" id="place" placeholder="Nom du lieu *" ng-model="tipData.name">
-                <input type="text" class="form-control" id="place" placeholder="Adresse (rue, ville, paris) ou coordonnées *" ng-model="tipData.address">
-                <input type="file" class="form-control" id="place" placeholder="Cover (1Mo maximum)" ngf-select="image.cover = $files">
+            </div>
+
+            <div class="input-group">
+                <input type="text" class="form-control" id="address" placeholder="Adresse (rue, ville, paris) ou coordonnées *" ng-model="tipData.address">
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="button"><i class="fa fa-map-marker"></i></button>
+              </span>
+            </div>
+
+            <div class="form-group">
+                <input type="file" class="form-control" id="files" placeholder="Cover (1Mo maximum)" ngf-select="image.cover = $files">
             </div>
 
             <div class="form-group">

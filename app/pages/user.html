@@ -111,6 +111,7 @@
         <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
             <div class="background"></div>
             <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
+            <img src="./images/categories/{{item.category}}.png" alt="{{item.category}}" class="category">
             <h3>{{item.name}}</h3>
         </div>
     </div>
