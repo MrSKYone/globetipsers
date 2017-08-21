@@ -141,7 +141,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
           $scope.refinedSearch.push($scope.user_f[a]);
         }
       }
-      if($scope.refinedSearch.length < 1){
+      if($scope.refinedSearch.length <= 0){
         $scope.blank = [];
         $scope.blank.name = "aucun résultat";
         $scope.blank.type = "blank";
