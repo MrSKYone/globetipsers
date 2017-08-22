@@ -10,6 +10,24 @@ function initMap() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   var infoWindow = new google.maps.InfoWindow({map: map});
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        var zoom = map.getZoom();
+        var scale = 50;
+console.log(zoom);
+        if(zoom > 5) {
+            scale = scale * 0.8;
+        } else if(zoom > 10) {
+            scale = scale * 0.6;
+        }
+
+        for(var i = 0; i < allMarkers.length; i++) {
+            var icon = allMarkers[i].getIcon();
+            icon.scaledSize = new google.maps.Size(scale, scale);
+            allMarkers[i].setIcon(icon);
+            // allMarkers[i].setIcon().setScaledSize(new google.maps.Size(38,38))
+        }
+    });
   
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -130,27 +148,27 @@ function add_markers(places){
   
   var expIcon = {
     url: "images/pictos/experience-B.png",
-    scaledSize: new google.maps.Size(55,55)
+    scaledSize: new google.maps.Size(40,40)
   }
   
   var exploreIcon = {
     url: "images/pictos/explore-B.png",
-    scaledSize: new google.maps.Size(55,55)
+    scaledSize: new google.maps.Size(40,40)
   }
   
   var globeIcon = {
     url: "images/pictos/globe-B.png",
-    scaledSize: new google.maps.Size(55,55)
+    scaledSize: new google.maps.Size(40,40)
   }
   
   var sleepIcon = {
     url: "images/pictos/sleep-B.png",
-    scaledSize: new google.maps.Size(55,55)
+    scaledSize: new google.maps.Size(40,40)
   }
   
   var tasteIcon = {
     url: "images/pictos/taste-B.png",
-    scaledSize: new google.maps.Size(55,55)
+    scaledSize: new google.maps.Size(40,40)
   }
   
   var lowalphaIcon = {
@@ -222,7 +240,7 @@ function add_markers(places){
         map.panTo(mPos);
     }
     map.setZoom(15);
-  }); 
+  });
 
   allMarkers.push(marker);
   }
