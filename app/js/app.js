@@ -321,7 +321,11 @@ app.controller('bloggersController', function($scope, $location, $http, Facebook
     $scope.public_users = [];
     Users.get()
       .success(function(data){
-      $scope.public_users = data;
+        for(var a=0; a<data.length;a++){
+          if(data[a].public){
+            $scope.public_users.push(data[a]);
+          }
+        }
       $scope.list_followed();
       console.log(data);
     })
