@@ -13,7 +13,7 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
   FacebookProvider.init('792243314276087');
   $routeProvider
 
-  // route for the home page
+  // route for the home pages
   .when('/', {
     templateUrl: 'pages/login.html',
     controller: 'loginController'
