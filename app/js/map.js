@@ -29,28 +29,27 @@ console.log(zoom);
     });
   
   // Try HTML5 geolocation.
-  if(!userloc){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Vous êtes ici.');
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Vous êtes ici.');
+      if(!userloc){
         map.setCenter(pos);
-      }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-      // Resize map to cover div sizing changes
-      google.maps.event.trigger(map, 'resize'); 
-    }
+      }
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+    // Resize map to cover div sizing changes
+    google.maps.event.trigger(map, 'resize'); 
   }
-  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
