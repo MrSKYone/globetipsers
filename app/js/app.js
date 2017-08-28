@@ -789,7 +789,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   
 });
 
-app.controller('tipController', function($scope, $location, $routeParams, $http, Facebook, Tips, Users) {
+app.controller('tipController', function($scope, $location, $timeout, $routeParams, $http, Facebook, Tips, Users) {
 
   console.log($scope.loggedin);
   
@@ -825,7 +825,8 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
     .success(function(data) {
       console.log(data);
       $scope.tips = data;
-      add_markers(data);
+      
+      $timeout(function() { add_markers(data);}, 2000);
       Users.getByFcbId(data.author_id)
         .success(function(data){
           $scope.tips_user_data = data[0];

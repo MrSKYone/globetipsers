@@ -13,7 +13,6 @@ function initMap(userloc) {
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
         var scale = 50;
-console.log(zoom);
         if(zoom > 5) {
             scale = scale * 0.8;
         } else if(zoom > 10) {
@@ -30,6 +29,7 @@ console.log(zoom);
   
   // Try HTML5 geolocation.
   if(!userloc){
+    console.log(userloc);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
