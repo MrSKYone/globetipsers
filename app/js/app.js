@@ -816,7 +816,7 @@ app.controller('tipController', function($scope, $location, $routeParams, $http,
   
   
   //MAP
-  initMap();
+  initMap(false);
   
   //USER TIPS
   $scope.tips = {};

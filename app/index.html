@@ -39,7 +39,7 @@
                   <div class="col-lg-5 offset-lg-5">
                       <div class="search-results" style="display:none;">
 
-                          <div ng-repeat="item in refinedSearch" class="tips-widget text-center mb-5" style="background-image: url('{{item.cover}}');">
+                          <div ng-repeat="item in refinedSearch" class="tips-widget text-center mb-5" style="background-image: url('{{item.cover ? item.cover : item.profil.cover}}');">
                               <div class="background"></div>
                               <p class="location" ng-show="item.country"><span>{{item.country}}</span>, {{item.city}}</p>
                               <h3 ng-show="item.country" ng-click="goto('tips', item._id)">{{item.name}}</h3>
