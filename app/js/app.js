@@ -888,10 +888,6 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
           console.log($scope.tipData);
         })
     }
-    else{
-      console.log("no id in url param");
-      $location.path('/user');
-    }
   
   //MAP
   initMap();
@@ -991,6 +987,12 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
           } 
       }
     });
+  }
+  
+  $scope.locateme = function(){
+    console.log("searching");
+    $scope.tipData.address = getMyPosition();
+    console.log('done');
   }
   
   $scope.parse_continent = function(country){

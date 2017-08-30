@@ -1,5 +1,13 @@
 var map;
 var allMarkers = [];
+var userLocation;
+
+//MY POSITION
+function getMyPosition(){
+  console.log(userLocation);
+  var str = userLocation.lat + ',' + userLocation.lng;
+  return str;
+}
 
 //INIT MAP
 function initMap(userloc) {
@@ -36,7 +44,9 @@ function initMap(userloc) {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
+        
+        userLocation = pos;
+        
         infoWindow.setPosition(pos);
         infoWindow.setContent('Vous êtes ici.');
         map.setCenter(pos);
