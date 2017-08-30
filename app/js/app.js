@@ -63,6 +63,11 @@ app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function(
     templateUrl: 'pages/new.html',
     controller: 'newController'
   })
+  
+  .when('/edit/tips/:id?', {
+    templateUrl: 'pages/new.html',
+    controller: 'newController'
+  })
 
     .when('/new-confirmation', {
     templateUrl: 'pages/new-confirmation.html',
@@ -839,7 +844,7 @@ app.controller('tipController', function($scope, $location, $timeout, $routePara
 
 });
 
-app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils, Users) {
+app.controller('newController', function($scope, $location, $http, Facebook, Shared, Upload, Tips, Notifs, Utils, Users, $routeParams) {
 
   $scope.loading = false;
   
@@ -870,6 +875,23 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
   $http.get('ressources/continent.json').success(function(data) {
     $scope.continent = data;
   });
+  
+  //EDIT
+  $scope.url_id = $routeParams.id;
+    console.log($scope.url_id);
+    if($scope.url_id){
+      console.log("id in url param"); //debug
+      Tips.getId($scope.url_id)
+        .success(function(data){
+          console.log(data);
+          $scope.tipData = data;
+          console.log($scope.tipData);
+        })
+    }
+    else{
+      console.log("no id in url param");
+      $location.path('/user');
+    }
   
   //MAP
   initMap();
@@ -1007,7 +1029,6 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         arrayKey: '',
         data: $scope.data,
       }).then(function(response) {
-        console.log('img uploaded');
         // Adding data paths to formData object before creating route
         // MUST respect images array order
         //console.log(imagesTip);
@@ -1020,41 +1041,59 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         if($scope.selectedAuthor !== undefined){
           $scope.tipData.author = $scope.selectedAuthor;
         }
+        
+        if($scope.url_id){
+          Tips.update($scope.tipData, $scope.url_id)
+            .success(function(data) {
+                $scope.tipData = {}; // clear the form so our user is ready to enter another
+                $scope.loading = false;
+                //redirect to account list
+                $location.path('/user');
+              });
+        }
+        else{
+          //Storing route inside DB
+          Tips.create($scope.tipData)
+            .success(function(data) {
+              $scope.tipData = {}; // clear the form so our user is ready to enter another
+              $scope.post_notification(data);
 
-        console.log("CREATING TIP");
-        console.log($scope.tipData);
-        //Storing route inside DB
-        Tips.create($scope.tipData)
-          .success(function(data) {
-            $scope.tipData = {}; // clear the form so our user is ready to enter another
-            console.log(data);
-            console.log("TIP CREATED");
+              $scope.addidtouser(data._id);
 
-            $scope.post_notification(data);
-
-            $scope.addidtouser(data._id);
-
-            $scope.loading = false;
-            //redirect to account list
-            $location.path('/user');
-          });
+              $scope.loading = false;
+              //redirect to account list
+              $location.path('/user');
+            });
+        }
+        
       });
     }
     else{
-      Tips.create($scope.tipData)
-          .success(function(data) {
-            $scope.tipData = {}; // clear the form so our user is ready to enter another
-            console.log(data);
-            console.log("TIP CREATED");
+      if($scope.url_id){
+          Tips.update($scope.tipData, $scope.url_id)
+            .success(function(data) {
+                $scope.tipData = {}; // clear the form so our user is ready to enter another
 
-            $scope.post_notification(data);
+                $scope.loading = false;
+                //redirect to account list
+                $location.path('/user');
+              });
+        }
+        else{
+          //Storing route inside DB
+          Tips.create($scope.tipData)
+            .success(function(data) {
+              $scope.tipData = {}; // clear the form so our user is ready to enter another
 
-            $scope.addidtouser(data._id);
+              $scope.post_notification(data);
 
-            $scope.loading = false;
-            //redirect to account list
-            $location.path('/user');
-          });
+              $scope.addidtouser(data._id);
+
+              $scope.loading = false;
+              //redirect to account list
+              $location.path('/user');
+            });
+        }
     }
 
   };
@@ -1214,6 +1253,31 @@ app.controller('usereditController', function($scope, $routeParams, $location, $
   
   $scope.display_user();
   
+});
+
+app.controller('tipseditController', function($scope, $routeParams, $location, $http, Utils, Users, Tips, Upload, Facebook) {
+
+  $scope.tipData = {};
+  //URL HASHING
+  $scope.display_tips = function(){
+    $scope.url_id = $routeParams.id;
+    console.log($scope.url_id);
+    if($scope.url_id){
+      console.log("id in url param"); //debug
+      Tips.getId($scope.url_id)
+        .success(function(data){
+          console.log(data);
+          $scope.tipData = data;
+          console.log($scope.tipData);
+        })
+    }
+    else{
+      console.log("no id in url param");
+      $location.path('/user');
+    }
+  }
+  initMap();
+  $scope.display_tips();
 });
 
 app.controller('aboutController', function($scope, $location, $http, Utils) {

@@ -8,6 +8,7 @@
 
 <div class="col-right">
     <div class="tips-header bg-primary text-center" style="background-image: linear-gradient(rgba(13,5,61,0),rgba(13,5,61,.7),#0d053d ) ,url({{tips.cover}});">
+        <a ng-show="tips.author_id == user.id" href="/edit/tips/{{tips._id}}" class="edit-link"><i class="fa fa-pencil"></i></a>
         <h1>{{tips.name}}</h1>
         <p class="location"><span>{{tips.country}}</span>, {{tips.city}}</p>
     </div>
