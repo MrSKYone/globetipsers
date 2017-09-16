@@ -1,13 +1,42 @@
 $img-url: '../images/';
 
-$green: #02ccb4 !default;
-$blue: #0d053d !default;
-$pink: #f51f6f !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$gray-lighter: #e9ecef;
+$gray-light: #dee2e6;
+$gray: #ced4da;
+$blue:    #0d053d !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #f51f6f !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #02ccb4 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+$brand-primary: $blue;
+$brand-success: $green;
+$brand-info: $pink;
 $facebook: #3b5998;
 
-$brand-primary: $blue !default;
-$brand-success: $green !default;
-$brand-info: $pink !default;
+$theme-colors: (
+  primary: $blue,
+  secondary: $gray-600,
+  success: $green,
+  info: $pink,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+) !default;
 
 $font-family-sans-serif: Nunito, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
 

@@ -16,7 +16,6 @@ function initMap(userloc) {
     center: new google.maps.LatLng(45.529428, -73.5912335)
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  var infoWindow = new google.maps.InfoWindow({map: map});
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
@@ -37,36 +36,37 @@ function initMap(userloc) {
   
   // Try HTML5 geolocation.
   if(!userloc){
-    console.log(userloc);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        
+        var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
         userLocation = pos;
-        
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Vous êtes ici.');
+
+        var marker = new google.maps.Marker({
+            position: pos,
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: './images/pictos/pin.png'
+        });
+
         map.setCenter(pos);
       }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
+        handleLocationError(true);
       });
     } else {
       // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
+      handleLocationError(false);
       // Resize map to cover div sizing changes
-      google.maps.event.trigger(map, 'resize'); 
+      google.maps.event.trigger(map, 'resize');
     }
   }
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+function handleLocationError(browserHasGeolocation) {
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    infoWindow.setPosition(map.getCenter());
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
 }
 
 function update_location(lat,lon){

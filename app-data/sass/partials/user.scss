@@ -9,8 +9,8 @@
   .edit-link {
     color: white;
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: 10px;
+    right: 20px;
   }
 
   .picture {
@@ -47,7 +47,7 @@
       span {
         font-weight: bold;
         display: block;
-        font-size: $font-size-h3;
+        font-size: $h3-font-size;
       }
     }
   }
@@ -70,9 +70,11 @@
 
 .add-tips {
   position: fixed;
-  left: 10px;
+  right: 10px;
   bottom: 10px;
   z-index: 10;
+  border-radius: 50%;
+  box-shadow: 0px 2px 15px $gray-700;
 
   img {
     width: 80px;

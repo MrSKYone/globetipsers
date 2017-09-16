@@ -1,56 +1,24 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">
+<nav class="navbar navbar-dark navbar-expand bg-primary fixed-top">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#" data-toggle="menu"><img src="./images/logo-min.png" alt="Globetipser" class="logo"></a>
+    <a class="navbar-brand" href="#" data-toggle="menu"><i class="fa fa-bars fa-lg"></i></a>
 
-    <div class="collapse navbar-collapse" id="navbarDefault">
-        <ul class="navbar-nav mr-auto">
-
-        </ul>
-        <ul class="navbar-nav" ng-if="loggedin">
+        <ul class="navbar-nav ml-auto" ng-if="loggedin">
             <li class="nav-item mr-4">
-                <a class="nav-link" href="#" data-toggle="search" ng-click="toogle_search()"><i class="fa fa-search fa-lg"></i> <span class="hidden-lg-up">Search</span></a>
+                <a class="nav-link text-white" href="#" data-toggle="search" ng-click="toogle_search()">
+                    <i class="fa fa-search fa-lg"></i>
+                </a>
             </li>
-            <!--<li class="nav-item mr-4"> -->
-                <!--<a class="nav-link" href="#" data-toggle="search"> -->
-                    <!--<i class="fa fa-newspaper-o fa-lg"></i> -->
-                    <!--<span class="badge badge-success">3</span> -->
-                <!--</a> -->
-            <!--</li> -->
-            <li ng-show="is_on_user" class="nav-item mr-4" ng-click="friending()">
-                <a class="nav-link" href="#"><i class="fa fa-user-plus fa-lg"></i> <span class="hidden-lg-up">Add friends</span></a>
+            <li ng-show="is_on_user" class="nav-item mr-4">
+                <a class="nav-link p-0 pt-1" href="#" ng-click="friending()">
+                    <img src="./images/icon-friends.svg" height="35" alt="Ajouter des amis">
+                </a>
             </li>
             <li class="nav-item">
-                <a href="/user" class="nav-link p-0"><img src="{{user.picture.data.url}}" alt="{{user.name}}" class="nav-user rounded-circle"> <span class="hidden-md-up">{{user.name}}</span></a>
+                <a href="/user" class="nav-link p-0">
+                    <img src="{{user.picture.data.url}}" alt="{{user.name}}" class="nav-user rounded-circle">
+                </a>
             </li>
         </ul>
-    </div>
 </nav>
-
-<div class="search-overlay" style="display:none;">
-    <form action="" class="p-5">
-        <div class="form-group">
-            <input type="text" class="form-control form-control-lg" id="search"  placeholder="Rechercher par pays, amis, catégorie, adresse..." autocomplete="off">
-        </div>
-    </form>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-5 offset-md-5">
-                <div class="search-results" style="display:none;">
-                    <div class="tips-widget text-center mb-5" style="background-image: url('./images/tips-bali.jpg');">
-                        <div class="background"></div>
-                        <p class="location"><span>Indonesia</span>, Bali</p>
-                        <h3>Villa Khadine</h3>
-                    </div>
-
-                    <div class="tips-widget text-center mb-5" style="background-image: url('./images/tips-nyc.jpg');">
-                        <div class="background"></div>
-                        <p class="location"><span>USA</span>, New York City</p>
-                        <h3>Westlight</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

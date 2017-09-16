@@ -48,11 +48,15 @@
             </li>
         </ul>
 
-        <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
-            <div class="background"></div>
+        <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
             <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
-            <img src="./images/categories/{{item.category}}.png" alt="{{item.category}}" class="category">
-            <h3>{{item.name}}</h3>
+            <a href="#" class="right-action">
+                <img src="./images/icon-wishlist-add.png" width="25">
+            </a>
+            <div class="text-center title">
+                <h3 class="d-inline-block mb-3">{{item.name}}</h3><br>
+                <img src="./images/pictos/{{item.category}}-V.png" alt="{{item.category}}" width="50px" class="category">
+            </div>
         </div>
     </div>
 </div>
