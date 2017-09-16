@@ -1,9 +1,16 @@
 var map;
 var allMarkers = [];
+var userLocation;
+
+//MY POSITION
+function getMyPosition(){
+  console.log(userLocation);
+  var str = userLocation.lat + ',' + userLocation.lng;
+  return str;
+}
 
 //INIT MAP
-function initMap() {
-  console.log('init map');
+function initMap(userloc) {
   var mapOptions = {
     zoom: 3,
     center: new google.maps.LatLng(45.529428, -73.5912335)
@@ -14,7 +21,6 @@ function initMap() {
     google.maps.event.addListener(map, 'zoom_changed', function() {
         var zoom = map.getZoom();
         var scale = 50;
-console.log(zoom);
         if(zoom > 5) {
             scale = scale * 0.8;
         } else if(zoom > 10) {
@@ -30,24 +36,29 @@ console.log(zoom);
     });
   
   // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Vous êtes ici.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-    // Resize map to cover div sizing changes
-    google.maps.event.trigger(map, 'resize'); 
+  if(!userloc){
+    console.log(userloc);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        
+        userLocation = pos;
+        
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Vous êtes ici.');
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+      // Resize map to cover div sizing changes
+      google.maps.event.trigger(map, 'resize'); 
+    }
   }
 }
 

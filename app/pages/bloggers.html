@@ -27,7 +27,7 @@
     </div>
     <div class="px-5" id="bloggers">
         <div class="row">
-            <div class="col-md-6" ng-repeat="user in public_users | filter:search" ng-show="user.fcb_id != my_id">
+            <div class="col-md-6" ng-repeat="user in public_users | filter:search" ng-show="user.fcb_id != my_id" ng-show="user.public">
                 <div class="blogger">
                     <div class="cover">
                         <img src="{{user.profil.cover ? user.profil.cover : 'images/bgdefault.jpg'}}" class="img-fluid" alt="{{user.name}}">

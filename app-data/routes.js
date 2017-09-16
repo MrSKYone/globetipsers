@@ -115,7 +115,7 @@ module.exports = function (app) {
     });
 
     app.put('/api/tips/:tip_id', function (req, res) {
-        console.log(req.body.name);
+        console.log('UPDATING');
         Tip.findOneAndUpdate({_id:req.params.tip_id}, req.body, function (err, tip) {
           res.send(tip);
         });
