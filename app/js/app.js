@@ -10,7 +10,7 @@ var app = angular.module('gbtipser', [
 app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function($routeProvider, $locationProvider, FacebookProvider) {
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
-  FacebookProvider.init('792243314276087');
+  FacebookProvider.init('792243314z276087');
   $routeProvider
 
   // route for the home page
@@ -513,6 +513,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       Users.getByFcbId($scope.url_id)
         .success(function(data){
           $scope.user_feed = data[0];
+          console.log($scope.user_feed);
           $scope.user_tips($scope.user_feed.fcb_id);
           if($scope.user_feed.fcb_id === $scope.user.fcb_id){
             $scope.own_profile = true;
@@ -904,6 +905,21 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         $(this).hide();
       }
     });
+  });
+
+  var $locationInput = $('input#address');
+  var autocomplete = new google.maps.places.Autocomplete($locationInput.get(0));
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      var place = autocomplete.getPlace();
+      place.geometry.location.lat();
+      place.geometry.location.lng()
+  });
+
+  google.maps.event.addDomListener($locationInput.get(0), 'keydown', function(e) {
+      if (e.keyCode === 13) {
+          e.preventDefault();
+      }
   });
 
   //Focus on country

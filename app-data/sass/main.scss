@@ -44,7 +44,7 @@ body,
 .col-right {
   position: relative;
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: $gray-lighter;
 
   .header {
@@ -81,6 +81,24 @@ body,
         }
       }
     }
+  }
+
+  .back-to-top {
+    position: fixed;
+    display: none;
+    left: 52%;
+    bottom: 15px;
+    font-size: $font-size-lg;
+    color: $gray-800;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
   }
 }
 

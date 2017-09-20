@@ -2,14 +2,19 @@
 
 <div class="col-left bg-map">
     <div class="map-modal bg-primary p-5">
-        <h3 class="text-white text-center">Aggrandi ta communauté pour accèder à plus de tips de voyages</h3>
+        <div class="map-modal-header">
+            <h3 class="map-modal-title text-uppercase text-center text-info">Les bloggeurs <br>sont aussi sur Globetipser</h3>
+        </div>
+        <div class="row justify-content-center">
+            <p class="col-8 pt-5 text-white h3 text-center">Des grands voyageurs qui ont chacun leur façon de voyage, tu trouveras bien celui qui te correspond !</p>
+        </div>
     </div>
     <div id="map"></div>
 </div>
 
 <div class="col-right">
     <div class="header">
-        <h3>Bloggers</h3>
+        <h3>Bloggeurs</h3>
     </div>
     <div class="p-5">
         <div class="row">
@@ -36,7 +41,7 @@
                         <div class="px-3 py-3">
                             <div class="media mb-3">
                                 <div class="media-left pr-3">
-                                    <a href="/user">
+                                    <a href="/user/profil/{{user.fcb_id}}">
                                         <img src="{{user.avatar}}" alt="{{user.name}}">
                                     </a>
                                 </div>
@@ -47,7 +52,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <p><strong class="text-success">{{user.tips.length}}</strong> TIPS</p>
+                                    <p><a href="/user/profil/{{user.fcb_id}}" class="no-decoration"><strong class="text-success">{{user.tips.length}}</strong> TIPS</a></p>
                                 </div>
                                 <div class="col-md-6">
                                     <p class="social-networks text-right">

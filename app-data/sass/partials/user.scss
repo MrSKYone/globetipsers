@@ -62,8 +62,15 @@
 .user-content {
   #filters {
     .nav-item {
-      width: 40%;
-      margin: 0 5px;
+      > a {
+        padding: 1.25rem 1rem;
+        color: $pink;
+
+        &.active {
+          background-color: $pink;
+          color: white;
+        }
+      }
     }
   }
 }
@@ -110,10 +117,8 @@
 }
 
 .card-login {
-  width: 600px;
-  max-width: 100%;
-  margin: auto;
-  background-color: $brand-primary;
+  width: 100%;
+  background-color: rgba($brand-primary, 0.8);
   color: $white;
 
   .logo {

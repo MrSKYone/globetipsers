@@ -53,6 +53,12 @@ a.gray-light {
   }
 }
 
+a.no-decoration {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .form-control {
   padding: 20px 20px;
 }
@@ -70,7 +76,7 @@ a.gray-light {
 }
 
 .btn-facebook {
-  @include button-variant($white, $facebook, $facebook);
+  @include button-variant($facebook, $facebook, $facebook);
 }
 
 .btn-white {

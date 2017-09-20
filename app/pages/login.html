@@ -1,13 +1,19 @@
 <div ng-include src="'partials/nav.html'"></div>
-<div ng-controller="loginController" class="height-100 bg-login pt-5">
-    <div class="card card-login">
-        <div class="card-body">
-            <div class="text-center pt-4">
+<div ng-controller="loginController" class="height-100 bg-login">
+    <div class="card-login height-100 py-5">
+            <div class="text-center pt-2">
                 <img src="./images/logo.png" alt="Globetipser" class="logo mb-4">
-                <p class="mb-4">Partage tes bons plans de voyages à ta communauté.<br> Inscris toi et explore les adresses secrètes de tes amis.</p>
-                <a href="" ng-click="login()" class="btn btn-facebook btn btn-lg btn-round mb-4"><i class="fa fa-facebook pr-3"></i> Se connecter avec Facebook</a>
+                <p class="lead font-weight-bold my-4">Toutes tes plus belles découvertes de voyage en poche.<br>
+                Inscris-toi et explore les adresses secrètes de tes amis.</p>
+                <a href="" ng-click="login()" class="btn btn-facebook btn btn-lg btn-round font-weight-bold mb-4 py-4 px-5"><i class="fa fa-facebook pr-3"></i> Se connecter avec Facebook</a>
 
                 <p class="line font-weight-bold text-uppercase" ng-show="email_users"><span>Ou</span></p>
+
+                <p class="mt-2">
+                    <a href="#" class="text-white mr-2">À propos de Globetipser</a>
+                    <a href="https://www.facebook.com/globetipser/" class="text-white mr-2" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+                    <a href="https://www.instagram.com/globetipser/" target="_blank" class="text-white"><i class="fa fa-instagram fa-lg"></i></a>
+                </p>
             </div>
 
             <form action="" ng-show="email_users">
@@ -36,6 +42,5 @@
 
                 <a href="/register" class="btn btn-outline-success btn-round btn-block mt-5">Créer un compte</a>
             </form>
-        </div>
     </div>
 </div>

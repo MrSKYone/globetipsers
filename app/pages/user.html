@@ -29,7 +29,13 @@
         </ul>
     </div>
     <div class="user-content py-4 px-5">
-        <ul class="nav justify-content-center pb-3" id="filters">
+        <ul class="nav nav-pills nav-fill justify-content-center pb-3" id="filters">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fa fa-user mr-2"></i> Mes tips</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-group mr-2"></i> Les tips de mes amis</a>
+            </li>
             <li class="nav-item dropdown">
                 <select class="form-control select2" id="continent" ng-model="filter_continent">
                     <option value="">Continent</option>
@@ -57,6 +63,15 @@
                 <h3 class="d-inline-block mb-3">{{item.name}}</h3><br>
                 <img src="./images/pictos/{{item.category}}-V.png" alt="{{item.category}}" width="50px" class="category">
             </div>
+            <div class="author">
+                <a href="#">
+                    <img src="{{user_feed.avatar}}" class="picture rounded-circle mr-2 d-inline-block">
+                    Jean Dujardin
+                </a>
+            </div>
         </div>
     </div>
+    <a href="#" class="back-to-top">
+        <i class="fa fa-chevron-circle-up fa-lg"></i>
+    </a>
 </div>
