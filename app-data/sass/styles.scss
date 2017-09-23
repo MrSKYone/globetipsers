@@ -6,6 +6,16 @@
   display: none;
 }
 
+html {
+  font-size: 0.9rem;
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1rem;
+  }
+}
+
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
@@ -61,6 +71,10 @@ a.no-decoration {
 
 .form-control {
   padding: 20px 20px;
+}
+
+.input-group-btn .btn {
+  padding: 1.2rem .75rem;
 }
 
 .badge {

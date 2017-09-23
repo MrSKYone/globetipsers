@@ -114,7 +114,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
     }
     
   }
-  
+
   //SEARCH FEATURE
   $scope.searchEntry = "";
   $scope.avSearch = [];
@@ -501,7 +501,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         console.log('LOADED');
       });
   }
-  
+
   $scope.me();
   
   //URL HASHING

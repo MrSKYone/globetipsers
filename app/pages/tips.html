@@ -15,13 +15,13 @@
     <div class="tips-info">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 text-center">
+                <div class="col-6 text-center">
                     <a href="/user/profil/{{tips_user_data.fcb_id}}" class="user">
                         <img src="{{tips_user_data.avatar}}" class="rounded-circle mb-2" alt="{{tips.author}}">
-                        <p>Ajouté par {{tips.author}}</p>
+                        <p><span class="d-none d-lg-inline">Ajouté par</span> {{tips.author}}</p>
                     </a>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-6 text-center">
                     <a href="#" ng-click="itinerary(tips.address)">
                         <i class="fa fa-map-marker fa-2x mb-2"></i><br>
                         <p>Itinéraire</p>

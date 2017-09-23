@@ -137,7 +137,6 @@
             var $searchOverlay = $('.search-overlay');
 
             $(document).ready(function() {
-
                 $('a[data-toggle="search"]').click(function() {
                      $searchOverlay.toggle();
                      $('.search-overlay input').focus();
@@ -153,10 +152,30 @@
             });
         </script>
         <script type="text/javascript">
+            $(document).ready(function() {
+                $(document).on('click', '#show-friends', function(e) {
+                    $(document).find('.col-left').addClass('active');
+                    $(document).find('.col-right').hide();
+                });
+
+                $(document).on('click', '#col-switch-on', function(e) {
+                    e.preventDefault();
+                    $(document).find('.col-left').addClass('active');
+                    $(document).find('.col-right').hide();
+                });
+
+                $(document).on('click', '#col-switch-off', function(e) {
+                    e.preventDefault();
+                    $(document).find('.col-left').removeClass('active');
+                    $(document).find('.col-right').show();
+                });
+            });
+        </script>
+        <script type="text/javascript">
             var $backToTop = $('a.back-to-top');
             $(document).ready(function() {
                 $('.st-pusher').scroll(function() {
-                    console.log('ici');
+
                 });
             });
 

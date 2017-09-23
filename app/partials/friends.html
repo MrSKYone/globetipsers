@@ -1,4 +1,4 @@
-<div ng-show="friend_modal" class="map-modal p-5" style="z-index:999;">
+<div ng-show="friend_modal" class="map-modal" style="z-index:999;">
         <div class="map-modal-header" ng-show="user_p.length > 0">
             <h3 class="map-modal-title text-uppercase text-center text-info">Ils veulent vous suivre</h3>
         </div>
@@ -9,7 +9,7 @@
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
                 <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="validate_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Accepter</a>
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="validate_request(item.id)"><i class="fa fa-check"></i> <span>Accepter</span></a>
                 </div>
             </li>
         </ul>
@@ -24,7 +24,7 @@
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
                 <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="delete_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Retirer</a>
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="delete_request(item.id)"><i class="fa fa-remove"></i> <span>Retirer</span></a>
                 </div>
             </li>
         </ul>
@@ -39,7 +39,7 @@
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
                 <div class="d-flex ml-3">
-                    <a href="/user/profil/{{item.id}}" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user-plus mr-3"></i>Voir Profil</a>
+                    <a href="/user/profil/{{item.id}}" class="btn btn-outline-success btn-round mt-2"><i class="fa fa-user"></i> <span>Voir Profil</span></a>
                 </div>
             </li>
         </ul>
@@ -53,8 +53,8 @@
                 <div class="media-body pt-3">
                     <h5 class="mt-0 mb-1">{{item.name}}</h5>
                 </div>
-                <div class="d-flex ml-3">
-                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="send_request(item.id)"><i class="fa fa-user-plus mr-3"></i> Ajouter</a>
+                <div class="d-flex col-auto ml-3">
+                    <a href="#" class="btn btn-outline-success btn-round mt-2" ng-click="send_request(item.id)"><i class="fa fa-user-plus"></i> <span>Ajouter</span></a>
                 </div>
             </li>
         </ul>
