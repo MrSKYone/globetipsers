@@ -10,7 +10,7 @@ var app = angular.module('gbtipser', [
 app.config(["$routeProvider", "$locationProvider", "FacebookProvider", function($routeProvider, $locationProvider, FacebookProvider) {
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
-  FacebookProvider.init('792243314z276087');
+  FacebookProvider.init('792243314276087');
   $routeProvider
 
   // route for the home page
