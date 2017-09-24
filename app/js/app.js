@@ -527,6 +527,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       console.log("no id in url param");
       $scope.user_feed = $scope.user_data[0];
       $scope.user_tips($scope.user_feed.fcb_id);
+      call_friends_tips();
     }
   }
   
@@ -540,7 +541,6 @@ app.controller('userController', function($scope, $location, $routeParams, $http
         console.log($scope.user_data[0])
         Users.update($scope.user_data[0], $scope.user_data[0]._id)
           .success(function(data){
-          console.log(data);
           $scope.display_user();
         })
       }
@@ -578,6 +578,9 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   //USER TIPS
   $scope.userTips = [];
   
+  //FRIENDS TIPS
+  $scope.friendsTips = [];
+  
   //TOM: Qu'est ce que c'est ca?
   $.fn.select2.defaults.set("theme", "flat");
   $('.select2').select2();
@@ -586,11 +589,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.cover_is;
   
   $scope.user_tips = function(id){
-    console.log('TIPS FUNC');
     Tips.getByAuthorId(id)
       .success(function(data) {
-        console.log("TIPS ARE");
-        console.log(data);
         $scope.userTips = data;
         add_markers(data);
         $scope.count_country(data);
@@ -603,6 +603,18 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           $scope.cover_is = $scope.user_feed.profil.cover;
         }
       });
+  }
+  
+  function call_friends_tips(){
+    for(var t=0; t<$scope.user_data[0].friends.length; t++){
+      Tips.getByAuthorId($scope.user_data[0].friends[t])
+        .success(function(data) {
+          for(var z=0; z<data.length; z++){
+            $scope.friendsTips.push(data[z])
+            add_markers(data);
+          }
+        });
+    }
   }
   
   //SHOW TIP
