@@ -29,7 +29,7 @@
                 <a href="#" data-toggle="search" class="text-right pr-5 pt-5 text-white" ng-click="toogle_search()"><i class="fa fa-remove fa-lg"></i> Close</a>
             </p>
 
-          <form action="" class="p-5">
+          <form action="" class="px-2 py-4">
               <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="search"  ng-model="searchEntry" ng-change="searchTrigger()" placeholder="Rechercher par pays, amis, catégorie, adresse..." autocomplete="off">
               </div>
@@ -162,6 +162,7 @@
                     e.preventDefault();
                     $(document).find('.col-left').addClass('active');
                     $(document).find('.col-right').hide();
+                    console.log(map);
                 });
 
                 $(document).on('click', '#col-switch-off', function(e) {

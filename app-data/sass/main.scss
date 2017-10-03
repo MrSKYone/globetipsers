@@ -127,9 +127,9 @@ button[id^="col-switch-"] {
     top: 0;
     width: 100%;
     z-index: $zindex-modal;
-    -ms-transform: translate(0, 100%);
-    -webkit-transform: translate(0, 100%);
-    transform: translate(0, 100%);
+    -ms-transform: translate(0, -100%);
+    -webkit-transform: translate(0, -100%);
+    transform: translate(0, -100%);
     transition: all 0.26s ease-out;
 
     &.active {
@@ -171,7 +171,7 @@ button[id^="col-switch-"] {
 
 .search-overlay {
   position: absolute;
-  top: 70px; bottom: 0;
+  top: 56px; bottom: 0;
   left: 0; right: 0;
   background-color: $brand-primary;
   z-index: 100;
@@ -196,7 +196,7 @@ button[id^="col-switch-"] {
   .search-overlay {
     position: fixed;
     top: 0;
-    padding-top: 200px;
+    padding-top: 20px;
 
     input {
       font-size: 1.5rem;
