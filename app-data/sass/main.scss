@@ -107,16 +107,17 @@ nav.fixed-top {
 }
 
 button[id^="col-switch-"] {
-    position: fixed;
-    right: 50%;
-    bottom: -1px;
-    z-index: 4;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow: 0 0 22px 2px rgba(48, 43, 38, 0.5);
-    -ms-transform: translate(50%, 0);
-    -webkit-transform: translate(50%, 0);
-    transform: translate(50%, 0);
+  position: fixed;
+  display: none;
+  right: 50%;
+  bottom: -1px;
+  z-index: 4;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 0 22px 2px rgba(48, 43, 38, 0.5);
+  -ms-transform: translate(50%, 0);
+  -webkit-transform: translate(50%, 0);
+  transform: translate(50%, 0);
 }
 
 @include media-breakpoint-down(md) {
@@ -142,6 +143,10 @@ button[id^="col-switch-"] {
   .col-right {
     width: 100%;
     height: auto;
+  }
+
+  button[id^="col-switch-"] {
+    display: block;
   }
 }
 

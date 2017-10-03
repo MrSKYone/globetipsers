@@ -160,9 +160,13 @@
   }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-down(sm) {
   .tips-header, .tips-widget {
     height: 250px;
+
+    .title {
+      padding: 80px 0 20px;
+    }
   }
 }
 
