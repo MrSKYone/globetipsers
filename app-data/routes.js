@@ -193,6 +193,13 @@ module.exports = function (app) {
             res.send(place);
         });
     });
+  
+    app.get('/api/users/field/public/:bool', function (req, res) {
+        // use mongoose to get all tips in the database
+        User.find({ 'public': req.params.bool }, {_id:0, user_friend_requests:0, pending_friend_requests:0, friends:0, public:0}, function (err, place) { 
+            res.send(place);
+        });
+    });
     
     //SEARCH
     app.get('/api/users/search/:string', function (req, res) {
