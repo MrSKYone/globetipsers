@@ -902,6 +902,17 @@ app.controller('newController', function($scope, $location, $http, Facebook, Sha
         })
     }
   
+  //DELETE
+  $scope.deleteItem = function(id){
+    if(confirm("Are you sure you want to delete this tips ?")){
+      Tips.delete(id)
+          .success(function(data) {
+            console.log("item deleted");
+          });
+      $location.path('/user');
+    }
+  }
+  
   //MAP
   initMap();
 
