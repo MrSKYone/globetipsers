@@ -123,7 +123,7 @@ app.controller('globalController', function($scope, $location, $http, Facebook, 
   $scope.searchTrigger = function(){
     //trigger data query when input length is 3 letters and more.
     //gets triggered everytime input changes
-    if($scope.searchEntry.length > 3 && $scope.searchEntry.length < 5){
+    if($scope.searchEntry.length > 2 && $scope.searchEntry.length < 7){
       $scope.avSearch = [];
       $scope.refinedSearch = [];
       $scope.blank = {};
