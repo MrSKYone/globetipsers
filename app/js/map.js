@@ -62,11 +62,12 @@ function initMap(userloc) {
 }
 
 function handleLocationError(browserHasGeolocation) {
-    var infoWindow = new google.maps.InfoWindow({map: map});
-    infoWindow.setPosition(map.getCenter());
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
+    //var infoWindow = new google.maps.InfoWindow({map: map});
+    //infoWindow.setPosition(map.getCenter());
+    //infoWindow.setContent(browserHasGeolocation ?
+        //'Error: The Geolocation service failed.' :
+        //'Error: Your browser doesn\'t support geolocation.');
+    alert("We couldn't locate you, make sure you enabled Geolocation");
 }
 
 function update_location(lat,lon){
