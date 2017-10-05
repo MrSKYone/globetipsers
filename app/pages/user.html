@@ -34,10 +34,10 @@
     </div>
     <div class="user-content py-4 px-5">
         <ul class="nav nav-pills nav-fill justify-content-center pb-3" id="filters">
-            <li class="nav-item">
+            <li class="nav-item" ng-show="own_profile">
                 <a class="nav-link" href="#" ng-class="tipson ? 'active' : ''" ng-click="tipson = !tipson"><i class="fa fa-user mr-2"></i> Mes tips</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="own_profile">
                 <a class="nav-link" href="#" ng-class="friendstips ? 'active' : ''" ng-click="friendstips = !friendstips"><i class="fa fa-group mr-2"></i> Les tips de mes amis</a>
             </li>
             <li class="nav-item dropdown">
