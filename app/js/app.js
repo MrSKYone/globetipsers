@@ -537,6 +537,9 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           if($scope.user_feed.fcb_id === $scope.user.fcb_id){
             $scope.own_profile = true;
           }
+          else{
+            $scope.own_profile = false;
+          }
           var check_f = $.inArray($scope.user_feed.fcb_id, $scope.user_data[0].friends);
           if(check_f != -1){$scope.is_friend = true; $scope.is_friend_message = "Followed";}
           else{$scope.is_friend_message = "Follow";}
