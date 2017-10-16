@@ -504,6 +504,25 @@ app.controller('userController', function($scope, $location, $routeParams, $http
 
   $scope.me();
   
+  //ADD TO FAVORITES
+  $scope.addtofav = function(id){
+    if($scope.user_feed.user_favorites.indexOf(id) !== -1) {
+      $scope.user_feed.user_favorites = removeA($scope.user_feed.user_favorites, id);
+      console.log("REMOVED FROM FAVORITES");
+      console.log($scope.user_feed);
+    }
+    else{
+      $scope.user_feed.user_favorites.push(id);
+      //update
+      Users.update($scope.user_feed, $scope.user_feed._id)
+            .success(function(data) {
+              console.log("ADDED TO FAVORITES");
+              $scope.user_feed = data;
+              console.log($scope.user_feed);
+            });
+    }
+  }
+  
   //URL HASHING
   
   $scope.display_user = function(){
@@ -526,6 +545,8 @@ app.controller('userController', function($scope, $location, $routeParams, $http
     else{
       console.log("no id in url param");
       $scope.user_feed = $scope.user_data[0];
+          //call favorites
+          findFavorites();
       $scope.user_tips($scope.user_feed.fcb_id);
       call_friends_tips();
     }
@@ -581,6 +602,9 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   //FRIENDS TIPS
   $scope.friendsTips = [];
   
+  //USER FAVORITES
+  $scope.userFavoriteTips = [];
+  
   //TOM: Qu'est ce que c'est ca?
   $.fn.select2.defaults.set("theme", "flat");
   $('.select2').select2();
@@ -615,6 +639,13 @@ app.controller('userController', function($scope, $location, $routeParams, $http
           }
         });
     }
+  }
+  
+  function findFavorites(){
+    Tips.getByArray($scope.user_feed.user_favorites)
+      .success(function(data) {
+        $scope.userFavoriteTips = data;
+      });
   }
   
   //SHOW TIP

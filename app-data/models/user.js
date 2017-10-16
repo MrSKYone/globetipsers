@@ -11,6 +11,7 @@ module.exports = mongoose.model('User', {
   friends: Array,
   pending_friend_requests: Array,
   user_friend_requests: Array,
+  user_favorites: Array,
   tips: Array,
   last_connexion: Date,
   profil: {

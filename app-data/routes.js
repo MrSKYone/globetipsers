@@ -66,6 +66,12 @@ module.exports = function (app) {
         } );
     });
   
+    // find by array
+    app.get('/api/tips/names/:array', function (req, res) {
+        Tip.find({ _id : { $in : req.params.array.split(',') } }, function(err, tip) { 
+            res.send(tip);
+        } );
+    });
     
     //SEARCH
     app.get('/api/tips/search/:string', function (req, res) {
@@ -115,7 +121,6 @@ module.exports = function (app) {
     });
 
     app.put('/api/tips/:tip_id', function (req, res) {
-        console.log('UPDATING');
         Tip.findOneAndUpdate({_id:req.params.tip_id}, req.body, function (err, tip) {
           res.send(tip);
         });
@@ -173,6 +178,7 @@ module.exports = function (app) {
             friends: req.body.friends,
             pending_friend_request: req.body.pending_friend_request,
             user_friend_request: req.body.user_friend_request,
+            user_favorites: req.body.user_favorites,
             tips: req.body.tips,
             last_connexion: req.body.last_connexion,
         });

@@ -85,6 +85,9 @@ app.factory('Tips', ['$http' ,function($http) {
 		getByAuthorId : function(id) {
 			return $http.get('/api/tips/field/author/' + id);
 		},
+		getByArray : function(array) {
+			return $http.get('/api/tips/names/' + array);
+		},
 		getName : function(slug) {
 			return $http.get('/api/tips/name/' + slug);
 		},

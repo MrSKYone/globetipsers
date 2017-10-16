@@ -41,9 +41,18 @@ var upload = multer({ storage: storageTip });
 var upload_user = multer({ storage: storageUser });
 
 // configuration =================
-mongoose.connect('mongodb://localhost:27017/test');    
+//mongoose.connect('mongodb://localhost:27017/test');    
 //mongoose.connect('mongodb://preview.w0jghuyc4gh6ko6rav29qnoke7y14izmkvsxjurjzqto6r.box.codeanywhere.com:27017/test');     
-
+// Using `mongoose.connect`...
+var promise = mongoose.connect('mongodb://localhost:27017/test', {
+  useMongoClient: true,
+  /* other options */
+});
+promise.then(function(db) {
+  /* Use `db`, for instance `db.model()`
+});
+// Or, if you already have a connection
+connection.openUri('mongodb://localhost/myapp', { /* options */ });
 
 app.use(require('forest-express-mongoose').init({
   modelsDir: 'app-data/models', // Your models directory.
