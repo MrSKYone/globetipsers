@@ -34,11 +34,14 @@
     </div>
     <div class="user-content py-4 px-5">
         <ul class="nav nav-pills nav-fill justify-content-center pb-3" id="filters">
-            <li class="nav-item">
+            <li class="nav-item" ng-show="!url_id">
                 <a class="nav-link" href="#" ng-class="tipson ? 'active' : ''" ng-click="tipson = !tipson"><i class="fa fa-user mr-2"></i> Mes tips</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="!url_id">
                 <a class="nav-link" href="#" ng-class="friendstips ? 'active' : ''" ng-click="friendstips = !friendstips"><i class="fa fa-group mr-2"></i> Les tips de mes amis</a>
+            </li>
+            <li class="nav-item" ng-show="!url_id">
+                <a class="nav-link" href="#" ng-class="favorites ? 'active' : ''" ng-click="favorites = !favorites"><i class="fa fa-group mr-2"></i> Whishlist</a>
             </li>
             <li class="nav-item dropdown">
                 <select class="form-control select2" id="continent" ng-model="filter_continent">
@@ -58,35 +61,53 @@
             </li>
         </ul>
 
-        <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
+        <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)">
             <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
-            <a href="#" class="right-action">
-                <img src="./images/icon-wishlist-add.png" width="25">
+            <a ng-show="url_id || own_profile" href="#" class="right-action" ng-click="addtofav(item._id)">
+                <img ng-show="user_feed.user_favorites.indexOf(item._id)>= 0" src="./images/icon-wishlist-add.png" width="25">
+                <img ng-show="user_feed.user_favorites.indexOf(item._id) < 0" src="./images/icon-wishlist-added.png" width="25">
             </a>
             <div class="text-center title">
-                <h3 class="d-inline-block mb-3">{{item.name}}</h3><br>
+                <h3 class="d-inline-block mb-3" ng-click="show_tips(item._id)">{{item.name}}</h3><br>
                 <img src="./images/pictos/{{item.category}}-V.png" alt="{{item.category}}" width="50px" class="category">
             </div>
             <div class="author">
-                <a href="#">
-                    <img src="{{user_feed.avatar}}" class="picture rounded-circle mr-2 d-inline-block">
+                <a href="/user/profil/item.fcb_id">
+                    <img src="" class="picture rounded-circle mr-2 d-inline-block">
                     {{item.author}}
                 </a>
             </div>
         </div>
       
-        <div ng-show="friendstips" class="tips-widget text-center mb-5" ng-repeat="item in friendsTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)" ng-click="show_tips(item._id)">
+        <div ng-show="favorites" class="tips-widget text-center mb-5" ng-repeat="item in userFavoriteTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)">
             <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
-            <a href="#" class="right-action">
+            <a href="#" class="right-action" ng-click="addtofav(item._id)">
                 <img src="./images/icon-wishlist-add.png" width="25">
             </a>
             <div class="text-center title">
-                <h3 class="d-inline-block mb-3">{{item.name}}</h3><br>
+                <h3 class="d-inline-block mb-3" ng-click="show_tips(item._id)">{{item.name}}</h3><br>
                 <img src="./images/pictos/{{item.category}}-V.png" alt="{{item.category}}" width="50px" class="category">
             </div>
             <div class="author">
-                <a href="#">
-                    <img src="{{user_feed.avatar}}" class="picture rounded-circle mr-2 d-inline-block">
+                <a href="/user/profil/item.fcb_id">
+                    <img src="" class="picture rounded-circle mr-2 d-inline-block">
+                    {{item.author}}
+                </a>
+            </div>
+        </div>
+      
+        <div ng-show="friendstips" class="tips-widget text-center mb-5" ng-repeat="item in friendsTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)">
+            <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
+            <a href="#" class="right-action" ng-click="addtofav(item._id)">
+                <img src="./images/icon-wishlist-add.png" width="25">
+            </a>
+            <div class="text-center title">
+                <h3 class="d-inline-block mb-3" ng-click="show_tips(item._id)">{{item.name}}</h3><br>
+                <img src="./images/pictos/{{item.category}}-V.png" alt="{{item.category}}" width="50px" class="category">
+            </div>
+            <div class="author">
+                <a href="/user/profil/item.fcb_id">
+                    <img src="" class="picture rounded-circle mr-2 d-inline-block">
                     {{item.author}}
                 </a>
             </div>
