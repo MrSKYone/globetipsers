@@ -64,7 +64,8 @@
         <div ng-show="tipson" class="tips-widget text-center mb-5" ng-repeat="item in userTips | filter:{category:filter_cat,continent:filter_continent} | reverse" id="{{item._id}}" style="background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{item.cover}}');" data-id="{{item._id}}" ng-mouseenter="placeHover(item._id, item.lat)">
             <p class="location"><span>{{item.country}}</span>, {{item.city}}</p>
             <a ng-show="url_id || own_profile" href="#" class="right-action" ng-click="addtofav(item._id)">
-                <img src="./images/icon-wishlist-add.png" width="25">
+                <img ng-show="user_feed.user_favorites.indexOf(item._id)>= 0" src="./images/icon-wishlist-add.png" width="25">
+                <img ng-show="user_feed.user_favorites.indexOf(item._id) < 0" src="./images/icon-wishlist-added.png" width="25">
             </a>
             <div class="text-center title">
                 <h3 class="d-inline-block mb-3" ng-click="show_tips(item._id)">{{item.name}}</h3><br>
