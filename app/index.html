@@ -170,20 +170,20 @@
             $(document).ready(function() {
                 $(document).on('click', '#show-friends', function(e) {
                     $(document).find('.col-left').addClass('active');
-                    $(document).find('.col-right').hide();
+                    $(document).find('.col-right').addClass('col-hidden');
                 });
 
                 $(document).on('click', '#col-switch-on', function(e) {
                     e.preventDefault();
                     $(document).find('.col-left').addClass('active');
-                    $(document).find('.col-right').hide();
+                    $(document).find('.col-right').addClass('col-hidden');
                     console.log(map);
                 });
 
                 $(document).on('click', '#col-switch-off', function(e) {
                     e.preventDefault();
                     $(document).find('.col-left').removeClass('active');
-                    $(document).find('.col-right').show();
+                    $(document).find('.col-right').removeClass('col-hidden');
                 });
             });
         </script>

@@ -143,6 +143,10 @@ button[id^="col-switch-"] {
   .col-right {
     width: 100%;
     height: auto;
+
+    &.col-hidden {
+      display: none;
+    }
   }
 
   button[id^="col-switch-"] {
