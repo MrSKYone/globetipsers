@@ -512,9 +512,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       //update
       Users.update($scope.user_feed, $scope.user_feed._id)
             .success(function(data) {
-              console.log("REMOVED FROM FAVORITES");
-              console.log($scope.user_feed);
-              $scope.user_feed = data;
+              findFavorites();
             });
     }
     else{
@@ -522,9 +520,7 @@ app.controller('userController', function($scope, $location, $routeParams, $http
       //update
       Users.update($scope.user_feed, $scope.user_feed._id)
             .success(function(data) {
-              console.log("ADDED TO FAVORITES");
-              $scope.user_feed = data;
-              console.log($scope.user_feed);
+              findFavorites();
             });
     }
   }
