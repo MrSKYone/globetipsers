@@ -508,8 +508,14 @@ app.controller('userController', function($scope, $location, $routeParams, $http
   $scope.addtofav = function(id){
     if($scope.user_feed.user_favorites.indexOf(id) !== -1) {
       $scope.user_feed.user_favorites = removeA($scope.user_feed.user_favorites, id);
-      console.log("REMOVED FROM FAVORITES");
-      console.log($scope.user_feed);
+     
+      //update
+      Users.update($scope.user_feed, $scope.user_feed._id)
+            .success(function(data) {
+              console.log("REMOVED FROM FAVORITES");
+              console.log($scope.user_feed);
+              $scope.user_feed = data;
+            });
     }
     else{
       $scope.user_feed.user_favorites.push(id);
